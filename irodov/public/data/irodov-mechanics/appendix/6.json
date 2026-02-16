@@ -1,0 +1,22 @@
+{
+  "id": "algebra_trig_formulas",
+  "title": "6. Алгебр ба тригонометрийн томьёонууд",
+  "body": [
+    {
+      "type": "header",
+      "value": "6. Алгебр ба тригонометрийн томьёонууд"
+    },
+    {
+      "type": "text",
+      "value": "<b>Квадрат тэгшитгэлийн язгуурууд</b> $a x^{2}+b x+c=0$ :<br>$$x_{1,2}=\\frac{-b \\pm \\sqrt{b^{2}-4 a c}}{2 a} .$$"
+    },
+    {
+      "type": "text",
+      "value": "<b>Зарим ойролцоо томьёонууд.</b> Хэрэв $\\alpha \\ll 1$ бол:<br>$$\\begin{array}{ll}\n(1+\\alpha)^{n} \\approx 1+n \\alpha ; & \\sin \\alpha \\approx \\alpha ; \\\\\n\\mathrm{e}^{\\alpha} \\approx 1+\\alpha ; & \\cos \\alpha \\approx 1-\\alpha^{2} / 2 ; \\\\\n\\ln (1+\\alpha) \\approx \\alpha ; & \\operatorname{tg} \\alpha \\approx \\alpha .\n\\end{array}$$"
+    },
+    {
+      "type": "text",
+      "value": "<b>Тригонометрийн үндсэн томьёонууд:</b><br>$$\\begin{array}{ll}\n\\sin ^{2} \\alpha+\\cos ^{2} \\alpha=1 ; & \\\\\n\\sin \\alpha=1 / \\sqrt{1+\\operatorname{ctg}^{2} \\alpha} ; & \\operatorname{tg} 2 \\alpha=\\frac{2 \\operatorname{tg} \\alpha}{1-\\operatorname{tg}^{2} \\alpha} ; \\\\\n\\cos \\alpha=1 / \\sqrt{1+\\operatorname{tg}^{2} \\alpha} ; & \\sin ^{2}\\left(\\frac{\\alpha}{2}\\right)=\\frac{1-\\cos \\alpha}{2} ; \\\\\n\\sin 2 \\alpha=2 \\sin \\alpha \\cos \\alpha ; & \\cos ^{2}\\left(\\frac{\\alpha}{2}\\right)=\\frac{1+\\cos \\alpha}{2} ; \\\\\n\\cos 2 \\alpha=\\cos ^{2} \\alpha-\\sin ^{2} \\alpha ; & \\\\\n& \\sin (\\alpha \\pm \\beta)=\\sin \\alpha \\cos \\beta \\pm \\cos \\alpha \\sin \\beta ; \\\\\n& \\cos (\\alpha \\pm \\beta)=\\cos \\alpha \\cos \\beta \\mp \\sin \\alpha \\sin \\beta .\n\\end{array}$$"
+    }
+  ]
+}

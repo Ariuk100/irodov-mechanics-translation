@@ -1,0 +1,7 @@
+.DS_Store
+.claude/
+.gemini/
+node_modules/
+dist/
+build/
+*.log

@@ -1,0 +1,18 @@
+{
+  "id": "decimal_prefixes",
+  "title": "10. Нэгжийн нэрийн аравтын угтварууд",
+  "body": [
+    {
+      "type": "header",
+      "value": "10. Нэгжийн нэрийн аравтын угтварууд"
+    },
+    {
+      "type": "text",
+      "value": "<table border=\"1\" style=\"width:100%; border-collapse: collapse; text-align: center;\"><tbody><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">Т -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">тера ($10^{12}$)</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">с -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">санти ($10^{-2}$)</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">Г -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">гига ($10^{9}$)</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">м -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">милли ($10^{-3}$)</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">М -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">мега ($10^{6}$)</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">мк -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">микро ($10^{-6}$)</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">к -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">кило ($10^{3}$)</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">н -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">нано ($10^{-9}$)</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">г -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">гекто ($10^{2}$)</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">п -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">пико ($10^{-12}$)</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">да -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">дека ($10^{1}$)</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">ф -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">фемто ($10^{-15}$)</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">д -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">деци ($10^{-1}$)</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">а -</td><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">атто ($10^{-18}$)</td></tr></tbody></table>"
+    },
+    {
+      "type": "text",
+      "value": "<b>Жишээ:</b><br>нм - нанометр ($10^{-9}$ м),<br>кН - килоньютон ($10^{3}$ Н),<br>МэВ - мегаэлектрон-вольт ($10^{6}$ эВ),<br>мкВт - микроватт ($10^{-6}$ Вт)."
+    }
+  ]
+}
