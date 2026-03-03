@@ -52,7 +52,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "Let us represent $k$ th oscillation in complex үедm\n$$\n\\xi_{k}=a \\mathrm{e}^{i[\\omega t+(k-1) \\varphi]}=a_{k}^{*} \\mathrm{e}^{i \\omega t}\n$$\nwЭнд $a_{k}^{*}=a \\mathrm{e}^{i(k-1) \\varphi}$ нь complex amplitude. Тэгэхэд complex amplitude of resulting oscillation нь\n$$\n\\begin{gatЭндd}\nА^{*}=\\sum_{k=1}^{N} a \\mathrm{e}^{i(k-1) \\varphi}=a\\left[1+\\mathrm{e}^{i \\varphi}+\\mathrm{e}^{i 2 \\varphi}+\\ldots+\\mathrm{e}^{i(N-1) \\varphi}\\right]=\n=a\\left(\\mathrm{e}^{i \\varphi N}-1\\right) /\\left(\\mathrm{e}^{i \\varphi}-1\\right)\n\\end{gatЭндd}\n$$\nMultiplying $А^{*}$ by complex conjugate value ба extracting square root, we obtain real amplitude\n$$\nА=a \\sqrt{\\frac{1-\\cos N \\varphi}{1-\\cos \\varphi}}=a \\frac{\\sin (N \\varphi / 2)}{\\sin (\\varphi / 2)}\n$$"
+          "value": "Let us represent $k$ th oscillation in complex үедm\n$$\n\\xi_{k}=a \\mathrm{e}^{i[\\omega t+(k-1) \\varphi]}=a_{k}^{*} \\mathrm{e}^{i \\omega t}\n$$\nwЭнд $a_{k}^{*}=a \\mathrm{e}^{i(k-1) \\varphi}$ нь complex amplitude. Тэгэхэд complex amplitude of resulting oscillation нь\n$$\n\\begin{gatЭндd}\nА^{*}=\\sum_{k=1}^{N} a \\mathrm{e}^{i(k-1) \\varphi}=a\\left[1+\\mathrm{e}^{i \\varphi}+\\mathrm{e}^{i 2 \\varphi}+\\ldots+\\mathrm{e}^{i(N-1) \\varphi}\\right]=\n=a\\left(\\mathrm{e}^{i \\varphi N}-1\\right) /\\left(\\mathrm{e}^{i \\varphi}-1\\right)\n\\end{gatЭндd}\n$$\nMultiplying $A^{*}$ by complex conjugate value ба extracting square root, we obtain real amplitude\n$$\nА=a \\sqrt{\\frac{1-\\cos N \\varphi}{1-\\cos \\varphi}}=a \\frac{\\sin (N \\varphi / 2)}{\\sin (\\varphi / 2)}\n$$"
         }
       ]
     },
@@ -105,7 +105,7 @@
         },
         {
           "type": "text",
-          "value": "Дэлгэц дээр үүссэн $S c$. Эх сурвалж ба толин тусгал нь $л=100 \\mathrm{~сm}$ зайгаар тусгаарлагддаг. Эх сурвалжийн тодорхой байрлалд дэлгэц дээрх захын өргөн $\\Delta x=0.25 \\mathrm{~мм}$ -тэй тэнцүү байсан бөгөөд эх үүсвэрийг толин тусгалын хавтгайгаас $\\Delta ц=0.60 \\mathrm{~мм}$ холдуулсны дараа захын өргөн $\\eta=1.5$ дахин багассан. Гэрлийн долгионы уртыг ол."
+          "value": "Дэлгэц дээр үүссэн $S c$. Эх сурвалж ба толин тусгал нь $l=100 \\mathrm{~сm}$ зайгаар тусгаарлагддаг. Эх сурвалжийн тодорхой байрлалд дэлгэц дээрх захын өргөн $\\Delta x=0.25 \\mathrm{~мм}$ -тэй тэнцүү байсан бөгөөд эх үүсвэрийг толин тусгалын хавтгайгаас $\\Delta h=0.60 \\mathrm{~мм}$ холдуулсны дараа захын өргөн $\\eta=1.5$ дахин багассан. Гэрлийн долгионы уртыг ол."
         },
         {
           "type": "image",
@@ -116,7 +116,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$\\lambda=2 \\Delta x \\Delta ц / л(\\eta-1)=0.6 \\mu \\mathrm{~м}$."
+          "value": "$\\lambda=2 \\Delta x \\Delta h / l(\\eta-1)=0.6 \\mu \\mathrm{~м}$."
         }
       ]
     },
@@ -144,7 +144,7 @@
       "statement": [
         {
           "type": "text",
-          "value": "Зураг 5.14 нь Fresnel толин тусгалтай хийсэн хөндлөнгийн туршилтыг харуулж байна. Толин тусгалуудын хоорондох өнцөг нь $\\alpha=12^{\\prime}$, толины огтлолцох шугамаас $S$ нарийн ангархай ба $S c$ дэлгэц хүртэлх зай нь $r=10.0 \\mathrm{~сm}$ ба $b=130 \\mathrm{~сm}$ -тэй тэнцүү байна. Гэрлийн долгионы урт нь $\\lambda=0.55 \\mu \\mathrm{~м}$. Олно:\n(a) дэлгэц дээрх захын өргөн ба боломжит дээд хязгаарын тоо;\n(б) төв нь $O$ цэгтэй $r$ радиусын нумын дагуу ангархай нь $\\delta л=1.0 \\mathrm{~мм}$ -ээр шилжсэн үед дэлгэц дээрх хөндлөнгийн хэв маягийн шилжилт;\n(в) хагарлын $\\delta_{\\text {max }}$ хамгийн их өргөнд дэлгэц дээрх хөндлөнгийн хүрээ хангалттай хурц ажиглагдсан хэвээр байна."
+          "value": "Зураг 5.14 нь Fresnel толин тусгалтай хийсэн хөндлөнгийн туршилтыг харуулж байна. Толин тусгалуудын хоорондох өнцөг нь $\\alpha=12^{\\prime}$, толины огтлолцох шугамаас $S$ нарийн ангархай ба $S c$ дэлгэц хүртэлх зай нь $r=10.0 \\mathrm{~сm}$ ба $b=130 \\mathrm{~сm}$ -тэй тэнцүү байна. Гэрлийн долгионы урт нь $\\lambda=0.55 \\mu \\mathrm{~м}$. Олно:\n(a) дэлгэц дээрх захын өргөн ба боломжит дээд хязгаарын тоо;\n(б) төв нь $O$ цэгтэй $r$ радиусын нумын дагуу ангархай нь $\\delta l=1.0 \\mathrm{~мм}$ -ээр шилжсэн үед дэлгэц дээрх хөндлөнгийн хэв маягийн шилжилт;\n(в) хагарлын $\\delta_{\\text {max }}$ хамгийн их өргөнд дэлгэц дээрх хөндлөнгийн хүрээ хангалттай хурц ажиглагдсан хэвээр байна."
         },
         {
           "type": "image",
@@ -155,7 +155,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "(a) $\\Delta x=\\lambda(b+r) / 2 \\alpha r=1.1 \\mathrm{~мм}, 9$ maxima; (b) shift нь $\\delta x=(b / r) \\delta л=13 \\mathrm{~мм}$; (c) fringe pattern нь still sharp when $\\delta x \\leqslant \\Delta x / 2$, hence $\\delta_{\\text {max }}=(1+r / b) \\lambda / 4 \\alpha=43 \\mu \\mathrm{~м}$."
+          "value": "(a) $\\Delta x=\\lambda(b+r) / 2 \\alpha r=1.1 \\mathrm{~мм}, 9$ maxima; (b) shift нь $\\delta x=(b / r) \\delta l=13 \\mathrm{~мм}$; (c) fringe pattern нь still sharp when $\\delta x \\leqslant \\Delta x / 2$, hence $\\delta_{\\text {max }}=(1+r / b) \\lambda / 4 \\alpha=43 \\mu \\mathrm{~м}$."
         }
       ]
     },
@@ -243,13 +243,13 @@
       "statement": [
         {
           "type": "text",
-          "value": "Хавтгай монохромат гэрлийн долгион нь $d=2.5 \\mathrm{~мм}$ зайгаар тусгаарлагдсан хоёр нарийн ангархай бүхий диафрагм дээр хэвийн унадаг.\n\nДиафрагмын ард $л= =100 \\mathrm{~сm}$ зайд байрлуулсан дэлгэц дээр захын загвар үүсдэг. Нэг ангархайг $ц=10 \\mu \\mathrm{~м}$ зузаантай шилэн хавтангаар хучсан үед эдгээр захууд ямар зайд, аль чиглэлд шилжих вэ?"
+          "value": "Хавтгай монохромат гэрлийн долгион нь $d=2.5 \\mathrm{~мм}$ зайгаар тусгаарлагдсан хоёр нарийн ангархай бүхий диафрагм дээр хэвийн унадаг.\n\nДиафрагмын ард $l= =100 \\mathrm{~сm}$ зайд байрлуулсан дэлгэц дээр захын загвар үүсдэг. Нэг ангархайг $h=10 \\mu \\mathrm{~м}$ зузаантай шилэн хавтангаар хучсан үед эдгээр захууд ямар зайд, аль чиглэлд шилжих вэ?"
         }
       ],
       "answer": [
         {
           "type": "text",
-          "value": "fringes dньplaced зүг covered slit over dньtance $\\Delta x=ц л(n-1) / d=2.0 \\mathrm{~мм}$."
+          "value": "fringes dньplaced зүг covered slit over dньtance $\\Delta x=h l(n-1) / d=2.0 \\mathrm{~мм}$."
         }
       ]
     },
@@ -264,7 +264,7 @@
         },
         {
           "type": "text",
-          "value": "$\\lambda=589 \\mathrm{~нм}, 1$ долгионы урттай монохромат гэрлээр гэрэлтсэн нарийн ан цав ба 2 нь тус бүр $л= =10.0 \\mathrm{~сm}$ урттай агаартай ижил хоолой, $D$ нь хоёр ангархайтай диафрагм юм. 1-р хоолой дахь агаар аммиакийн хийгээр солигдсоны дараа $S c$ дэлгэц дээрх интерференцийн загвар нь $N=17$ ирмэгээр дээшээ шилжсэн. Агаарын хугарлын илтгэгч нь $n=1.000277$ -тэй тэнцүү байна. Аммиакийн хийн хугарлын илтгэгчийг тодорхойл."
+          "value": "$\\lambda=589 \\mathrm{~нм}, 1$ долгионы урттай монохромат гэрлээр гэрэлтсэн нарийн ан цав ба 2 нь тус бүр $l= =10.0 \\mathrm{~сm}$ урттай агаартай ижил хоолой, $D$ нь хоёр ангархайтай диафрагм юм. 1-р хоолой дахь агаар аммиакийн хийгээр солигдсоны дараа $S c$ дэлгэц дээрх интерференцийн загвар нь $N=17$ ирмэгээр дээшээ шилжсэн. Агаарын хугарлын илтгэгч нь $n=1.000277$ -тэй тэнцүү байна. Аммиакийн хийн хугарлын илтгэгчийг тодорхойл."
         },
         {
           "type": "image",
@@ -275,7 +275,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$n^{\\prime}=n+N \\lambda / л=1.000377$."
+          "value": "$n^{\\prime}=n+N \\lambda / l=1.000377$."
         }
       ]
     },
@@ -371,7 +371,7 @@
       "statement": [
         {
           "type": "text",
-          "value": "Онохроматик гэрэл нь $S c$ дэлгэцийн нүхээр дамжин өнгөрдөг (Зураг 5.17) бөгөөд нимгэн тунгалаг хавтангаас тусах нь $P$ дэлгэц дээр ижил налуутай ирмэгүүд үүсгэдэг. Хавтангийн зузаан нь $d$, хавтан ба дэлгэцийн хоорондох зай $л$, $i$ ба $k$ -ийн харанхуй цагирагуудын радиус нь $r_{i}$ ба $r_{k}$ байна. $r_{i, ц} \\ll л$ гэдгийг харгалзан гэрлийн долгионы уртыг ол."
+          "value": "Онохроматик гэрэл нь $S c$ дэлгэцийн нүхээр дамжин өнгөрдөг (Зураг 5.17) бөгөөд нимгэн тунгалаг хавтангаас тусах нь $P$ дэлгэц дээр ижил налуутай ирмэгүүд үүсгэдэг. Хавтангийн зузаан нь $d$, хавтан ба дэлгэцийн хоорондох зай $l$, $i$ ба $k$ -ийн харанхуй цагирагуудын радиус нь $r_{i}$ ба $r_{k}$ байна. $r_{i, h} \\ll l$ гэдгийг харгалзан гэрлийн долгионы уртыг ол."
         },
         {
           "type": "image",
@@ -382,7 +382,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$\\lambda \\approx \\frac{d\\left(r_{i}^{2}-r_{k}^{2}\\right)}{4 n л^{2}(i-k)}$."
+          "value": "$\\lambda \\approx \\frac{d\\left(r_{i}^{2}-r_{k}^{2}\\right)}{4 n l^{2}(i-k)}$."
         }
       ]
     },
@@ -414,13 +414,13 @@
       "statement": [
         {
           "type": "text",
-          "value": "Холын цэгийн эх үүсвэрээс $\\lambda=0.55 \\mu \\mathrm{~м}$ долгионы урттай ight нь шилэн шаантагны гадаргуу дээр хэвийн унадаг. Шаантагны гадаргуу дээрх зэргэлдээх максимумууд нь $\\Delta x=0.21 \\mathrm{~мм}$ зайгаар тусгаарлагдсан туяаны хэв маяг нь ойсон гэрлийн үед ажиглагдаж байна. Олно:\n(a) шаантагны нүүрний хоорондох өнцөг;\n(б) шаантагны ирмэгээс $л \\simeq 1.5 \\mathrm{~сm}$ зайд ирмэгүүд алга болвол гэрлийн монохроматизмын зэрэг ( $\\Delta \\lambda / \\lambda$ )."
+          "value": "Холын цэгийн эх үүсвэрээс $\\lambda=0.55 \\mu \\mathrm{~м}$ долгионы урттай ight нь шилэн шаантагны гадаргуу дээр хэвийн унадаг. Шаантагны гадаргуу дээрх зэргэлдээх максимумууд нь $\\Delta x=0.21 \\mathrm{~мм}$ зайгаар тусгаарлагдсан туяаны хэв маяг нь ойсон гэрлийн үед ажиглагдаж байна. Олно:\n(a) шаантагны нүүрний хоорондох өнцөг;\n(б) шаантагны ирмэгээс $l \\simeq 1.5 \\mathrm{~сm}$ зайд ирмэгүүд алга болвол гэрлийн монохроматизмын зэрэг ( $\\Delta \\lambda / \\lambda$ )."
         }
       ],
       "answer": [
         {
           "type": "text",
-          "value": "(a) $\\ta=1 / 2 \\lambda / n \\Delta x=3^{\\prime}$; (b) $\\Delta \\lambda / \\lambda \\approx \\Delta x / л=0.014$."
+          "value": "(a) $\\ta=1 / 2 \\lambda / n \\Delta x=3^{\\prime}$; (b) $\\Delta \\lambda / \\lambda \\approx \\Delta x / l=0.014$."
         }
       ]
     },
@@ -448,13 +448,13 @@
       "statement": [
         {
           "type": "text",
-          "value": "$r=40 \\mathrm{~сm}$ муруйлтын радиустай хавтгай гүдгэр шилэн линзний гүдгэр гадаргуу нь шилэн хавтантай шүргэнэ. Ойсон гэрэлд ажиглагдсан тодорхой цагираг нь $r=2.5 \\mathrm{~мм}$ радиустай. Өгөгдсөн бөгжийг хараад линзийг аажмаар хавтангаас $\\Delta ц=5.0 \\mu \\mathrm{~м}$ зайд салгав. Тэр цагирагийн радиус хэдтэй тэнцүү болсон бэ?"
+          "value": "$r=40 \\mathrm{~сm}$ муруйлтын радиустай хавтгай гүдгэр шилэн линзний гүдгэр гадаргуу нь шилэн хавтантай шүргэнэ. Ойсон гэрэлд ажиглагдсан тодорхой цагираг нь $r=2.5 \\mathrm{~мм}$ радиустай. Өгөгдсөн бөгжийг хараад линзийг аажмаар хавтангаас $\\Delta h=5.0 \\mu \\mathrm{~м}$ зайд салгав. Тэр цагирагийн радиус хэдтэй тэнцүү болсон бэ?"
         }
       ],
       "answer": [
         {
           "type": "text",
-          "value": "$r^{\\prime}=\\sqrt{r^{2}-2 R \\Delta ц}=1.5 \\mathrm{~мм}$."
+          "value": "$r^{\\prime}=\\sqrt{r^{2}-2 R \\Delta h}=1.5 \\mathrm{~мм}$."
         }
       ]
     },
@@ -573,7 +573,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "transition from one sharp pattern to aүгүйther occurs if following condition нь met:\n$$\n(k+1) \\lambda_{1}=k \\lambda_{2},\n$$\nwЭнд $k$ нь a certain integer. corresponding dньplacement $\\Delta ц$ of mirror нь deterминed from equation $2 \\Delta ц=k \\lambda_{2}$. From se two equations we get\n$$\n\\Delta ц=\\frac{\\lambda_{1} \\lambda_{2}}{2\\left(\\lambda_{2}-\\lambda_{1}\\right)} \\approx \\frac{\\lambda^{2}}{2 \\Delta \\lambda}=0.3 \\mathrm{~мм}.\n$$"
+          "value": "transition from one sharp pattern to aүгүйther occurs if following condition нь met:\n$$\n(k+1) \\lambda_{1}=k \\lambda_{2},\n$$\nwЭнд $k$ нь a certain integer. corresponding dньplacement $\\Delta h$ of mirror нь deterминed from equation $2 \\Delta h=k \\lambda_{2}$. From se two equations we get\n$$\n\\Delta h=\\frac{\\lambda_{1} \\lambda_{2}}{2\\left(\\lambda_{2}-\\lambda_{1}\\right)} \\approx \\frac{\\lambda^{2}}{2 \\Delta \\lambda}=0.3 \\mathrm{~мм}.\n$$"
         }
       ]
     },

@@ -103,7 +103,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$t=\\left(\\eta^{3}-1\\right) c \\rho d / 18 \\sigma T_{0}^{3}=3$ цаг, wЭнд $c$ нь specific heat capacity of copper, $\\rho$ нь its density.\n$5252. T_{2}=T_{1} \\sqrt{d / 2 л}=0.4 \\mathrm{кК}$."
+          "value": "$t=\\left(\\eta^{3}-1\\right) c \\rho d / 18 \\sigma T_{0}^{3}=3$ цаг, wЭнд $c$ нь specific heat capacity of copper, $\\rho$ нь its density.\n$5252. T_{2}=T_{1} \\sqrt{d / 2 l}=0.4 \\mathrm{кК}$."
         }
       ]
     },
@@ -118,7 +118,7 @@
         },
         {
           "type": "text",
-          "value": "Нүх хоорондын зай $л=10 \\mathrm{~сm}$. 1-р хөндийд $T_{1}=1700 \\mathrm{~К}$ тогтмол температурыг барьж байв. 2-р хөндий доторх тогтворжсон температурыг тооцоол.\n\nЗаавар: Хар биеийн цацаргалт косинусын хуульд захирагддаг болохыг анхаарна уу."
+          "value": "Нүх хоорондын зай $l=10 \\mathrm{~сm}$. 1-р хөндийд $T_{1}=1700 \\mathrm{~К}$ тогтмол температурыг барьж байв. 2-р хөндий доторх тогтворжсон температурыг тооцоол.\n\nЗаавар: Хар биеийн цацаргалт косинусын хуульд захирагддаг болохыг анхаарна уу."
         },
         {
           "type": "image",
@@ -140,13 +140,13 @@
       "statement": [
         {
           "type": "text",
-          "value": "$v=1.0 \\mathrm{л}$ эзлэхүүнтэй хөндийг $T=1000 \\mathrm{~К}$ температуртай дулааны цацрагаар дүүргэв. Дараахийг ол:\n(a) дулаан багтаамж $C_{В}$; (b) уг цацрагийн энтропи $S$."
+          "value": "$v=1.0 \\mathrm{л}$ эзлэхүүнтэй хөндийг $T=1000 \\mathrm{~К}$ температуртай дулааны цацрагаар дүүргэв. Дараахийг ол:\n(a) дулаан багтаамж $C_{V}$; (b) уг цацрагийн энтропи $S$."
         }
       ],
       "answer": [
         {
           "type": "text",
-          "value": "(a) $C_{В}=(\\partial U / \\partial T)_{В}=16 \\sigma T^{3} В / c=3 \\mathrm{~nJ} / \\mathrm{К}$, wЭнд $U= =4 \\sigma T^{4} В / c$; (b) $S=16 \\sigma T^{3} В / 3 c=1.0 \\mathrm{~nJ} / \\mathrm{К}$."
+          "value": "(a) $C_{V}=(\\partial U / \\partial T)_{V}=16 \\sigma T^{3} V / c=3 \\mathrm{~nJ} / \\mathrm{К}$, wЭнд $U= =4 \\sigma T^{4} V / c$; (b) $S=16 \\sigma T^{3} V / 3 c=1.0 \\mathrm{~nJ} / \\mathrm{К}$."
         }
       ]
     },
@@ -157,7 +157,7 @@
       "statement": [
         {
           "type": "text",
-          "value": "Дулааны цацрагийн энергийн спектрийн тархалт нь Винийн $u(\\omega, T)=А \\omega^{3} \\exp (-a \\omega / T)$ томьёонд (энд $a=7.64 \\mathrm{ps} \\cdot \\mathrm{К}$) захирагддаг гэж үзээд $T=2000 \\mathrm{~К}$ температурт хамгийн магадлангуй:\n(a) цацрагийн давтамж; (b) цацрагийн долгионы урт-ыг ол."
+          "value": "Дулааны цацрагийн энергийн спектрийн тархалт нь Винийн $u(\\omega, T)=A \\omega^{3} \\exp (-a \\omega / T)$ томьёонд (энд $a=7.64 \\mathrm{ps} \\cdot \\mathrm{К}$) захирагддаг гэж үзээд $T=2000 \\mathrm{~К}$ температурт хамгийн магадлангуй:\n(a) цацрагийн давтамж; (b) цацрагийн долгионы урт-ыг ол."
         }
       ],
       "answer": [
@@ -214,7 +214,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$\\Delta P=4 \\pi^{2} c^{2} \\hbar T^{5} \\Delta \\lambda / b^{5}\\left(e^{2 \\pi ц c / ц b}-1\\right)=0.31 \\mathrm{~Вт} / \\mathrm{сm}^{2}$, wЭнд $b$ нь тогтмолant in Wien's dньplacement law."
+          "value": "$\\Delta P=4 \\pi^{2} c^{2} \\hbar T^{5} \\Delta \\lambda / b^{5}\\left(e^{2 \\pi h c / h b}-1\\right)=0.31 \\mathrm{~Вт} / \\mathrm{сm}^{2}$, wЭнд $b$ нь тогтмолant in Wien's dньplacement law."
         }
       ]
     },
@@ -257,7 +257,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$n_{\\omega} d \\omega=\\frac{1}{\\pi^{2} c^{3}} \\frac{\\omega^{2} d \\omega}{e^{\\hbar \\omega / ц T}-1}, n_{\\lambda} d \\lambda=\\frac{8 \\pi \\lambda-4 d \\lambda}{e^{2 \\pi \\hbar c / \\hbar T \\lambda}-1}$."
+          "value": "$n_{\\omega} d \\omega=\\frac{1}{\\pi^{2} c^{3}} \\frac{\\omega^{2} d \\omega}{e^{\\hbar \\omega / h T}-1}, n_{\\lambda} d \\lambda=\\frac{8 \\pi \\lambda-4 d \\lambda}{e^{2 \\pi \\hbar c / \\hbar T \\lambda}-1}$."
         }
       ]
     },
@@ -376,7 +376,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$F=P / 2 c\\left(1+\\eta^{2}\\right)$.\n5.267.\n(a) $\\Delta p=\\frac{2 \\hbar \\omega}{c} \\frac{\\sqrt{1-\\beta^{2}}}{1-\\beta}$;\n(b) $\\Delta p=\\frac{2 \\hbar \\omega}{c} \\frac{1}{1-\\beta}$. Энд $\\beta= =В / c$. It нь evident that in reference frame fixed to mirror latter obtains smaller momentum."
+          "value": "$F=P / 2 c\\left(1+\\eta^{2}\\right)$.\n5.267.\n(a) $\\Delta p=\\frac{2 \\hbar \\omega}{c} \\frac{\\sqrt{1-\\beta^{2}}}{1-\\beta}$;\n(b) $\\Delta p=\\frac{2 \\hbar \\omega}{c} \\frac{1}{1-\\beta}$. Энд $\\beta= =V / c$. It нь evident that in reference frame fixed to mirror latter obtains smaller momentum."
         }
       ]
     },
@@ -387,7 +387,7 @@
       "statement": [
         {
           "type": "text",
-          "value": "$k$ тооллын системд $\\omega$ давтамжтай фотон нь $В$ харьцангуй хурдтай ойртож буй толь руу нормаль чиглэлээр тусна. Фотон ойх үед толинд дамжих хөдөлгөөний хэмжээг ол\n(a) тольтой холбоотой тооллын системд;\n(b) $К$ системд."
+          "value": "$k$ тооллын системд $\\omega$ давтамжтай фотон нь $V$ харьцангуй хурдтай ойртож буй толь руу нормаль чиглэлээр тусна. Фотон ойх үед толинд дамжих хөдөлгөөний хэмжээг ол\n(a) тольтой холбоотой тооллын системд;\n(b) $К$ системд."
         }
       ],
       "answer": [
@@ -404,13 +404,13 @@
       "statement": [
         {
           "type": "text",
-          "value": "$m=10 \\mathrm{mg}$ масстай жижиг төгс толийг $л=10 \\mathrm{~сm}$ урттай жингүй утсаар дүүжлэв. $E=13 \\mathrm{~Ж}$ энергитэй богино лазерын импульсийг толинд тэгш өнцгөөр хэвтээ чиглэлд харвах үед утас ямар өнцгөөр хазайхыг ол. Толь кинетик энергиэ хаанаас олж авах вэ?"
+          "value": "$m=10 \\mathrm{mg}$ масстай жижиг төгс толийг $l=10 \\mathrm{~сm}$ урттай жингүй утсаар дүүжлэв. $E=13 \\mathrm{~Ж}$ энергитэй богино лазерын импульсийг толинд тэгш өнцгөөр хэвтээ чиглэлд харвах үед утас ямар өнцгөөр хазайхыг ол. Толь кинетик энергиэ хаанаас олж авах вэ?"
         }
       ],
       "answer": [
         {
           "type": "text",
-          "value": "$\\sin (\\ta / 2) \\approx E / m c / \\overline{г л}, \\ta=0.5^{\\circ}$."
+          "value": "$\\sin (\\ta / 2) \\approx E / m c / \\overline{g l}, \\ta=0.5^{\\circ}$."
         }
       ]
     },
@@ -444,7 +444,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$В=2 \\pi \\hbar c(1-1 / \\eta) / e \\Delta \\lambda=16 \\mathrm{kV}$."
+          "value": "$V=2 \\pi \\hbar c(1-1 / \\eta) / e \\Delta \\lambda=16 \\mathrm{kV}$."
         }
       ]
     },
@@ -461,7 +461,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$В=\\pi \\hbar c / e d \\sin \\alpha=31 \\mathrm{kV}$."
+          "value": "$V=\\pi \\hbar c / e d \\sin \\alpha=31 \\mathrm{kV}$."
         }
       ]
     },
@@ -512,7 +512,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$А=2 \\pi c \\hbar \\frac{\\left(\\eta^{2}-\\lambda_{2} / \\lambda_{1}\\right)}{\\lambda_{2}\\left(\\eta^{2}-1\\right)}=1.9 \\mathrm{эВ}$."
+          "value": "$A=2 \\pi c \\hbar \\frac{\\left(\\eta^{2}-\\lambda_{2} / \\lambda_{1}\\right)}{\\lambda_{2}\\left(\\eta^{2}-1\\right)}=1.9 \\mathrm{эВ}$."
         }
       ]
     },
@@ -750,7 +750,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$\\hbar \\omega=\\left[1+\\sqrt{1+2 м c^{2} / T \\sin ^{2}(\\ta / 2)}\\right] T / 2=0.68 \\mathrm{МэВ}$."
+          "value": "$\\hbar \\omega=\\left[1+\\sqrt{1+2 m c^{2} / T \\sin ^{2}(\\ta / 2)}\\right] T / 2=0.68 \\mathrm{МэВ}$."
         }
       ]
     },
@@ -767,7 +767,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "$\\lambda=(2 \\pi \\hbar / m c)\\left(\\sqrt{1+2 м c^{2} / T_{\\max }}-1\\right)=3.7 \\mathrm{pm}$."
+          "value": "$\\lambda=(2 \\pi \\hbar / m c)\\left(\\sqrt{1+2 m c^{2} / T_{\\max }}-1\\right)=3.7 \\mathrm{pm}$."
         }
       ]
     },

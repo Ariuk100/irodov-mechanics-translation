@@ -12,13 +12,13 @@
       "statement": [
         {
           "type": "text",
-          "value": "Гэрлийн хурдыг хэмжих Физогийн туршилтаар арааны дугуй ба толин тусгал хоёрын хоорондох зай $л= =7.0 \\mathrm{~кm}$, шүдний тоо $z=720$ байна. Дугуйны эргэлтийн дараах хурдаар гэрлийн дараалсан хоёр алга болох нь ажиглагдаж байна: $n_{1}=283 \\mathrm{rps}$ ба $n_{2}=313 \\mathrm{rps}$. Гэрлийн хурдыг ол."
+          "value": "Гэрлийн хурдыг хэмжих Физогийн туршилтаар арааны дугуй ба толин тусгал хоёрын хоорондох зай $l= =7.0 \\mathrm{~кm}$, шүдний тоо $z=720$ байна. Дугуйны эргэлтийн дараах хурдаар гэрлийн дараалсан хоёр алга болох нь ажиглагдаж байна: $n_{1}=283 \\mathrm{rps}$ ба $n_{2}=313 \\mathrm{rps}$. Гэрлийн хурдыг ол."
         }
       ],
       "answer": [
         {
           "type": "text",
-          "value": "$c=2 л z\\left(n_{2}-n_{1}\\right)=3.0 \\cdot 10^{8} \\mathrm{~м} / \\mathrm{с}$."
+          "value": "$c=2 l z\\left(n_{2}-n_{1}\\right)=3.0 \\cdot 10^{8} \\mathrm{~м} / \\mathrm{с}$."
         }
       ]
     },
@@ -97,13 +97,13 @@
       "statement": [
         {
           "type": "text",
-          "value": "$\\omega_{0}$ давтамжийн хавтгай цахилгаан соронзон долгион $В$ харьцангуй хурдтай ойртож буй толины гадаргуу дээр хэвийн унадаг. Доплерийн томьёог ашиглан туссан долгионы давтамжийг ол. $В \\ll c$ тохиолдолд олж авсан илэрхийллийг хялбарчлах."
+          "value": "$\\omega_{0}$ давтамжийн хавтгай цахилгаан соронзон долгион $V$ харьцангуй хурдтай ойртож буй толины гадаргуу дээр хэвийн унадаг. Доплерийн томьёог ашиглан туссан долгионы давтамжийг ол. $V \\ll c$ тохиолдолд олж авсан илэрхийллийг хялбарчлах."
         }
       ],
       "answer": [
         {
           "type": "text",
-          "value": "$\\omega=\\omega_{0}(1+\\beta) /(1-\\beta), $ wЭнд $ \\beta=В / c; \\omega \\approx \\approx \\omega_{0}(1+2 В / c)$."
+          "value": "$\\omega=\\omega_{0}(1+\\beta) /(1-\\beta), $ wЭнд $ \\beta=V / c; \\omega \\approx \\approx \\omega_{0}(1+2 V / c)$."
         }
       ]
     },
@@ -137,7 +137,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "Substituting expressions үед $t^{\\prime}$ ба $x^{\\prime}$ (from Lorentz transүедmation) into equation $\\omega t-k x=\\omega^{\\prime} t^{\\prime}-k^{\\prime} x^{\\prime}$, we obtain\n$$\n\\omega=\\omega^{\\prime}(1+\\beta) / \\sqrt{1-\\beta^{2}}, k=k^{\\prime}(1+\\beta) / \\sqrt{1-\\beta^{2}},\n$$\nwЭнд $\\beta=В / c$. Энд it нь taken into account that $\\omega^{\\prime}=c k^{\\prime}$."
+          "value": "Substituting expressions үед $t^{\\prime}$ ба $x^{\\prime}$ (from Lorentz transүедmation) into equation $\\omega t-k x=\\omega^{\\prime} t^{\\prime}-k^{\\prime} x^{\\prime}$, we obtain\n$$\n\\omega=\\omega^{\\prime}(1+\\beta) / \\sqrt{1-\\beta^{2}}, k=k^{\\prime}(1+\\beta) / \\sqrt{1-\\beta^{2}},\n$$\nwЭнд $\\beta=V / c$. Энд it нь taken into account that $\\omega^{\\prime}=c k^{\\prime}$."
         }
       ]
     },
@@ -216,7 +216,7 @@
       "statement": [
         {
           "type": "text",
-          "value": "$\\omega_{0}=3.0 \\cdot 10^{10} \\mathrm{~с}^{-1}$ зохих давтамжтай цахилгаан соронзон дохио ялгаруулдаг эх үүсвэр нь $P$ хөдөлгөөнгүй ажиглагчаас $л$ зайгаар тусгаарлагдсан шулуун шугамын дагуу $v= =0.80 c$ тогтмол хурдтайгаар хөдөлдөг (Зураг 5.37). Тухайн агшинд ажиглагчийн хүлээн авсан дохионы давтамжийг ол\n(a) эх үүсвэр нь $O$ цэг дээр байна;\n(б) ажиглагч үүнийг $O$ цэг дээр хардаг."
+          "value": "$\\omega_{0}=3.0 \\cdot 10^{10} \\mathrm{~с}^{-1}$ зохих давтамжтай цахилгаан соронзон дохио ялгаруулдаг эх үүсвэр нь $P$ хөдөлгөөнгүй ажиглагчаас $l$ зайгаар тусгаарлагдсан шулуун шугамын дагуу $v= =0.80 c$ тогтмол хурдтайгаар хөдөлдөг (Зураг 5.37). Тухайн агшинд ажиглагчийн хүлээн авсан дохионы давтамжийг ол\n(a) эх үүсвэр нь $O$ цэг дээр байна;\n(б) ажиглагч үүнийг $O$ цэг дээр хардаг."
         },
         {
           "type": "image",
@@ -277,13 +277,13 @@
       "statement": [
         {
           "type": "text",
-          "value": "Хавтгай цахилгаан соронзон долгион нь $К$ инерцийн хүрээтэй харьцуулахад тогтмол $В \\ll c$ хурдтай хөдөлдөг орчинд тархдаг. Хэрэв орчны хугарлын илтгэгч $n$ -тэй тэнцүү ба долгионы тархалтын чиглэл нь тухайн орчны хугарлын чиглэлтэй давхцаж байвал $К$ хүрээн дэх тэр долгионы хурдыг ол."
+          "value": "Хавтгай цахилгаан соронзон долгион нь $К$ инерцийн хүрээтэй харьцуулахад тогтмол $V \\ll c$ хурдтай хөдөлдөг орчинд тархдаг. Хэрэв орчны хугарлын илтгэгч $n$ -тэй тэнцүү ба долгионы тархалтын чиглэл нь тухайн орчны хугарлын чиглэлтэй давхцаж байвал $К$ хүрээн дэх тэр долгионы хурдыг ол."
         }
       ],
       "answer": [
         {
           "type": "text",
-          "value": "$u=\\frac{c / n+В}{1+В / c n}$. If $В \\ll c$, Тэгэхэд $u \\approx \\frac{c}{n}+В\\left(1-\\frac{1}{n^{2}}\\right)$."
+          "value": "$u=\\frac{c / n+V}{1+V / c n}$. If $V \\ll c$, Тэгэхэд $u \\approx \\frac{c}{n}+V\\left(1-\\frac{1}{n^{2}}\\right)$."
         }
       ]
     },
@@ -311,7 +311,7 @@
       "statement": [
         {
           "type": "text",
-          "value": "Гэрлийн тархалтын чиглэл ба $x$ тэнхлэгийн хоорондох $\\theta$ өнцөг нь $К$ лавлах хүрээнээс $К^{\\prime}$ руу шилжих үед томьёоны дагуу хувирдаг болохыг нотлох. $\n\\cos \\theta^{\\prime}=\\frac{\\cos \\theta-\\beta}{1-\\beta \\cos \\theta},\n$ Энд $\\beta=В / c$ ба $В$ нь $К$ хүрээтэй харьцуулахад $К^{\\prime}$ хүрээний хурд юм. Лавлах хүрээнүүдийн $x$ ба $x^{\\prime}$ тэнхлэгүүд давхцаж байна."
+          "value": "Гэрлийн тархалтын чиглэл ба $x$ тэнхлэгийн хоорондох $\\theta$ өнцөг нь $К$ лавлах хүрээнээс $К^{\\prime}$ руу шилжих үед томьёоны дагуу хувирдаг болохыг нотлох. $\n\\cos \\theta^{\\prime}=\\frac{\\cos \\theta-\\beta}{1-\\beta \\cos \\theta},\n$ Энд $\\beta=V / c$ ба $V$ нь $К$ хүрээтэй харьцуулахад $К^{\\prime}$ хүрээний хурд юм. Лавлах хүрээнүүдийн $x$ ба $x^{\\prime}$ тэнхлэгүүд давхцаж байна."
         }
       ],
       "answer": [
@@ -351,7 +351,7 @@
       "answer": [
         {
           "type": "text",
-          "value": "field induced by a charged particle moving хурдтай $В$ excites atoms of medium turning м into sources гэрлийн waves. Let us consider two arbitrary points $А$ ба $B$ along path of particle. light waves emitted from se points when particle passes м reach point $P$ (Зур. 44) simultaneously ба amplify each other provided time taken by light wave to propagate from point $А$ to point $C$ нь тэнцүү that taken by particle to fly"
+          "value": "field induced by a charged particle moving хурдтай $V$ excites atoms of medium turning м into sources гэрлийн waves. Let us consider two arbitrary points $A$ ба $B$ along path of particle. light waves emitted from se points when particle passes м reach point $P$ (Зур. 44) simultaneously ба amplify each other provided time taken by light wave to propagate from point $A$ to point $C$ нь тэнцүү that taken by particle to fly"
         },
         {
           "type": "image",
@@ -360,7 +360,7 @@
         },
         {
           "type": "text",
-          "value": "over dньtance $А B$. Hence, we obtain $\\cos \\ta=v / В$, wЭнд $v=c / n$ нь phase velocity гэрлийн. It нь evident that radiation нь possible only if $В>v$, i.e. when velocity of particle exceeds phase velocity гэрлийн in medium."
+          "value": "over dньtance $A B$. Hence, we obtain $\\cos \\ta=v / V$, wЭнд $v=c / n$ нь phase velocity гэрлийн. It нь evident that radiation нь possible only if $V>v$, i.e. when velocity of particle exceeds phase velocity гэрлийн in medium."
         }
       ]
     },
