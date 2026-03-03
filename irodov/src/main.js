@@ -2,6 +2,9 @@ import './style.css'
 
 let bookStructure = null;
 let currentChapter = null;
+let lastBook = null;
+let lastChapterId = null;
+let lastSectionId = null;
 
 const sidebarContent = document.querySelector('#toc');
 const bookContainer = document.querySelector('#book-content');
@@ -58,6 +61,15 @@ async function init() {
             e.stopPropagation();
             const expandedItems = sidebarContent.querySelectorAll('.expanded');
             expandedItems.forEach(item => item.classList.remove('expanded'));
+        });
+    }
+
+    // Register Fix Button Logic
+    const registerFixBtn = document.getElementById('register-fix-btn');
+    if (registerFixBtn) {
+        registerFixBtn.addEventListener('click', () => {
+            const currentPath = currentChapter ? (currentChapter.folder ? `${currentChapter.folder}/${currentChapter.id}` : currentChapter.id) : 'home';
+            alert(`Засвар бүртгэх функцийг удахгүй нэмнэ.\nОдоогийн байршил: ${currentPath}`);
         });
     }
 
@@ -120,63 +132,93 @@ function renderSidebar() {
     const chaptersContainer = document.createElement('div');
     chaptersContainer.className = 'book-chapters';
 
-    book.chapters.forEach((chapter, index) => {
-      const chapterEl = document.createElement('div');
-      chapterEl.className = 'sidebar-item chapter-link';
-      chapterEl.dataset.id = chapter.id;
-      
-      // Auto-numbering: index + 1
-      const chapterNum = `${index + 1}.`;
-      const chapterName = chapter.title;
-
-      const headerEl = document.createElement('div');
-      headerEl.className = 'chapter-header';
-      headerEl.innerHTML = `<h3><span class="ch-num">${chapterNum}</span> <span>${chapterName}</span></h3>`;
-      headerEl.onclick = (e) => {
-          const isActive = chapterEl.classList.contains('expanded');
-          // Close other chapters in this book
-          chaptersContainer.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('expanded'));
-          if (!isActive) {
-              chapterEl.classList.add('expanded');
-          }
-      };
-      chapterEl.appendChild(headerEl);
-      
-      if (chapter.sections) {
-        const sectionsList = document.createElement('ul');
-        sectionsList.className = 'chapter-sections';
+    // olympiad_series: chapters are clickable items (CPHOS 28, CPHOS 27...), no sub-sections
+    if (book.type === 'olympiad_series') {
+      const iconSvgOly = `<svg class="book-icon" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path></svg>`;
+      // Override book icon in header (already set above, but we want trophy for olympiad)
+      bookHeader.innerHTML = `${iconSvgOly} <h2 class="book-title-text">${book.title}</h2>`;
+      book.chapters.forEach((chapter) => {
+        const chapterItem = document.createElement('div');
+        chapterItem.className = 'sidebar-item chapter-link olympiad-series-chapter';
+        chapterItem.dataset.id = chapter.id;
+        chapterItem.innerHTML = `<div class="chapter-header"><h3><span class="ch-num">🏆</span> <span>${chapter.title}</span></h3></div>`;
+        chapterItem.onclick = (e) => {
+          e.stopPropagation();
+          // Mark active
+          chaptersContainer.querySelectorAll('.olympiad-series-chapter').forEach(el => el.classList.remove('active-chapter'));
+          chapterItem.classList.add('active-chapter');
+          loadOlympiadChapter(book, chapter.id);
+          if (window.innerWidth <= 768) closeMobileSidebar();
+        };
+        chaptersContainer.appendChild(chapterItem);
+      });
+    } else if (book.type === 'olympiad') {
+      // Kept for legacy - shouldn't appear now
+      book.chapters.forEach((chapter) => {
+        const tabItem = document.createElement('li');
+        tabItem.className = 'section-link olympiad-tab-link';
+        tabItem.dataset.id = chapter.id;
+        tabItem.innerHTML = `<span class="sec-title">${chapter.title}</span>`;
+        tabItem.onclick = (e) => {
+          e.stopPropagation();
+          if (window.innerWidth <= 768) closeMobileSidebar();
+        };
+        chaptersContainer.appendChild(tabItem);
+      });
+    } else {
+      book.chapters.forEach((chapter, index) => {
+        const chapterEl = document.createElement('div');
+        chapterEl.className = 'sidebar-item chapter-link';
+        chapterEl.dataset.id = chapter.id;
         
-        chapter.sections.forEach(section => {
-          const sectionItem = document.createElement('li');
-          sectionItem.className = 'section-link';
-          sectionItem.dataset.id = section.id;
+        const chapterNum = `${index + 1}.`;
+        const chapterName = chapter.title;
+
+        const headerEl = document.createElement('div');
+        headerEl.className = 'chapter-header';
+        headerEl.innerHTML = `<h3><span class="ch-num">${chapterNum}</span> <span>${chapterName}</span></h3>`;
+        headerEl.onclick = (e) => {
+            const isActive = chapterEl.classList.contains('expanded');
+            chaptersContainer.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('expanded'));
+            if (!isActive) {
+                chapterEl.classList.add('expanded');
+            }
+        };
+        chapterEl.appendChild(headerEl);
+        
+        if (chapter.sections) {
+          const sectionsList = document.createElement('ul');
+          sectionsList.className = 'chapter-sections';
           
-          const match = section.title.match(/^(§\s*\d+\.\d+\.?|\d+\.\d+\.?)\s*(.*)$/);
-          const num = match ? match[1] : (section.id.includes('problems') ? '?' : '');
-          const title = match ? match[2] : section.title;
+          chapter.sections.forEach(section => {
+            const sectionItem = document.createElement('li');
+            sectionItem.className = 'section-link';
+            sectionItem.dataset.id = section.id;
+            
+            const match = section.title.match(/^(§\s*\d+\.\d+\.?|\d+\.\d+\.?)\s*(.*)$/);
+            const num = match ? match[1] : (section.id.includes('problems') ? '?' : '');
+            const title = match ? match[2] : section.title;
 
-          // Checking if it's the new Problems book
-          if (book.id === 'irodov_problems') {
-               sectionItem.classList.add('is-problems-section');
-          }
+            if (book.id === 'irodov_problems') {
+                 sectionItem.classList.add('is-problems-section');
+            }
 
-          sectionItem.innerHTML = `<span class="sec-num">${num}</span><span class="sec-title">${title}</span>`;
-          sectionItem.onclick = (e) => {
-            e.stopPropagation();
-            loadChapter(book, chapter.id, section.id);
-            if (window.innerWidth <= 768) closeMobileSidebar();
-          };
-          sectionsList.appendChild(sectionItem);
-        });
-        chapterEl.appendChild(sectionsList);
-      }
-      chaptersContainer.appendChild(chapterEl);
-    });
+            sectionItem.innerHTML = `<span class="sec-num">${num}</span><span class="sec-title">${title}</span>`;
+            sectionItem.onclick = (e) => {
+              e.stopPropagation();
+              loadChapter(book, chapter.id, section.id);
+              if (window.innerWidth <= 768) closeMobileSidebar();
+            };
+            sectionsList.appendChild(sectionItem);
+          });
+          chapterEl.appendChild(sectionsList);
+        }
+        chaptersContainer.appendChild(chapterEl);
+      });
+    }
     
     bookEl.appendChild(chaptersContainer);
     sidebarContent.appendChild(bookEl);
-    
-    // Auto-expand first book removed intentionally so all stay closed
   });
 }
 
@@ -184,46 +226,212 @@ function loadHomePage() {
   currentChapter = null;
   if (chapterTitle) chapterTitle.textContent = "Физикийн Номын Сан";
 
-  // Deselect active items in sidebar
   document.querySelectorAll('.section-link.active').forEach(item => item.classList.remove('active'));
   document.querySelectorAll('.sidebar-item.active-chapter').forEach(item => item.classList.remove('active-chapter'));
+  hideOlympiadHeaderTabs();
 
-  let html = `
-    <div class="home-page">
-      <div class="home-header-content">
-        <h2>Тавтай морилно уу!</h2>
-        <p>И.Е. Иродовын болон бусад физикийн сурах бичиг, бодлогын хураамжуудаас сонгон уншина уу. Энэхүү цахим номын сан нь физикийн шинжлэх ухааныг гүнзгийрүүлэн судлахад тань туслах зорилготой.</p>
-      </div>
-      <div class="book-grid">
-  `;
+  const bookIconSvg = `<svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`;
+  const probIconSvg = `<svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+  const olyIconSvg  = `<svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path></svg>`;
 
+  const categories = { book: [], problems: [], olympiad: [] };
   if (bookStructure && bookStructure.books) {
     bookStructure.books.forEach(book => {
-      let clickHandler = `onclick="const h = document.querySelector('.sidebar-item[data-id=\\'${book.chapters[0]?.id}\\'] .chapter-header'); if(h) h.click(); document.querySelector('.sidebar-item[data-id=\\'${book.chapters[0]?.id}\\'] .section-link').click();"`;
-
-      html += `
-        <div class="book-card" ${clickHandler}>
-          <div class="book-card-icon">
-            <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none" class="text-primary"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-          </div>
-          <h3 class="book-card-title">${book.title}</h3>
-          <p class="book-card-desc">${book.chapters.length} бүлэгтэй</p>
-        </div>
-      `;
+      const cat = book.category || (book.type === 'olympiad_series' ? 'olympiad' : 'book');
+      if (categories[cat]) categories[cat].push(book);
     });
   }
 
-  html += `
+  function buildGrid(books, catKey) {
+    let g = '';
+    books.forEach(book => {
+      const isOlympiad = book.type === 'olympiad_series' || catKey === 'olympiad';
+      let clickHandler = '';
+      if (isOlympiad) {
+        const firstChapter = book.chapters[0];
+        clickHandler = `onclick="window._openBookContent('${book.id}');"`;
+      } else {
+        clickHandler = `onclick="window._openBookContent('${book.id}');"`;
+      }
+      const icon = catKey === 'olympiad' ? olyIconSvg : catKey === 'problems' ? probIconSvg : bookIconSvg;
+      const badge = isOlympiad ? '<span class="olimpiad-badge">Олимпиад</span>' : '';
+      const desc  = isOlympiad ? `${book.chapters.length} тэмцээн` : `${book.chapters.length} бүлэгтэй`;
+      g += `<div class="book-card${isOlympiad?' olympiad-card':''}" ${clickHandler}>
+        <div class="book-card-icon">${icon}</div>
+        ${badge}
+        <h3 class="book-card-title">${book.title}</h3>
+        <p class="book-card-desc">${desc}</p>
+      </div>`;
+    });
+    return g;
+  }
+
+  const html = `
+    <div class="home-page">
+      <div class="home-header-content">
+        <h2>Тавтай морилно уу!</h2>
+        <p>И.Е. Иродовын болон бусад физикийн сурах бичиг, бодлогын хураамжуудаас сонгон уншина уу.</p>
       </div>
-    </div>
-  `;
+      <div class="home-category-tabs">
+        <button class="home-cat-btn active" data-cat="book">📚 Ном</button>
+        <button class="home-cat-btn" data-cat="problems">🧮 Бодлого</button>
+        <button class="home-cat-btn" data-cat="olympiad">🏆 Олимпиад</button>
+      </div>
+      <div class="home-category-section" data-cat="book"><div class="book-grid">${buildGrid(categories.book,'book')}</div></div>
+      <div class="home-category-section" data-cat="problems" style="display:none"><div class="book-grid">${buildGrid(categories.problems,'problems')}</div></div>
+      <div class="home-category-section" data-cat="olympiad" style="display:none"><div class="book-grid">${buildGrid(categories.olympiad,'olympiad')}</div></div>
+    </div>`;
+
   if (bookContainer) bookContainer.innerHTML = html;
+
+  document.querySelectorAll('.home-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.home-cat-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.home-category-section').forEach(s => s.style.display = 'none');
+      btn.classList.add('active');
+      document.querySelector(`.home-category-section[data-cat="${btn.dataset.cat}"]`).style.display = '';
+    });
+  });
+}
+
+// Global: open regular book (expand sidebar + load first chapter/section)
+window._openBookContent = function(bookId) {
+  const book = bookStructure.books.find(b => b.id === bookId);
+  if (!book || !book.chapters || book.chapters.length === 0) return;
+
+  // Expand the book group in sidebar
+  sidebarContent.querySelectorAll('.book-group').forEach(el => el.classList.remove('expanded'));
+  
+  // Find and expand the target book
+  const bookGroups = sidebarContent.querySelectorAll('.book-group');
+  let targetGroup = null;
+  bookGroups.forEach(group => {
+    const title = group.querySelector('.book-title-text');
+    if (title && title.textContent.trim() === book.title) {
+      targetGroup = group;
+      group.classList.add('expanded');
+    }
+  });
+
+  // Load the first content part
+  const firstChapter = book.chapters[0];
+  if (book.type === 'olympiad_series') {
+    loadOlympiadChapter(book, firstChapter.id);
+  } else if (firstChapter.sections && firstChapter.sections.length > 0) {
+    loadChapter(book, firstChapter.id, firstChapter.sections[0].id);
+  } else {
+    loadChapter(book, firstChapter.id);
+  }
+  
+  if (window.innerWidth <= 768) closeMobileSidebar();
+};
+
+// Global: open olympiad series (expand sidebar + load first chapter)
+window._openOlympiadSeries = function(bookId, chapterId) {
+  const book = bookStructure.books.find(b => b.id === bookId);
+  if (!book) return;
+  // Expand the book group in sidebar
+  sidebarContent.querySelectorAll('.book-group').forEach(el => el.classList.remove('expanded'));
+  sidebarContent.querySelectorAll('.book-header h2').forEach(h => {
+    if (h.textContent.trim() === book.title) {
+      h.closest('.book-group').classList.add('expanded');
+    }
+  });
+  loadOlympiadChapter(book, chapterId);
+};
+
+// Helper: hide olympiad header tabs when not on an olympiad page
+function hideOlympiadHeaderTabs() {
+  const el = document.getElementById('olympiad-header-tabs');
+  if (el) { el.style.display = 'none'; el.innerHTML = ''; }
+}
+
+// Load an olympiad chapter (shows tabs: Туршилт / Онол) — tabs appear in the main header
+async function loadOlympiadChapter(book, chapterId, activeTabId = null) {
+  const chapter = book.chapters.find(c => c.id === chapterId);
+  if (!chapter || !chapter.tabs) return;
+
+  const firstTab = activeTabId
+    ? chapter.tabs.find(t => t.id === activeTabId) || chapter.tabs[0]
+    : chapter.tabs[0];
+
+  lastBook = book;
+  if (chapterTitle) chapterTitle.textContent = chapter.title;
+
+  // Mark active in sidebar
+  sidebarContent.querySelectorAll('.olympiad-series-chapter').forEach(el => el.classList.remove('active-chapter'));
+  const activeChEl = sidebarContent.querySelector(`.olympiad-series-chapter[data-id="${chapterId}"]`);
+  if (activeChEl) activeChEl.classList.add('active-chapter');
+
+  // --- Inject tabs into HEADER ---
+  const headerTabsEl = document.getElementById('olympiad-header-tabs');
+  if (headerTabsEl) {
+    headerTabsEl.style.display = '';
+    headerTabsEl.innerHTML = chapter.tabs.map(tab => {
+      const isActive = tab.id === firstTab.id;
+      return `<button class="olympiad-tab-btn${isActive ? ' active' : ''}" data-tab-id="${tab.id}" data-chapter-id="${chapterId}">${tab.title}</button>`;
+    }).join('');
+
+    headerTabsEl.querySelectorAll('.olympiad-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        headerTabsEl.querySelectorAll('.olympiad-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        loadOlympiadTabContent(book, chapter, btn.dataset.tabId);
+      });
+    });
+  }
+
+  // --- Render content area (no tabs here) ---
+  if (bookContainer) {
+    bookContainer.innerHTML = `
+      <div class="olympiad-page">
+        <div class="olympiad-content" id="olympiad-content-area"><p class="loading-msg">Ачааллаж байна...</p></div>
+      </div>`;
+  }
+
+  // Load first tab content
+  await loadOlympiadTabContent(book, chapter, firstTab.id);
+}
+
+async function loadOlympiadTabContent(book, chapter, tabId) {
+  const tab = chapter.tabs.find(t => t.id === tabId);
+  if (!tab) return;
+
+  const contentArea = document.getElementById('olympiad-content-area');
+  if (!contentArea) return;
+  contentArea.innerHTML = '<p class="loading-msg">Ачааллаж байна...</p>';
+
+  try {
+    const baseUrl = import.meta.env.BASE_URL;
+    const fileUrl = `${baseUrl}data/${tab.folder}/${tab.file}?v=${Date.now()}`;
+    const response = await fetch(fileUrl);
+    const data = await response.json();
+
+    contentArea.innerHTML = '';
+    data.body.forEach(item => {
+      const el = createContentElement(item);
+      if (el) contentArea.appendChild(el);
+    });
+
+    setTimeout(() => {
+      document.getElementById('book-content')?.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.MathJax) window.MathJax.typesetPromise([contentArea]);
+    }, 100);
+  } catch (err) {
+    console.error('Olympiad tab load error:', err);
+    contentArea.innerHTML = '<p class="error">Агуулга ачаалахад алдаа гарлаа.</p>';
+  }
 }
 
 async function loadChapter(book, chapterId, sectionId = null) {
+  hideOlympiadHeaderTabs();
   try {
     const chapterInfo = book.chapters.find(c => c.id === chapterId);
     if (!chapterInfo) return;
+
+    lastBook = book;
+    lastChapterId = chapterId;
+    lastSectionId = sectionId;
 
     // Determine what file to load
     let fileToLoad = null;
@@ -253,7 +461,7 @@ async function loadChapter(book, chapterId, sectionId = null) {
     // Identify if this is the "Problems" section for styling
     document.getElementById('book-content').className = '';
 
-    const response = await fetch(fileToLoad);
+    const response = await fetch(`${fileToLoad}?v=${Date.now()}`);
     const data = await response.json();
     currentChapter = { ...chapterInfo, ...data }; 
     
@@ -310,20 +518,16 @@ function createContentElement(item) {
   switch (item.type) {
     case 'text':
       const p = document.createElement('p');
-      // Check for Solution/Bodolt start
-      // Check for Solution/Bodolt start
       if (item.value.includes('Бодолт') || item.value.trim().startsWith('<b>Бодолт') || 
           item.value.includes('Шийдэл') || item.value.trim().startsWith('<b>Шийдэл')) {
           p.className = 'solution-text';
-          p.innerHTML = formatText(item.value);
-      } else {
-          p.innerHTML = formatText(item.value);
       }
+      p.innerHTML = formatText(item.value);
       return p;
     case 'header':
       const h2 = document.createElement('h2');
       if (item.id) h2.id = item.id;
-      h2.textContent = item.value;
+      h2.innerHTML = formatText(item.value); // Use formatText for potentially embedded formatting
       return h2;
     case 'note':
       const div = document.createElement('div');
@@ -334,66 +538,225 @@ function createContentElement(item) {
       const problemDiv = document.createElement('div');
       problemDiv.className = 'problem-container';
       
-      let problemHTML = `<div class="problem-header"><strong>${item.number || ''} ${item.title || ''}</strong></div>`;
-      problemHTML += `<div class="problem-statement">${formatText(item.statement)}</div>`;
-      
-      if (item.image) {
-        const baseUrl = import.meta.env.BASE_URL;
-        let imgSrc = item.image.src;
-        // If it starts with images/ or /, clean it up
-        if (imgSrc.startsWith('/')) imgSrc = imgSrc.substring(1);
-        if (imgSrc.startsWith('images/')) imgSrc = imgSrc.substring(7);
-        
-        const finalSrc = `${baseUrl}images/${imgSrc}`;
-        problemHTML += `
-          <div class="image-container">
-            <img src="${finalSrc}" alt="${item.image.caption || ''}">
-            ${item.image.caption ? `<p class="caption">${item.image.caption}</p>` : ''}
-          </div>
-        `;
-      }
-      
-      const buttonsDiv = document.createElement('div');
-      buttonsDiv.className = 'problem-buttons';
-      
-      const answerDiv = document.createElement('div');
-      answerDiv.className = 'problem-answer hidden';
-      if (item.answer) {
-        answerDiv.innerHTML = `<strong>Хариу:</strong> ${formatText(item.answer)}`;
-        const btnAnswer = document.createElement('button');
-        btnAnswer.className = 'btn-toggle btn-answer';
-        btnAnswer.innerText = 'Хариу харах';
-        btnAnswer.onclick = () => {
-             answerDiv.classList.toggle('hidden');
-             btnAnswer.innerText = answerDiv.classList.contains('hidden') ? 'Хариу харах' : 'Хариу нуух';
-        };
-        buttonsDiv.appendChild(btnAnswer);
+      // Points extraction for the MAIN problem
+      let mainTitleHtml = item.title || '';
+      const mainPointMatch = mainTitleHtml.match(/\((\d+\s*оноо)\)/i);
+      let mainPointBadge = '';
+      if (mainPointMatch) {
+          mainPointBadge = `<span class="score-badge main-score">${mainPointMatch[1]}</span>`;
+          mainTitleHtml = mainTitleHtml.replace(mainPointMatch[0], '').trim();
       }
 
-      const solutionDiv = document.createElement('div');
-      solutionDiv.className = 'problem-solution hidden';
-      if (item.solution) {
-        solutionDiv.innerHTML = `<strong>Бодолт:</strong> ${formatText(item.solution)}`;
-        const btnSolution = document.createElement('button');
-        btnSolution.className = 'btn-toggle btn-solution';
-        btnSolution.innerText = 'Бодолт харах';
-        btnSolution.onclick = () => {
-             solutionDiv.classList.toggle('hidden');
-             btnSolution.innerText = solutionDiv.classList.contains('hidden') ? 'Бодолт харах' : 'Бодолт нуух';
-             // re-render mathjax if unhidden
-             if (!solutionDiv.classList.contains('hidden') && window.MathJax) {
-                 window.MathJax.typesetPromise([solutionDiv]);
-             }
-        };
-        buttonsDiv.appendChild(btnSolution);
+      let problemHeaderHTML = `<div class="problem-header"><strong>${item.number || ''} ${mainTitleHtml}</strong>${mainPointBadge}</div>`;
+      problemDiv.innerHTML = problemHeaderHTML;
+
+      const statementContainer = document.createElement('div');
+      statementContainer.className = 'problem-statement';
+      problemDiv.appendChild(statementContainer);
+
+      const rawStatementParts = Array.isArray(item.statement) ? item.statement : [{ type: 'text', value: item.statement }];
+      const rawSolutionParts = Array.isArray(item.solution) ? item.solution : [{ type: 'text', value: item.solution }];
+
+      // --- Math-Aware Robust Splitting Logic ---
+      const partIdPattern = /([A-Za-z]\.\d+\.\d+|[A-Za-z]\.\d+|[0-9]\.[0-9]|[0-9]\.[0-9]+|[0-9]+)/;
+      const partHeaderRegex = new RegExp(`^[\\s\\*]*[\\(\\[（]?${partIdPattern.source}[\\)\\]）]?[\\s\\*]*(?::|\\s|$)`);
+
+      function splitBlocks(blocks) {
+          const result = [];
+          const items = Array.isArray(blocks) ? blocks : [{ type: 'text', value: blocks }];
+          items.forEach(block => {
+              if (!block || block.type !== 'text' || !block.value) {
+                  if (block) result.push(block);
+                  return;
+              }
+              // Normalize both literal \n (backslash + n) and actual newlines
+              const normalizedValue = block.value.replace(/\\n/g, '\n');
+              const lines = normalizedValue.split('\n');
+              let currentText = "";
+              let insideMath = false;
+              
+              lines.forEach((line) => {
+                  const trimmedLine = line.trim();
+                  
+                  // Toggle math block state to avoid splitting inside formulas
+                  if (trimmedLine.startsWith('$$')) {
+                      if (trimmedLine.length <= 2 || !trimmedLine.endsWith('$$')) {
+                          insideMath = !insideMath;
+                      }
+                  } else if (trimmedLine.startsWith('\\[')) {
+                      insideMath = true;
+                  } else if (trimmedLine.endsWith('\\]')) {
+                      insideMath = false;
+                  }
+
+                  // Only split if NOT inside a math block and matches header pattern
+                  if (!insideMath && trimmedLine.match(partHeaderRegex)) {
+                      if (currentText.trim() !== "" || result.length > 0) {
+                          if (currentText.trim() !== "") result.push({ type: 'text', value: currentText.trim() });
+                          currentText = line;
+                      } else {
+                          currentText = (currentText ? currentText + "\n" : "") + line;
+                      }
+                  } else {
+                      currentText = (currentText ? currentText + "\n" : "") + line;
+                  }
+              });
+              if (currentText.trim() !== "") {
+                  result.push({ type: 'text', value: currentText.trim() });
+              }
+          });
+          return result;
       }
+
+      const statementParts = splitBlocks(rawStatementParts);
+      const solutionParts = splitBlocks(rawSolutionParts);
+
+      let parts = [];
+      let currentPart = { statement: [], solution: [], id: null, points: null };
       
-      problemDiv.innerHTML = problemHTML;
-      problemDiv.appendChild(buttonsDiv);
-      problemDiv.appendChild(answerDiv);
-      problemDiv.appendChild(solutionDiv);
+      statementParts.forEach((part) => {
+          if (part.type === 'text') {
+              const match = part.value.match(partHeaderRegex);
+              if (match) {
+                  if (currentPart.statement.length > 0 || currentPart.id !== null) {
+                      parts.push(currentPart);
+                  }
+                  
+                  const partId = match[1];
+                  const subPointMatch = part.value.match(/\((\d+\s*оноо)\)/i);
+                  let subPoints = null;
+                  let cleanText = part.value;
+                  if (subPointMatch) {
+                      subPoints = subPointMatch[1];
+                      cleanText = cleanText.replace(subPointMatch[0], '').trim();
+                  }
+
+                  currentPart = { 
+                      id: partId, 
+                      statement: [{ type: 'text', value: cleanText }], 
+                      solution: [], 
+                      points: subPoints 
+                  };
+              } else {
+                  currentPart.statement.push(part);
+              }
+          } else {
+              currentPart.statement.push(part);
+          }
+      });
+      if (currentPart.statement.length > 0 || currentPart.id !== null) parts.push(currentPart);
+
+      // --- Associate Solutions ---
+      let currentPartIndex = -1;
+      solutionParts.forEach(sol => {
+          if (sol.type === 'text') {
+              const match = sol.value.match(partHeaderRegex);
+              if (match) {
+                  const solId = match[1];
+                  const idx = parts.findIndex(p => p.id === solId);
+                  if (idx !== -1) {
+                      currentPartIndex = idx;
+                  } else if (currentPartIndex < parts.length - 1) {
+                      // Fallback: If we can't match ID, increment index if it makes sense
+                      // This helps for cases like (1), (2) vs 1, 2
+                      currentPartIndex++;
+                  }
+              }
+          }
+          
+          if (currentPartIndex === -1 && parts.length > 0) {
+              parts[0].solution.push(sol);
+          } else if (currentPartIndex >= 0 && currentPartIndex < parts.length) {
+              parts[currentPartIndex].solution.push(sol);
+          }
+      });
+
+      // --- Render Parts ---
+      parts.forEach((part, index) => {
+          const partDiv = document.createElement('div');
+          partDiv.className = 'problem-part-block';
+          
+          const partStatementDiv = document.createElement('div');
+          partStatementDiv.className = 'part-statement';
+          
+          if (part.points) {
+              const badge = document.createElement('span');
+              badge.className = 'score-badge sub-score';
+              badge.textContent = part.points;
+              partStatementDiv.appendChild(badge);
+          }
+
+          part.statement.forEach(block => {
+              const el = createBlockElement(block);
+              if (el) partStatementDiv.appendChild(el);
+          });
+          partDiv.appendChild(partStatementDiv);
+
+          if (part.solution && part.solution.length > 0) {
+              const solBtn = document.createElement('button');
+              solBtn.className = 'btn-toggle btn-part-solution';
+              solBtn.innerText = parts.length > 1 ? `Хэсэг ${part.id || index + 1} бодолт` : 'Бодолт харах';
+              
+              const solContentDiv = document.createElement('div');
+              solContentDiv.className = 'part-solution-content hidden';
+              
+              part.solution.forEach(solBlock => {
+                  const el = createBlockElement(solBlock);
+                  if (el) solContentDiv.appendChild(el);
+              });
+
+              solBtn.onclick = () => {
+                  solContentDiv.classList.toggle('hidden');
+                  solBtn.classList.toggle('active');
+                  if (!solContentDiv.classList.contains('hidden') && window.MathJax) {
+                      // Use a slight delay to ensure the DOM is painted
+                      setTimeout(() => {
+                          window.MathJax.typesetPromise([solContentDiv]).catch((err) => console.log('MathJax error:', err));
+                      }, 10);
+                  }
+              };
+
+              partDiv.appendChild(solBtn);
+              partDiv.appendChild(solContentDiv);
+          }
+          statementContainer.appendChild(partDiv);
+      });
+
+      // Explicitly typeset the whole problem container after building it
+      if (window.MathJax) {
+          setTimeout(() => {
+              window.MathJax.typesetPromise([problemDiv]);
+          }, 0);
+      }
+
+      // Helper for problem blocks
+      function createBlockElement(block) {
+          if (block.type === 'text') {
+              const d = document.createElement('div');
+              d.className = 'text-block tex2jax_process';
+              d.innerHTML = formatText(block.value);
+              return d;
+          } else if (block.type === 'image') {
+              const baseUrl = import.meta.env.BASE_URL;
+              let imgSrc = block.src || block.value || '';
+              if (imgSrc.startsWith('/')) imgSrc = imgSrc.substring(1);
+              if (imgSrc.startsWith('images/')) imgSrc = imgSrc.substring(7);
+              const div = document.createElement('div');
+              div.className = 'image-container';
+              div.innerHTML = `<img src="${baseUrl}images/${imgSrc}" alt="${block.caption || ''}">${block.caption ? `<p class="caption">${block.caption}</p>` : ''}`;
+              return div;
+          } else if (block.type === 'equation') {
+              const eq = document.createElement('div');
+              eq.className = 'equation-wrapper';
+              const eqLabel = block.tag ? `<span class="equation-tag">(${block.tag})</span>` : '';
+              eq.innerHTML = `\\[ ${block.value} \\] ${eqLabel}`;
+              return eq;
+          }
+          return null;
+      }
 
       return problemDiv;
+
     case 'section':
       const sec = document.createElement('section');
       sec.id = item.id;
@@ -422,10 +785,10 @@ function createContentElement(item) {
       const container = document.createElement('div');
       container.className = 'image-container';
       const baseUrl = import.meta.env.BASE_URL;
-      let imgSrc = item.src;
+      let imgSrc = item.src || item.value;
+      if (!imgSrc) return null;
       if (imgSrc.startsWith('/')) imgSrc = imgSrc.substring(1);
       if (imgSrc.startsWith('images/')) imgSrc = imgSrc.substring(7);
-      
       const finalSrc = `${baseUrl}images/${imgSrc}`;
       container.innerHTML = `
         <img src="${finalSrc}" alt="${item.caption || ''}">
@@ -440,13 +803,12 @@ function createContentElement(item) {
 function formatText(text) {
   if (!text) return '';
   
-  // Support array format for complex statements/solutions in previous books
   if (Array.isArray(text)) {
       return text.map(t => {
           if (t.type === 'text') return formatText(t.value);
           if (t.type === 'equation') {
               const eqLabel = t.tag ? `<span class="equation-tag">(${t.tag})</span>` : '';
-              return `<div class="equation-wrapper">\\[ ${t.value} \\] ${eqLabel}</div>`;
+              return `<div class="equation-wrapper tex2jax_process">\\[ ${t.value} \\] ${eqLabel}</div>`;
           }
           if (t.type === 'image') {
               const baseUrl = import.meta.env.BASE_URL;
@@ -461,10 +823,68 @@ function formatText(text) {
   
   if (typeof text !== 'string') return '';
 
-  // Convert $$...$$ to \\[...\\]
-  let formatted = text.replace(/\$\$(.+?)\$\$/gs, (match, p1) => `\\[${p1}\\]`);
-  // Convert $...$ to \\(...\\)
-  return formatted.replace(/\$([^$]+)\$/g, (match, p1) => `\\(${p1.trim()}\\)`);
+  // 1. Normalize Newlines (handles both JSON literals and real newlines)
+  let str = text.replace(/\\n/g, '\n');
+
+  // 2. Escape HTML special characters (CRITICAL to preserve \ and {})
+  // We avoid aggressive escaping of quotes/apos to keep it simple
+  str = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  // 3. Table support (Markdown style)
+  if (str.includes('|')) {
+      const lines = str.split('\n');
+      let i = 0;
+      let resultParts = [];
+      while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        if (trimmed.startsWith('|') && trimmed.endsWith('|') && trimmed.length > 1) {
+          let tableLines = [];
+          while (i < lines.length && lines[i].trim().startsWith('|')) {
+            tableLines.push(lines[i]);
+            i++;
+          }
+          let isFirstDataRow = true;
+          let tableHtml = '<div class="table-wrapper tex2jax_process"><table class="md-table">';
+          tableLines.forEach(tline => {
+            if (/^[|\s:-]+$/.test(tline)) return; 
+            const cells = tline.split('|').slice(1, -1);
+            tableHtml += '<tr>';
+            cells.forEach(cell => {
+              const tag = isFirstDataRow ? 'th' : 'td';
+              tableHtml += `<${tag}>${formatText(cell.trim())}</${tag}>`;
+            });
+            tableHtml += '</tr>';
+            isFirstDataRow = false;
+          });
+          tableHtml += '</table></div>';
+          resultParts.push(tableHtml);
+        } else {
+          resultParts.push(line);
+          i++;
+        }
+      }
+      str = resultParts.join('\n');
+  }
+
+  // 4. Basic Markdown Bold/Italic (Simple version that doesn't mess with symbols)
+  str = str.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+  str = str.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  str = str.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+  return str;
 }
 
 init();
+
+if (import.meta.hot) {
+  import.meta.hot.on('json-update', () => {
+    if (lastBook && lastChapterId) {
+      console.log('JSON updated, re-loading current section...');
+      loadChapter(lastBook, lastChapterId, lastSectionId);
+    } else {
+      // If at home, we might want to re-load library.json too
+      init();
+    }
+  });
+}

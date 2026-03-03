@@ -362,7 +362,8 @@
             }
           ]
         }
-      ]
+      ],
+      "category": "book"
     },
     {
       "id": "irodov_macrosystems",
@@ -591,7 +592,8 @@
             }
           ]
         }
-      ]
+      ],
+      "category": "book"
     },
     {
       "id": "irodov_electromagnetism",
@@ -1082,7 +1084,8 @@
             }
           ]
         }
-      ]
+      ],
+      "category": "book"
     },
     {
       "id": "irodov_wave_processes",
@@ -1403,7 +1406,8 @@
             }
           ]
         }
-      ]
+      ],
+      "category": "book"
     },
     {
       "id": "irodov_quantum",
@@ -1548,7 +1552,8 @@
             }
           ]
         }
-      ]
+      ],
+      "category": "book"
     },
     {
       "id": "irodov_problems",
@@ -1791,7 +1796,35 @@
             }
           ]
         }
-      ]
+      ],
+      "category": "problems"
+    },
+    {
+      "id": "cpho",
+      "title": "CHPOS",
+      "type": "olympiad_series",
+      "chapters": [
+        {
+          "id": "cpho_s28",
+          "title": "CHPOS 28-р тэмцээн (2025)",
+          "type": "olympiad",
+          "tabs": [
+            {
+              "id": "cpho_s28_exp",
+              "title": "Туршилт",
+              "folder": "CHPOS-problems/CHPOS28",
+              "file": "experiment.json"
+            },
+            {
+              "id": "cpho_s28_theory",
+              "title": "Онол",
+              "folder": "CHPOS-problems/CHPOS28",
+              "file": "theory.json"
+            }
+          ]
+        }
+      ],
+      "category": "olympiad"
     }
   ]
 }
