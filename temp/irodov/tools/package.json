@@ -1,7 +1,0 @@
-{
-  "name": "tools",
-  "type": "module",
-  "dependencies": {
-    "cheerio": "^1.2.0"
-  }
-}
