@@ -1,0 +1,163 @@
+{
+  "id": "11.3",
+  "title": "§ 11.3. Хүчдэлтэй цахилгаан хэлбэлзэл",
+  "body": [
+    {
+      "type": "header",
+      "id": "11.3",
+      "value": "§ 11.3. Хүчдэлтэй цахилгаан хэлбэлзэл"
+    },
+    {
+      "type": "text",
+      "value": "<b>Тогтсон хэлбэлзэл.</b> (11.3), (11.4)-д гадаад хувьсах ЦХХ хэрэглэнэ:"
+    },
+    {
+      "type": "equation",
+      "value": "\\mathcal{E} = \\mathcal{E}_m\\cos\\omega t.",
+      "tag": "(11.25)"
+    },
+    {
+      "type": "text",
+      "value": "Битүү хүрээын тэгшитгэл:"
+    },
+    {
+      "type": "equation",
+      "value": "L\\frac{\\mathrm{d}I}{\\mathrm{d}t} + RI + \\frac{q}{C} = \\mathcal{E}_m\\cos\\omega t,",
+      "tag": "(11.26)"
+    },
+    {
+      "type": "equation",
+      "value": "\\ddot{q} + 2\\beta\\dot{q} + \\omega_0^2 q = (\\mathcal{E}_m/L)\\cos\\omega t.",
+      "tag": "(11.27)"
+    },
+    {
+      "type": "text",
+      "value": "Бидэнд зөвхөн <b>тогтсон горим</b> — нэгэн төрлийн бус тэгшитгэлийн тусгай шийд — сонирхолтой (нийт шийдийн нэгэн төрлийн хэсэг экспоненциал аарга тэглэгдэнэ). Тусгай шийд:"
+    },
+    {
+      "type": "equation",
+      "value": "q = q_m\\cos(\\omega t - \\psi).",
+      "tag": "(11.28)"
+    },
+    {
+      "type": "text",
+      "value": "$q_m$ ба $\\psi$ нь битүү хүрээын шинж ба гадаад ЦХХ-ийн давтамжаас тодорхойлогдоно, $\\psi > 0$ (заряд ЦХХ-ийн ардаа явна). (11.28)-г дифференциалчлахад:"
+    },
+    {
+      "type": "equation",
+      "value": "I = I_m\\cos(\\omega t - \\varphi),",
+      "tag": "(11.29)"
+    },
+    {
+      "type": "equation",
+      "value": "I_m = \\omega q_m,\\quad \\varphi = \\psi - \\pi/2.",
+      "tag": "(11.30)"
+    },
+    {
+      "type": "text",
+      "value": "(11.26)-г $U_L + U_R + U_C = \\mathcal{E}_m\\cos\\omega t$ хэлбэрт бичихэд (11.30)-г харгалзан:"
+    },
+    {
+      "type": "equation",
+      "value": "U_R = RI_m\\cos(\\omega t - \\varphi),",
+      "tag": "(11.32)"
+    },
+    {
+      "type": "equation",
+      "value": "U_C = \\frac{I_m}{\\omega C}\\cos\\!\\left(\\omega t - \\varphi - \\frac{\\pi}{2}\\right),",
+      "tag": "(11.33)"
+    },
+    {
+      "type": "equation",
+      "value": "U_L = \\omega LI_m\\cos\\!\\left(\\omega t - \\varphi + \\frac{\\pi}{2}\\right).",
+      "tag": "(11.34)"
+    },
+    {
+      "type": "text",
+      "value": "$U_R$ гүйдэлтэй нэг фазтай, $U_C$ гүйдлээс $\\pi/2$-оор хоцордог, $U_L$ гүйдлээс $\\pi/2$-оор урьдаа явна. Вектор диаграмм (Зураг 11.4) прямоугольник гурвалжнаас:"
+    },
+    {
+      "type": "image",
+      "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-299_360_429_651_68.jpg",
+      "caption": "Зураг 11.4"
+    },
+    {
+      "type": "equation",
+      "value": "I_m = \\frac{\\mathcal{E}_m}{\\sqrt{R^2 + (\\omega L - 1/\\omega C)^2}},",
+      "tag": "(11.35)"
+    },
+    {
+      "type": "equation",
+      "value": "\\tan\\varphi = \\frac{\\omega L - 1/\\omega C}{R}.",
+      "tag": "(11.36)"
+    },
+    {
+      "type": "text",
+      "value": "<b>Резонанс муруй.</b> $I_m(\\omega)$, $q_m(\\omega)$, $U_R$, $U_C$, $U_L$-ийн гадаад ЦХХ-ийн давтамжаас хамаарах графикуудыг резонанс муруй гэнэ. (11.35)-аар $I_m$ нь $\\omega L - 1/\\omega C = 0$ үед хамгийн их болно — <b>гүйдлийн резонанс</b>:"
+    },
+    {
+      "type": "equation",
+      "value": "\\omega_{I\\text{рез}} = \\omega_0 = 1/\\sqrt{LC}.",
+      "tag": "(11.37)"
+    },
+    {
+      "type": "image",
+      "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-300_355_384_144_138.jpg",
+      "caption": "Зураг 11.5"
+    },
+    {
+      "type": "text",
+      "value": "Конденсаторын цэнэгийн амплитуд $q_m = I_m/\\omega$:"
+    },
+    {
+      "type": "equation",
+      "value": "q_m = \\frac{\\mathcal{E}_m/L}{\\sqrt{(\\omega_0^2 - \\omega^2)^2 + 4\\beta^2\\omega^2}}.",
+      "tag": "(11.39)"
+    },
+    {
+      "type": "text",
+      "value": "$q_m$ ба $U_C$-ийн максимум нь $\\omega_{q\\text{рез}} = \\sqrt{\\omega_0^2 - 2\\beta^2}$ үед:"
+    },
+    {
+      "type": "equation",
+      "value": "\\omega_{q\\text{рез}} = \\sqrt{\\omega_0^2 - 2\\beta^2}.",
+      "tag": "(11.38)"
+    },
+    {
+      "type": "image",
+      "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-300_355_421_144_664.jpg",
+      "caption": "Зураг 11.6"
+    },
+    {
+      "type": "text",
+      "value": "$U_R$, $U_C$, $U_L$-ийн резонанс давтамжуудын томьёонууд (Зураг 11.7):"
+    },
+    {
+      "type": "equation",
+      "value": "\\omega_{R\\text{рез}} = \\omega_0,\\quad \\omega_{C\\text{рез}} = \\omega_0\\sqrt{1 - 2(\\beta/\\omega_0)^2},\\quad \\omega_{L\\text{рез}} = \\frac{\\omega_0}{\\sqrt{1 - 2(\\beta/\\omega_0)^2}}.",
+      "tag": "(11.40)"
+    },
+    {
+      "type": "image",
+      "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-300_349_524_1379_636.jpg",
+      "caption": "Зураг 11.7"
+    },
+    {
+      "type": "text",
+      "value": "<b>Резонанс муруй ба добротность.</b> Сул сааталтад ($\\beta \\ll \\omega_0$):"
+    },
+    {
+      "type": "equation",
+      "value": "U_{C\\text{рез}}/\\mathcal{E}_m = Q,\\qquad Q = \\omega_0/\\delta\\omega,",
+      "tag": "(11.41), (11.42)"
+    },
+    {
+      "type": "text",
+      "value": "энд $\\delta\\omega$ — резонанс давтамж дахь максимал утгын 0.7-д харгалзах резонанс муруйн өргөн. Добротность нь конденсаторт (ба индуктивлагт) үүсэх хамгийн их хүчдэл гадаад ЦХХ-ийн амплитудыг хэд дахин давсаныг харуулна."
+    },
+    {
+      "type": "text",
+      "value": "<b>Резонансын утга.</b> Резонанс нь гадаад ЦХХ-ийн давтамж битүү хүрээын өөрийн давтамжтай ойрхон болох үед хүчтэй хэлбэлзэл үүсэх үзэгдэл. Радиоприемниктэй аналогоор радиостанцийн сонголт $C$, $L$-ийг тохируулан хийгддэг. <b>Аюул:</b> гадаад ЦХХ буюу хүчдэл бага байсан ч резонанс үед $C$ ба $L$-ийн хүчдэл $Q$ дахин нэмэгдэж аюултай утгад хүрч болно."
+    }
+  ]
+}

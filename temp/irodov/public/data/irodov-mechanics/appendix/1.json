@@ -1,0 +1,44 @@
+{
+  "id": "polar_coords",
+  "title": "1. Туйлын координат дахь цэгийн хөдөлгөөн",
+  "body": [
+    {
+      "type": "header",
+      "value": "1. Туйлын координат дахь цэгийн хөдөлгөөн"
+    },
+    {
+      "type": "text",
+      "value": "Туйлын $\\rho, \\varphi$ координатуудад $A$ цэгийн байрлал нь түүний $O$ тооллын эхээс алслах $\\rho$ зай болон цэгийн $\\rho$ радиус-вектор ба сонгож авсан $O O^{\\prime}$ чиглэл (өнцгийн $\\varphi$ координатын тооллын эх) хоорондох $\\varphi$ өнцгөөр тодорхойлогдоно (Зураг 1, а)."
+    },
+    {
+      "type": "image",
+      "src": "images/irodov-mechanics/66a35da9-3faa-4823-9ca9-40799f37b3db-294_318_802_534_213.jpg",
+      "caption": "Зураг 1"
+    },
+    {
+      "type": "text",
+      "value": "Хөдөлж буй $A$ цэгтэй холбоотой бөгөөд харгалзах $\\rho$ ба $\\varphi$ координатуудын өсөх чиглэлд чиглэсэн нэгж векторууд буюу $\\mathbf{e}_{\\rho}$ ба $\\mathbf{e}_{\\varphi}$ ортуудыг оруулъя (Зураг 1, а). Декартын координатын системийн ортуудаас ялгаатай нь $\\mathbf{e}_{\\rho}$ ба $\\mathbf{e}_{\\varphi}$ ортууд нь хөдөлгөөнтэй байна ($A$ цэгийн хөдөлгөөний үед тэдгээрийн чиглэл өөрчлөгдөнө). Тэдгээрийн хугацаанаас хамаарсан уламжлалыг олъё, эдгээр нь цаашид хэрэг болно. $A$ цэгийн хөдөлгөөний үед $\\mathrm{d} t$ хугацаанд хоёр орт ижил $\\mathrm{d}\\varphi$ өнцгөөр нэг тийш эргэх (Зураг 1, б) бөгөөд дараах өөрчлөлтийг авна:<br>$$\\mathrm{d} \\mathbf{e}_{\\rho}=1 \\cdot \\mathrm{d} \\varphi \\mathbf{e}_{\\varphi}, \\quad \\mathrm{d} \\mathbf{e}_{\\varphi}=1 \\cdot \\mathrm{d} \\varphi\\left(-\\mathbf{e}_{\\rho}\\right) .$$<br>Хоёр илэрхийллийг $\\mathrm{d} t$-д хуваавал:<br>$$\\dot{\\mathbf{e}}_{\\rho}=\\dot{\\varphi} \\mathbf{e}_{\\varphi}, \\quad \\dot{\\mathbf{e}}_{\\varphi}=-\\dot{\\varphi} \\mathbf{e}_{\\rho}, \\tag{1}$$<br>энд үсгийн дээрх цэг нь хугацаагаар дифференциалчлахыг (уламжлал авахыг) тэмдэглэнэ."
+    },
+    {
+      "type": "text",
+      "value": "Одоо $A$ цэгийн хурд ба хурдатгалыг олъё, үүний тулд түүний радиус-вектор $\\boldsymbol{\\rho}$-г дараах байдлаар бичье:<br>$$\\boldsymbol{\\rho}=\\rho \\mathbf{e}_{\\rho} . \\tag{2}$$<br><b>Цэгийн хурд v.</b> (2)-ыг (1)-ийг тооцон хугацаагаар дифференциалчилбал:<br>$$\\mathbf{v}=\\dot{\\rho} \\mathbf{e}_{\\rho}+\\rho \\dot{\\varphi} \\mathbf{e}_{\\varphi} . \\tag{3}$$<br>Үүнээс $\\mathbf{v}$ векторын хөдөлгөөнт $\\mathbf{e}_{\\rho}$ ба $\\mathbf{e}_{\\varphi}$ ортууд дээрх проекцууд:<br>$$v_{\\rho}=\\dot{\\rho}, \\quad v_{\\varphi}=\\rho \\dot{\\varphi}, \\tag{4}$$<br>харин хурдны векторын модуль $v=\\sqrt{\\dot{\\rho}^{2}+\\rho^{2} \\dot{\\varphi}^{2}}$ байна."
+    },
+    {
+      "type": "text",
+      "value": "<b>Цэгийн хурдатгал a.</b> (3)-ыг хугацаагаар дахин дифференциалчилбал:<br>$$\\mathbf{a}=\\ddot{\\rho} \\mathbf{e}_{\\rho}+\\rho \\dot{\\mathbf{e}}_{\\rho}+\\frac{\\mathrm{d}}{\\mathrm{~d} t}(\\rho \\dot{\\varphi}) \\mathbf{e}_{\\varphi}+\\rho \\dot{\\varphi} \\dot{\\mathbf{e}}_{\\varphi} .$$<br>(1)-ийг тооцон хялбар хувиргалт хийсний эцэст:<br>$$\\mathbf{a}=\\left(\\ddot{\\rho}-\\rho \\dot{\\varphi}^{2}\\right) \\mathbf{e}_{\\rho}+(2 \\dot{\\rho} \\dot{\\varphi}+\\rho \\ddot{\\varphi}) \\mathbf{e}_{\\varphi}, \\tag{5}$$<br>өөрөөр хэлбэл $\\mathbf{a}$ векторын $\\mathbf{e}_{\\rho}$ ба $\\mathbf{e}_{\\varphi}$ ортууд дээрх проекцууд:<br>$$a_{\\rho}=\\ddot{\\rho}-\\rho \\dot{\\varphi}^{2}, \\quad a_{\\varphi}=2 \\dot{\\rho} \\dot{\\varphi}+\\rho \\ddot{\\varphi}=\\frac{1}{\\rho} \\frac{\\mathrm{d}}{\\mathrm{d} t}\\left(\\rho^{2} \\dot{\\varphi}\\right) . \\tag{6}$$"
+    },
+    {
+      "type": "text",
+      "value": "<b>Туйлын координат дахь динамикийн үндсэн тэгшитгэл.</b> Динамикийн үндсэн тэгшитгэл $m \\mathbf{a}=\\mathbf{F}$-ийг хөдөлгөөнт $\\mathbf{e}_{\\rho}$ ба $\\mathbf{e}_{\\varphi}$ ортууд дээр проекцлон (6) томьёог ашиглан шууд гаргаж болно:<br>$$\\begin{aligned}\n& m\\left(\\ddot{\\rho}-\\rho \\dot{\\varphi}^{2}\\right)=F_{\\rho}, \\\\\n& m \\frac{1}{\\rho} \\frac{\\mathrm{~d}}{\\mathrm{~d} t}\\left(\\rho^{2} \\dot{\\varphi}\\right)=F_{\\varphi},\n\\end{aligned} \\tag{7}$$"
+    },
+    {
+      "type": "image",
+      "src": "images/irodov-mechanics/66a35da9-3faa-4823-9ca9-40799f37b3db-295_251_380_1500_82.jpg",
+      "caption": "Зураг 2"
+    },
+    {
+      "type": "text",
+      "value": "энд $F_{\\rho}$ ба $F_{\\varphi}$ — $\\mathbf{F}$ векторын $\\mathbf{e}_{\\rho}$ ба $\\mathbf{e}_{\\varphi}$ ортууд дээрх проекцууд (Зураг 2). Энэ зурагт $F_{\\rho}<0$, харин $F_{\\varphi}>0$ байна."
+    }
+  ]
+}

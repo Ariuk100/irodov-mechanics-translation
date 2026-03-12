@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function role() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isAdmin() {
+      return isAuth() && role() == 'admin';
+    }
+
+    function isModerator() {
+      return isAuth() && (role() == 'moderator' || role() == 'admin');
+    }
+
+    // Books + sections — бүртгэлтэй хүн унших, admin бичих
+    match /books/{bookId} {
+      allow read: if isAuth();
+      allow write: if isAdmin();
+
+      match /chapters/{chapterId}/sections/{sectionId} {
+        allow read: if isAuth();
+        allow write: if isAdmin();
+      }
+    }
+
+    // Users — өөрийн doc-оо унших, admin бүгдийг удирдах
+    match /users/{userId} {
+      allow read: if isAuth() && (request.auth.uid == userId || isAdmin());
+      allow create: if isAuth() && request.auth.uid == userId;
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Suggestions — moderator үүсгэх/унших, admin батлах
+    match /suggestions/{suggestionId} {
+      allow read: if isModerator();
+      allow create: if isModerator();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Notifications — зөвхөн өөрийнхөө мэдэгдэл унших (onSnapshot дэмжинэ)
+    match /notifications/{notificationId} {
+      allow read: if isAuth() && request.auth.uid == resource.data.recipientUid;
+      allow write: if false; // зөвхөн Admin SDK бичдэг
+    }
+
+    // PendingAccess — нэвтрэх оролдлого хийсэн бүртгэлгүй хүмүүс
+    match /pendingAccess/{uid} {
+      allow create: if isAuth() && request.auth.uid == uid;
+      allow read, delete: if isAdmin();
+    }
+  }
+}

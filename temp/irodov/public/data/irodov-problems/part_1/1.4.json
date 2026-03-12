@@ -1,0 +1,611 @@
+{
+  "id": "1.4",
+  "title": "1.4. Universal Gravitation",
+  "body": [
+    {
+      "value": "## 1.4. UNVERSAL GRAVITATION\n\n- Бүх нийтийн таталцлын хууль $$F=\\gamma \\frac{m_{1} m_{2}}{r^{2}} . $$ Нарыг тойрон эргэх дурын хоёр гаригийн эргэлтийн үеийн квадратууд нь тэдний тойрог замын гол хагас тэнхлэгүүдийн кубтай пропорциональ байна (Кеплер): $$T^{2} \\propto a^{3} . $$ - Массын цэгийн таталцлын талбайн $\\mathbf{G}$ хүч ба боломжит $\\varphi$ : $$\\mathbf{G}=-\\gamma \\frac{m}{r^{3}} \\mathbf{r}, \\quad \\varphi=-\\gamma \\frac{m}{r} . $$ - Орбитын болон зугтах хурд: $$v_{1}=\\sqrt{g R}, \\quad v_{2}=\\sqrt{2} v_{1} . $$ "
+    },
+    {
+      "type": "problem",
+      "number": "1.200",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$m$ масстай гараг Нарыг тойрон (гелиоцентрик системд) $v = 34.9 \\mathrm{~km} / \\mathrms$ хурдтайгаар хөдөлнө. Энэ гарагийн Нарыг тойрон эргэх үеийг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$T=2 \\pi \\gamma M / v^{3}=225$ өдөр."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.201",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Бархасбадь гарагийн Нарыг тойрон эргэх үе Дэлхийнхээс 12 дахин их. Гарагийн тойрог замыг тойрог гэж үзээд олно:\n(а) Бархасбадь Нарнаас Дэлхийгээс хэд дахин хол байх;\n(б) Нарны систем дэх Бархасбадийн хурд ба хурдатгал."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "(a) 5.2 times; (b) $13 \\mathrm{~кm} / \\mathrm{с}, 2.2 \\cdot 10^{-4} \\mathrm{~м} / \\mathrm{с}^{2}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.202",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$m$ масстай гараг Нарыг тойрон эллипсээр хөдлөх бөгөөд Нарнаас алслах хамгийн бага зай нь $r$, хамгийн их зай нь $R$ бол Нарыг тойрон эргэх үеийг Кеплерийн хуулиудыг ашиглан ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$T=\\pi \\sqrt{(r+R)^{3} / 2 \\gamma M}$. Тойрог дагуух хөдөлгөөнийг авч үзэхэд хангалттай whose radius is equal to major semi-axis of given ellipse, i.e. $(r+R) / 2$, since in accordance with Kepler's laws period of revolution is same."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.203",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Жижиг бие Дэлхийн тойрог замын радиустай тэнцүү зайнаас Наран дээр унаж эхлэв. Биеийн анхны хурд Нарны системд тэг байсан бол хэр удаан унахыг Кеплерийн хуулиудыг ашиглан ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "Биеийн Нарт унах нь маш урт (хязгаарт, degenerated) ellipse whose major semi-axis is practically equal to radius $R$ of Earth's orbit. Then from Kepler's laws, $(2 \\tau / T)^{2}=[(R / 2) / R]^{3}$, энд $\\tau$ is falling time (time needed to complete half a revoIution along elongated ellipse), $T$ is period of Earth's revolution around Sun. Hence, $\\tau=T / 4 \\sqrt{2}=65$ өдөр."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.204",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Нарны системийн загварыг хэмжээгээр нь $\\eta$ дахин багасгасан боловч гарагууд болон Нарны нягтыг бодит байдалтай ижил хэвээр үлдээсэн гэж үзье. Энэ тохиолдолд гарагуудын загварын эргэлтийн үеүүд хэрхэн өөрчлөгдөх вэ?"
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "Will not change."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.205",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Давхар од гэдэг нь хоорондын таталцлын хүчний нөлөөгөөр системийн инерцийн төвийг тойрон хөдөлж буй хоёр одны систем юм. Хэрэв системийн нийт масс $M$, эргэлтийн үе $T$ бол бүрэлдэхүүн одуудын хоорондох зайг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$l=\\sqrt[3]{\\gamma M(T / 2 \\pi)^{2}}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.206",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Таталцлын харилцан үйлчлэлийн потенциал энергийг ол:\n(а) бие биенээсээ $r$ зайд орших $m_{1}$ ба $m_{2}$ масстай хоёр цэгэн масс;\n(б) $m$ масстай цэгэн масс ба $l$ урттай, $M$ масстай нимгэн нэгэн төрлийн саваа хооронд (тэдгээр нь нэг шулуун дээр орших бөгөөд хоорондох зай нь $a$ бол). Мөн тэдгээрийн харилцан үйлчлэлийн хүчийг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "(a) $U=-\\gamma m_{1} m_{2} / r$;\n(b) $U=-\\gamma(m M / l) \\ln (1+l / a)$; $F=\\gamma m M / a(a+l)$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.207",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$m$ масстай гараг Нарыг тойрон эллипсээр хөдлөх бөгөөд Нарнаас алслах хамгийн бага ба хамгийн их зай нь харгалзан $r_{1}$ ба $r_{2}$ бол Нарны төвтэй харьцуулсан гарагийн $M$ өнцгийн импульсийг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$M=m \\sqrt{2 \\gamma m_{S} r_{1} r_{2} /\\left(r_{1}+r_{2}\\right)}$, энд $m_{S}$ is mass of Sun."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.208",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Нарны тойрон эллипсээр хөдөлж буй $m$ масстай гарагийн нийт механик энерги зөвхөн тойрог замынх нь их хагас тэнхлэг $a$-аас хамаардаг болохыг хадгалагдах хуулиудыг ашиглан батал. Энэ энергийг $a$-аар илэрхийл."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$E=T+U=-\\gamma m m_{S} / 2 a$, энд $m_{S}$ is mass of Sun."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.209",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Гараг Нарыг тойрон эллипсээр хөдөлж байв. Нарнаас $r_{0}$ зайд байх үед хурд нь $v_{0}$, харин $\\mathbf{r}_{0}$ радиус вектор ба $\\mathbf{v}_{0}$ хурдны вектор хоорондын өнцөг $\\alpha$ байсан бол гараг Нарнаас холдож, ойртож болох хамгийн их ба хамгийн бага зайг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$r_{m}=\\frac{r_{0}}{2-\\eta}\\left[1 \\pm \\sqrt{1-(2-\\eta) \\eta \\sin ^{2} \\alpha}\\right], $ энд $ \\eta= =r_{0} \\nu_{0}^{2} / \\gamma m_{S}, m_{S}$ being mass of Sun."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.210",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Сансрын бие ($A$) Нарнаас маш хол байхдаа $v_{0}$ хурдтайгаар $l$ чиглүүлэгч параметр бүхий траектороор Нар руу дөхөж ирэв (1.51-р зураг). Энэ бие Наранд хамгийн ихдээ ямар зайд ойртож ирэх вэ?"
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-problems/c7fd2c75-af8b-4d89-bfbb-15bfd3e7201b-052_305_521_505_423.jpg",
+          "caption": "Fig. 1.51."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$r_{\\text {мин }}=\\left(\\gamma m_{S} / v_{0}^{2}\\right)\\left[\\sqrt{1+\\left(l v_{0}^{2} / \\gamma m_{S}\\right)^{2}}-1\\right]$, энд $m_{S}$ is mass of Sun."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.211",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$m$ масстай бөөм $M$ масстай нэгэн төрлийн бөмбөрцгийн гадна, төвөөс нь $r$ зайд оршино. Олно:\n(а) бөөм ба бөмбөрцгийн таталцлын харилцан үйлчлэлийн потенциал энерги;\n(б) бөмбөрцгөөс бөөмд үйлчлэх таталцлын хүч."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "(a) Эхлээд нимгэн бөмбөрцөг давхаргыг авч үзье of radius $\\rho$ ба mass $\\delta M$. energy of interaction of particle with an elementary belt $\\delta S$ of that layer is equal to (Зур. 8)\n\\begin{equation*}\nd U=-\\gamma(m \\delta M / 2 л) \\sin \\theta d \\theta. \\tag{*}\n\\end{equation*}\nAccording to cosine theorem in triangle OAP $l^{2}=\\rho^{2}+ +r^{2}-2 \\rho r \\cos \\theta$. Having determined differential of this expression, we can reduce Eq. (*) to form that is convenient for integration. After integrating over whole layer we obtain $\\delta U= =-\\gamma m \\delta M / r$. ба finally, integrating over all layers of sphere, we obtain $U=-\\gamma m M / r$; (b) $F_{r}=-\\partial U / \\partial r=-\\gamma m M / r^{2}$."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-problems/c7fd2c75-af8b-4d89-bfbb-15bfd3e7201b-296_299_490_898_232.jpg",
+          "caption": "Fig. 8."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-problems/c7fd2c75-af8b-4d89-bfbb-15bfd3e7201b-296_291_354_898_792.jpg",
+          "caption": "Fig. 9."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.212",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Нэгэн төрлийн бөмбөрцөг бүрхүүл дотор байрлах $A$ бөөмд үйлчлэх таталцлын хүч тэгтэй тэнцүү болохыг батал."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "Эхлээд нимгэн бөмбөрцөг давхаргыг авч үзье of substance (Зур. 9). Construct a cone with a small angle of taper ба vertex at point $A$. ratio of areas cut out by cone in layer is $d S_{1}: d S_{2}=r_{1}^{2}: r_{2}^{2}$. masses of cut volumes are proportional to their areas. Therefore these volumes will attract particle $A$ with forces equal in magnitude ба opposite in direction. What follows is obvious."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.213",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$m$ масстай бөөмийг $M$ масстай, $R$ радиустай нэгэн төрлийн хагас бөмбөрцгийн суурийн төвөөс хязгааргүй холдуулж шилжүүлэв. Энэ явцад бөмбөрцгийн таталцлын хүчний гүйцэтгэсэн ажлыг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$A=-\\frac{3}{2} \\gamma m M / R$.\n$$\n\\text { 1.214. } \\begin{aligned}\nG & =\\left\\{\\begin{array}{l}\n-\\left(\\gamma M / R^{3}\\right) \\mathrm{r} \\text { for } r \\leqslant R,\n-\\left(\\gamma M / r^{3}\\right) \\mathrm{r} \\text { for } r \\geqslant R;\n-3 / 2\\left(1-r^{2} / 3 R^{2}\\right) \\gamma M / R \\text { for } r \\leqslant R,\n-\\gamma M / r\n\\end{array}\\right.\n\\end{aligned}\n$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.214",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$M$ масстай, $R$ радиустай нэгэн төрлийн цул бөмбөрцөг өгөгдөв. Бөмбөрцгийн төвөөс $r$ зайд орших цэг дэх таталцлын талбайн хүчлэг $\\mathbf{G}$ ба потенциал $\\varphi$-г $r$-ээс хамааруулан ол ($r < R$ ба $r > R$ тохиолдолд). $G(r)$ ба $\\varphi(r)$ функцүүдийн графикийг бүдүүвчлэн зур."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "\\(\\mathbf{G} = -(\\gamma M/r^3)\\mathbf{r}\\) for \\(r > R\\); \\(\\mathbf{G} = -\\frac{3}{2}(1-r^2/R^2)\\gamma M/R^3 \\cdot \\mathbf{r}\\) for \\(r < R\\). Зур. харна уу 10. \\[ \\text { 1.214. } \\begin{aligned} G & =\\left\\{\\begin{array}{л} -\\left(\\gamma M / R^{3}\\right) \\mathrm{r} \\text { for } r \\leqslant R,  -\\left(\\gamma M / r^{3}\\right) \\mathrm{r} \\text { for } r \\geqslant R ;  -3 / 2\\left(1-r^{2} / 3 R^{2}\\right) \\gamma M / R \\text { for } r \\leqslant R,  -\\gamma M / r \\end{array}\\right. \\end{aligned} \\]"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.215",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$\\rho$ тогтмол нягттай нэгэн төрлийн бөмбөрцөг дотор бөмбөрцөг хэлбэрийн хөндий байх бөгөөд түүний төв нь бөмбөрцгийн төвөөс $l$ зайд оршино. Хөндий доторх таталцлын талбайн хүчлэг $\\mathbf{G}$-г ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$\\mathrm{G}=-\\frac{4}{3} \\pi \\gamma \\rho \\mathrm{I}$. Хонхорын доторх талбай жигд байна."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.216",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$M$ масстай, $R$ радиустай нэгэн төрлийн бөмбөрцөг өгөгдөв. Бөмбөрцөг доторх таталцлын шахалтын улмаас үүсэх даралт $p$-г төвөөс алслах $r$ зайнаас хамааруулан ол. Дэлхийг нэгэн төрлийн бөмбөрцөг гэж үзээд төв дэх даралт $p$-г үнэл."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$p=\\frac{3}{8}\\left(1-r^{2} / R^{2}\\right) \\gamma M^{2} / \\pi R^{4}$. About $1.8 \\cdot 10^{6}$ atmospheres."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.217",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Дараах системүүдийн таталцлын харилцан үйлчлэлийн хувийн потенциал энергийг ол:\n(а) $m$ масстай, $R$ радиустай нимгэн нэгэн төрлийн бөмбөрцөг бүрхүүл;\n(б) $m$ масстай, $R$ радиустай нэгэн төрлийн цул бөмбөрцөг (1.214-р бодлогын үр дүнг ашигла)."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "(a) Бөмбөрцөг давхаргыг жижиг элементүүдэд хуваая, each of mass $\\delta m$. In this case energy of interaction of each element with all others is $\\delta U=-\\gamma m \\delta m / R$. Summing over all"
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-problems/c7fd2c75-af8b-4d89-bfbb-15bfd3e7201b-297_341_556_216_411.jpg",
+          "caption": "Fig. 10."
+        },
+        {
+          "type": "text",
+          "value": "elements ба taking into account that each pair of interacting elements appears twice in result, we obtain $U=-v m^{2} / 2 R$; (b) $U=-3 \\gamma m^{2} / 5 R$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.218",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Дэлхийн хоёр хиймэл дагуул нэг хавтгайд тойрог замаар хөдөлнө. Нэгнийх нь тойрог замын радиус $r = 7000 \\mathrm{~km}$, нөгөөгийнх нь түүнээс $\\Delta r = 70 \\mathrm{~km}$ бага бол тэдгээр нь хамгийн бага зайд ойртох хугацааны интервалыг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$\\Delta t \\approx \\frac{2 \\pi}{\\sqrt{\\gamma M}} \\frac{r^{3 / 2}}{3 \\Delta r / 2 r+\\delta}=\\left\\{\\begin{array}{l}4.5 \\text { өдөр }(\\delta=0),\n0.84 \\text { цаг }(\\delta=2).\\end{array}\\right.$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.219",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Дараах хурдатгалуудын харьцааг тооцоол: Дэлхийн гадаргуу дээрх хүндийн хүчний хурдатгал $w_{1}$, Дэлхийн экватор дээрх төвөөс зугтах инерцийн хурдатгал $w_{2}$, Нарны таталцлаар Дэлхий дээрх биетүүдэд өгөх хурдатгал $w_{3}$."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$w_{1}: w_{2}: w_{3}=1: 0.0034: 0.0006$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.220",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Дэлхийн туйл дээр чөлөөт уналтын хурдатгал ямар өндөрт нэг хувиар буурах вэ? Харин хоёр дахин буурах өндөр нь хэд вэ?"
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$32 \\mathrm{~кm}; 2650 \\mathrm{~кm}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.221",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Дэлхийн туйл дээр биед босоо чиглэлд $v_{0}$ хурд өгөв. Дэлхийн $R$ радиус ба гадаргуу дээрх чөлөөт уналтын хурдатгал $g$-г ашиглан биеийн хөөрөх дээд өндрийг ол. Агаарын эсэргүүцлийг тооцохгүй."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$h=R /\\left(2 g R / v_{0}^{2}-1\\right)$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.222",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Хиймэл дагуулыг Дэлхийн тойрог замд оруулахаар хөөргөхөд Дэлхийн эргэлтийн тэнхлэгтэй холбоотой тооллын системд хурд нь $v$ байв. Хиймэл дагуулаас Дэлхийн гадаргуу хүртэлх зайг ол. Дэлхийн $R$ радиус ба гадаргуу дээрх чөлөөт уналтын хурдатгал $g$-г мэдэгдэж буй гэж үзье."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$h=R\\left(g R / v^{2}-1\\right)$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.223",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Дэлхийн геостационар (хөдөлгөөнгүй) хиймэл дагуулын тойрог замын радиусыг тооцоол. Дэлхийн төвд бэхлэгдсэн инерцийн систем дэх түүний хурд ба хурдатгал ямар байх вэ?"
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$r=\\sqrt[3]{\\gamma M(T / 2 \\pi)^{2}}=4.2 \\cdot 10^{4} \\mathrm{~кm}$, энд $M$ ба $T$ are mass of Earth ба its period of revolution about its own axis тус тус; $3.1 \\mathrm{~кm} / \\mathrm{с}, 0.22 \\mathrm{~м} / \\mathrm{с}^{2}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.224",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Дэлхийн экватор дээгүүр $R = 2.00 \\cdot 10^{4} \\mathrm{~km}$ радиустай тойрог замаар баруунаас зүүн тийш эргэлдэх хиймэл дагуул экваторын тодорхой нэг цэг дээгүүр $\\tau = 11.6$ цаг тутамд өнгөрнө. Эдгээр өгөгдлийг ашиглан Дэлхийн массыг тооцоол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$M=\\left(4 \\pi^{2} R^{3} / \\gamma T^{2}\\right)(1+T / \\tau)^{2}=6 \\cdot 10^{24} \\mathrm{~кг}$, энд $T$ нь эргэлтийн үе of Дэлхий өөрийн тэнхлэгийн эргэн тойронд."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.225",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Хиймэл дагуул Дэлхийн экватор дээгүүр $R = 1.00 \\cdot 10^{4} \\mathrm{~km}$ радиустай тойрог замаар зүүнээс баруун тийш эргэлдэнэ. Дэлхийн систем дэх хиймэл дагуулын хурд ба хурдатгалыг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$v^{\\prime}=\\frac{2 \\pi R}{T}+\\sqrt{\\frac{\\gamma M}{R}}=7.0 \\mathrm{~кm} / \\mathrm{с}, w^{\\prime}=\\frac{\\gamma M}{R^{2}}\\left(1+\\frac{2 \\pi R}{T} \\times\\right. \\left.\\times \\sqrt{\\frac{R}{\\gamma M}}\\right)=4.9 \\mathrm{~м} / \\mathrm{с}^{2}$. Энд $M$ is mass of Earth, $T$ is its period of revolution about its own axis."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.226",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Хиймэл дагуулыг Дэлхийн экватор дээгүүр гадаргуутай ойрхон тойрог замаар Дэлхийн эргэлтийн чиглэлд ба эсрэг чиглэлд хөөргөв. Сүүлчийн тохиолдолд хиймэл дагуулын кинетик энерги өмнөхөөсөө хэд дахин их байх вэ? (Дэлхийн системд)."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "1.27 times."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.227",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Хиймэл дагуул Сарны радиусаас $\\eta$ дахин их радиустай тойрог замаар эргэлдэнэ. Хөдөлгөөний явцад хиймэл дагуул сансрын тоосны улмаас хурднаасаа $F = \\alpha v^{2}$ ($\\alpha$ — тогтмол) хамаарах бага зэрэг эсэргүүцлийн хүчтэй тулгарна. Хиймэл дагуул Сарны гадаргуу дээр унах хүртэл тойрог замдаа хэр удаан байхыг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "decrease in total energy $E$ of satellite over time interval $d t$ is equal to $-d E=F v d t$. Representing $E$ ба $v$ as functions of distance $r$ between satellite ба centre of Moon, we can reduce this equation to form convenient for integration. Finally, we get $\\tau \\approx(\\sqrt{\\eta}-1) m / \\alpha \\sqrt{g R}$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.228",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Сарны нэгдүгээр ба хоёрдугаар сансрын хурдыг тооцоол. Үр дүнг Дэлхийн харгалзах хурдуудтай харьцуул."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$v_{1}=1.67 \\mathrm{~кm} / \\mathrm{с}, v_{2}=2.37 \\mathrm{~кm} / \\mathrm{с}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.229",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Сансрын хөлөг Сарны гадаргууг бараг шүргэсэн парабол траекторын дагуу Сар руу ойртож ирэв. Хамгийн ойртсон агшинд тоормосны хөдөлгүүрийг богино хугацаанд асааж сансрын хөлгийг Сарны хиймэл дагуулын тойрог замд шилжүүлэв. Тоормослох явцад сансрын хөлгийн хурдны модуль хэрхэн өөрчлөгдсөнийг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$\\Delta v=\\sqrt{\\gamma M / R}(1-\\sqrt{2})=-0.70 \\mathrm{~кm} / \\mathrm{с}$, энд $M$ ба $R$ are mass ба radius of Moon."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.230",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Сансрын хөлгийг Дэлхийн гадаргуутай ойрхон тойрог замаар хөөргөв. Дэлхийн таталцлыг бүрмөсөн даван туулахын тулд сансрын хөлөгт ямар нэмэлт хурд өгөх ёстой вэ?"
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$\\Delta v=\\sqrt{g R}(\\sqrt{2}-1)=3.27 \\mathrm{~кm} / \\mathrm{с}$, энд $g$ is standard free-fall acceleration, $R$ is radius of Earth."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.231",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Дэлхий ба Сарны таталцлын хүчүүд тэнцвэржиж (үр дүнгийн хүч тэг) байх цэг Сарны төвөөс ямар зайд байх вэ? Дэлхийн масс Сарныхаас $\\eta = 81$ дахин их, төвүүдийнх нь хоорондох зай Дэлхийн $R$ радиусаас $n = 60$ дахин их гэж үзье."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$r=n R /(1+\\sqrt{\\eta})=3.8 \\cdot 10^{4} \\mathrm{~кm}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.232",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$m = 2.0 \\cdot 10^{3} \\mathrm{~kg}$ масстай сансрын хөлгийг Дэлхийн гадаргуугаас Сар руу хүргэхийн тулд таталцлын хүчний эсрэг хийх ёстой хамгийн бага ажлыг ол."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$A \\approx \\gamma m\\left(M_{1} / R_{1}+M_{2} / R_{2}\\right)=1.3 \\cdot 10^{8} \\mathrm{~kJ}$, энд $M$ ба $R$ are mass ба radius of Earth ба Moon."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "1.233",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Гуравдугаар сансрын хурд $v_{3}$-ийг үнэл. Энэ нь Дэлхийн гадаргуутай харьцуулахад биеийг Нарны аймгаас гаргахад шаардагдах хамгийн бага хурд юм. Дэлхий Нарыг тойрон эргэхийг тооцож, харин өөрийн тэнхлэгээ тойрон эргэхийг үл тоомсорло."
+        }
+      ],
+      "answer": [
+        {
+          "type": "text",
+          "value": "$v_{3} \\approx \\sqrt{2 v_{1}^{2}+(\\sqrt{2}-1)^{2} V_{1}^{2}} \\approx 17 \\mathrm{~кm} / \\mathrm{с}$. Энд $v_{1}^{2}= =\\gamma M_{E} / R, M_{E}$ ба $R$ are mass ба radius of Earth; $V_{1}^{2}=\\gamma M_{S} / r, M_{S}$ is mass of Sun, $r$ is radius of Earth's orbit."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "physical_constants",
+  "title": "13. Физикийн тогтмолууд",
+  "body": [
+    {
+      "type": "header",
+      "value": "13. Физикийн тогтмолууд"
+    },
+    {
+      "type": "text",
+      "value": "<table border=\"1\" style=\"width:100%; border-collapse: collapse; text-align: left;\"><tbody><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Вакуум дахь гэрлийн хурд</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$c=2.998 \\cdot 10^{8} \\text{ м}/\\text{с}$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Гравитацийн тогтмол</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\gamma=6.67 \\cdot 10^{-11} \\text{ м}^{3} /\\left(\\text{кг} \\cdot \\text{с}^{2}\\right)$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Чөлөөт уналтын хурдатгал</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$g=9.807 \\text{ м}/\\text{с}^{2}$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Авогадрогийн тогтмол</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$N_{\\text{А}}=6.022 \\cdot 10^{23} \\text{ моль}^{-1}$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Эгэл цэнэг</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$e=\\left\\{\\begin{array}{l}1.602 \\cdot 10^{-19} \\text{ Кл} \\\\ 4.80 \\cdot 10^{-10} \\text{ СГСЭ}\\end{array}\\right.$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Электроны тайвны масс</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$m_{e}=\\left\\{\\begin{array}{l}0.911 \\cdot 10^{-30} \\text{ кг} \\\\ 0.511 \\text{ МэВ}\\end{array}\\right.$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Электроны хувийн цэнэг</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\frac{e}{m_{e}}=\\left\\{\\begin{array}{l}1.76 \\cdot 10^{11} \\text{ Кл}/\\text{кг} \\\\ 5.27 \\cdot 10^{17} \\text{ СГСЭ}\\end{array}\\right.$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Протоны тайвны масс</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$m_{p}=1.673 \\cdot 10^{-27} \\text{ кг}$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Массын атом нэгж</td><td style=\"padding: 8px; border: 1px solid #ddd;\">1 м.а.н. $=\\left\\{\\begin{array}{l}1.660 \\cdot 10^{-27} \\text{ кг} \\\\ 931.4 \\text{ МэВ}\\end{array}\\right.$</td></tr></tbody></table>"
+    }
+  ]
+}

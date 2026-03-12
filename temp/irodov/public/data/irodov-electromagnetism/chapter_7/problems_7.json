@@ -1,0 +1,206 @@
+{
+  "id": "problems_7",
+  "title": "Бодлогууд",
+  "body": [
+    {
+      "type": "header",
+      "id": "problems_7",
+      "value": "Бодлогууд"
+    },
+    {
+      "type": "problem",
+      "number": "7.1",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$A$ цэгийн (Зураг 7.16) ойролцоо вакуум дахь $\\mathbf{B}_0$ индукц норамльтай $\\alpha_0$ өнцөг үүсгэнэ. Соронзон нэвтрэлт $\\mu$. Бодис дахь $B$ индукцийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-198_246_286_230_876.jpg",
+          "caption": "Зураг 7.16"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$B_n = B_0\\cos\\alpha_0$, $B_\\tau = \\mu B_0\\sin\\alpha_0$ (хил захын нөхцлүүдээр). Иймд:<br>$$B = B_0\\sqrt{\\cos^2\\alpha_0 + \\mu^2\\sin^2\\alpha_0}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.2",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$I$ гүйдэлтэй урт нарийн утас вакуум-соронзон бодисын хавтгай хилд перпендикуляр (Зураг 7.17). Нэвтрэлт $\\mu$. Хилд $r$ зайд гадаргуун соронзожилтын гүйдлийн шугамын нягт $i'$-г ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-198_243_238_1070_922.jpg",
+          "caption": "Зураг 7.17"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$i' = J = \\chi H = \\chi I/2\\pi r$ тул:<br>$$i' = (\\mu-1)I/2\\pi r.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.3",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$I$ гүйдэлт урт нарийн утас нь нэвтрэлт $\\mu$-тай бодис ба вакуумыг хуваах хавтгайд оршино. Тэг дүрмтэй В шугам — тойрог. $r$ зайд $B$-г ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Бодисд $H$, вакуумд $H_0$: $\\pi rH + \\pi rH_0 = I$ ба $\\mu H = H_0$. Шийдвэл:<br>$$B = \\frac{\\mu\\mu_0 I}{(1+\\mu)\\pi r}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.4",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$R$ радиустай дугуй огтлолтой урт нэг төрлийн дамжуулагч парамагнит ($\\chi$ мэдрэхүй) утсаар $I$ гүйдэл урсна. $r$ зайд $B(r)$ ба дотоод $j'$ гүйдлийн нягтыг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-200_285_378_625_774.jpg",
+          "caption": "Зураг 7.20"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "1. $r < R$: $B \\sim (1+\\chi)r/R^2$; $r > R$: $B \\sim 1/r$.<br>2. $J = \\chi H = \\chi Ir/2\\pi R^2$ тул $j' = \\chi I/\\pi R^2$ — дамжуулалтын гүйдэлтэй нэг чиглэлд."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.5",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Урт соленоид $\\chi = ar^2$ парамагнитаар дүүрсэн. Тэнхлэгт $B_0$. $J(r)$ ба $j'(r)$-ийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "1. $H = H_0 = B_0/\\mu_0$ ($r$-ээс хамаарахгүй) тул $J = ar^2 B_0/\\mu_0$.<br>2. $j' = -\\mathrm{d}J/\\mathrm{d}r = -2arB_0/\\mu_0.$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.6",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Тогтмол соронзон бие нь $d$ дундаж диаметртэй, $b$ зазортай цагарган хэлбэртэй (Зураг 7.22). Зазор дахь $B$ мэдэгдэнэ. Бодисын доторх $H$ ба $J$ модулийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-201_304_350_1147_129.jpg",
+          "caption": "Зураг 7.22"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Эргэлцлийн теоремоор ($I = 0$): $(\\pi d - b)H_\\tau + bB/\\mu_0 = 0$, иймд:<br>$$H_\\tau \\approx -bB/(\\mu_0\\pi d),\\quad J \\approx B/\\mu_0.$$<br>$\\mathbf{H}$ нь $\\mathbf{B}$-д эсрэг чиглэнэ."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.7",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$d$ дундаж диаметртэй торусан төмөр сердечикт $N$ ороомогтой обмотка ба $b$ зазор байна. $I$ гүйдэлд зазор дахь $B$ мэдэгдэнэ. Төмрийн $\\mu$-г ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$(\\pi d - b)H + bB/\\mu_0 = NI$, $B = \\mu\\mu_0 H$, $b \\ll d$ үед:<br>$$\\mu = \\frac{\\pi dB}{\\mu_0 NI - bB}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.8",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "(Зураг 7.24) $V$ эзэлхүүнтэй парамагнит бөмбөлгийг соронзогт татуулна. Тэнхлэгийн дагуу $B = B_0 e^{-ax^2}$. 1) Хамг. их хүчний байрлал $x_m$; 2) хамг. их хүч $F_m$-ээс $\\chi$-г ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-202_382_319_1367_841.jpg",
+          "caption": "Зураг 7.24"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "1. $x_m = 1/\\sqrt{4a}$.<br>2. $\\chi = \\mu_0 F_m\\sqrt{e/a}/(B_0^2 V)$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.9",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$\\chi$ мэдрэхүй, $S$ огтлолтой урт нарийн парамагнит саваа катушкийн тэнхлэгтэй дагуу байрлажээ. Нэг үзүүр $B$ оронд, нөгөө нь орон тэг газарт. Катушкийн хүчийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\mathrm{d}F_x = \\chi SB\\,\\mathrm{d}B/(\\mu\\mu_0)$. Интеграллаад:<br>$$F_x = -\\chi SB^2/(2\\mu\\mu_0).$$<br>Саваа катушка руу татагдана."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "7.10",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$V$ эзэлхүүнтэй парамагнит бөмбөлгийг $B$ оронтой цэгээс орон тэг газарт шилжүүлэхэд хийсэн ажлыг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\delta A = -(\\chi V/\\mu\\mu_0)B\\,\\mathrm{d}B$. Интеграллаад:<br>$$A = \\chi B^2 V/(2\\mu\\mu_0).$$"
+        }
+      ]
+    }
+  ]
+}

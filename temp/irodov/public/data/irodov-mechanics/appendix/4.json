@@ -1,0 +1,14 @@
+{
+  "id": "greek_alphabet",
+  "title": "4. Грек цагаан толгой",
+  "body": [
+    {
+      "type": "header",
+      "value": "4. Грек цагаан толгой"
+    },
+    {
+      "type": "text",
+      "value": "<table border=\"1\" style=\"width:100%; border-collapse: collapse; text-align: left;\"><tbody><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">А, $\\alpha$ - альфа</td><td style=\"padding: 8px; border: 1px solid #ddd;\">I, $\\iota$ - йота</td><td style=\"padding: 8px; border: 1px solid #ddd;\">P, $\\rho$ - ро</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">B, $\\beta$ - бета</td><td style=\"padding: 8px; border: 1px solid #ddd;\">K, $\\varkappa$ - каппа</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Sigma$, $\\sigma$ - сигма</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Gamma$, $\\gamma$ - гамма</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Lambda$, $\\lambda$ - ламбда</td><td style=\"padding: 8px; border: 1px solid #ddd;\">T, $\\tau$ - тау</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Delta$, $\\delta$ - дельта</td><td style=\"padding: 8px; border: 1px solid #ddd;\">M, $\\mu$ - мю</td><td style=\"padding: 8px; border: 1px solid #ddd;\">Y, $\\upsilon$ - ипсилон</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">E, $\\varepsilon$ - эпсилон</td><td style=\"padding: 8px; border: 1px solid #ddd;\">N, $\\nu$ - ню</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Phi$, $\\varphi$ - фи</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">Z, $\\zeta$ - дзета</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Xi$, $\\xi$ - кси</td><td style=\"padding: 8px; border: 1px solid #ddd;\">X, $\\chi$ - хи</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">H, $\\eta$ - эта</td><td style=\"padding: 8px; border: 1px solid #ddd;\">O, $o$ - омикрон</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Psi$, $\\psi$ - пси</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Theta$, $\\theta$, $\\vartheta$ - тета</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Pi$, $\\pi$ - пи</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\Omega$, $\\omega$ - омега</td></tr></tbody></table>"
+    }
+  ]
+}

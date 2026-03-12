@@ -1,0 +1,14 @@
+{
+  "id": "derivatives_table",
+  "title": "7. Уламжлал ба интегралын хүснэгт",
+  "body": [
+    {
+      "type": "header",
+      "value": "7. Уламжлал ба интегралын хүснэгт"
+    },
+    {
+      "type": "text",
+      "value": "<table border=\"1\" style=\"width:100%; border-collapse: collapse; text-align: center;\"><thead><tr><th style=\"padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;\">Функц</th><th style=\"padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;\">Уламжлал</th><th style=\"padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;\">Функц</th><th style=\"padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;\">Уламжлал</th></tr></thead><tbody><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$1 / x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$-1 / x^{2}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\sin x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\cos x$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\sqrt{x}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$1 /(2 \\sqrt{x})$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\cos x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$-\\sin x$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$x^{n}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$n x^{n-1}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\operatorname{tg} x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$1 / \\cos ^{2} x$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\mathrm{e}^{n x}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$n \\mathrm{e}^{n x}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\operatorname{ctg} x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$-1 / \\sin ^{2} x$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$a^{x}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$a^{x} \\ln a$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\arcsin x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$1 / \\sqrt{1-x^{2}}$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\ln x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$1 / x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\arccos x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$-1 / \\sqrt{1-x^{2}}$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\frac{u(x)}{v(x)}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\frac{v u_{x}^{\\prime}-v_{x}^{\\prime} u}{v^{2}}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$\\operatorname{arctg} x$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$1 /\\left(1+x^{2}\\right)$</td></tr></tbody></table>"
+    }
+  ]
+}

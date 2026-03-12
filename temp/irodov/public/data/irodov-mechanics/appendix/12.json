@@ -1,0 +1,14 @@
+{
+  "id": "astronomical_quantities",
+  "title": "12. Одон орны хэмжигдэхүүнүүд",
+  "body": [
+    {
+      "type": "header",
+      "value": "12. Одон орны хэмжигдэхүүнүүд"
+    },
+    {
+      "type": "text",
+      "value": "<table border=\"1\" style=\"width:100%; border-collapse: collapse; text-align: center;\"><thead><tr><th style=\"padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;\">Сансрын биет</th><th style=\"padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;\">Масс, кг</th><th style=\"padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;\">Дундаж радиус, м</th><th style=\"padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;\">Орбитын дундаж радиус, м</th></tr></thead><tbody><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">Нар</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$1.99 \\cdot 10^{30}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$6.96 \\cdot 10^{8}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">-</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">Дэлхий</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$5.98 \\cdot 10^{24}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$6.37 \\cdot 10^{6}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$1.50 \\cdot 10^{11}$</td></tr><tr><td style=\"padding: 8px; border: 1px solid #ddd; text-align: left;\">Сар</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$7.35 \\cdot 10^{22}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$1.74 \\cdot 10^{6}$</td><td style=\"padding: 8px; border: 1px solid #ddd;\">$3.84 \\cdot 10^{8}$</td></tr></tbody></table>"
+    }
+  ]
+}

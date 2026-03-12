@@ -1,0 +1,221 @@
+{
+  "id": "problems_6",
+  "title": "Бодлогууд",
+  "body": [
+    {
+      "type": "header",
+      "id": "problems_6",
+      "value": "Бодлогууд"
+    },
+    {
+      "type": "problem",
+      "number": "6.1",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$I$ гүйдэл нь зурагт үзүүлсэн хэлбэрээр нугалагдсан нарийн дамжуулагчаар урсна (Зураг 6.16). $O$ цэг дэх соронзон индукц $B$-г ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-168_273_294_907_849.jpg",
+          "caption": "Зураг 6.16"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$B = B_{-} + B_{\\cup}$, энд $B_{-}$ — шулуун хэсгийн, $B_{\\cup}$ — муруй хэсгийн оронгийн хувь нэмэр. Био-Саварын хуулиар:<br>$$B_{-} = \\frac{\\mu_0 I}{2\\pi a}\\tan\\alpha_0,\\quad B_{\\cup} = \\frac{\\mu_0 I}{2\\pi a}(\\pi-\\alpha_0).$$<br>Нийтдээ:<br>$$B = (\\pi - \\alpha_0 + \\tan\\alpha_0)\\,\\frac{\\mu_0 I}{2\\pi a}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.2",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Тусгаарлагдсан нарийн утас нь $N$ тооны ороомогтой хавтгай спираль үүсгэж, $I$ гүйдэл урсна. Дотор ба гадна ороомогийн радиус $a$ ба $b$ (Зураг 6.17). Ол: 1) $O$ төвийн соронзон индукц $B$; 2) спиралийн соронзон момент."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-169_296_275_224_141.jpg",
+          "caption": "Зураг 6.17"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "1. $r$ радиустай нэг витоокоос (6.13)-аар $B_1 = \\mu_0 I/2r$. Бүх витокоос интеграллаад ($\\mathrm{d}N = N\\mathrm{d}r/(b-a)$):<br>$$B = \\frac{\\mu_0 IN}{2(b-a)}\\ln\\frac{b}{a}.$$<br>2. $p_{\\text{м}1} = I\\pi r^2$, интеграллаад:<br>$$p_\\text{м} = \\frac{\\pi IN}{3}(a^2 + ab + b^2).$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.3",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$R$ радиустай нимгэн хагас тойрог огтлолтой урт шулуун жолоо хэлбэрийн дамжуулагчаар $I$ гүйдэл урсна (Зураг 6.18). $O$ тэнхлэг дэх $B$ индукцийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-169_201_370_1533_206.jpg",
+          "caption": "Зураг 6.18"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Тэгш хэмийн ариунаас хоёр хос нимгэн утсны нийт $\\mathrm{d}\\mathbf{B}$ нь баруун тийш чиглэнэ. (6.11)-аар $\\mathrm{d}B = \\mu_0\\mathrm{d}I/2\\pi R$, $\\mathrm{d}I = (I/\\pi)\\mathrm{d}\\varphi$:<br>$$B = \\frac{\\mu_0 I}{2\\pi^2 R}\\int_0^\\pi \\sin\\varphi\\,\\mathrm{d}\\varphi = \\frac{\\mu_0 I}{\\pi^2 R}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.4",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Нэг төрлийн урт шулуун дугуй огтлолтой утасны дотор тэнхлэгт параллель, $l$ зайд шилжсэн дугуй цилиндр хөндий байна. Утсаар $\\mathbf{j}$ нягттай тогтмол гүйдэл урсна. Хөндийн доторх $\\mathbf{B}$ индукцийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Суперпозицийн зарчмаар $\\mathbf{B} = \\mathbf{B}_0 - \\mathbf{B}'$. Сплошь утасны дотор $\\mathbf{B} = \\mu_0[\\mathbf{j},\\mathbf{r}]/2$. Тиймд:<br>$$\\mathbf{B} = \\frac{\\mu_0}{2}[\\mathbf{j},\\mathbf{r}] - \\frac{\\mu_0}{2}[\\mathbf{j},\\mathbf{r}'] = \\frac{\\mu_0}{2}[\\mathbf{j},\\mathbf{l}].$$<br>Хөндийн дотор В нь однородно."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.5",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$I$ гүйдэлтэй, $S$ хөндлөн огтлолтой, нэгж уртад $n$ ороомогтой урт соленоидын торцоор нэвтрэх соронзон урсгалыг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Ижил хоёр соленоидын торцуудыг хоёуланг нь нийлүүлвэл $\\Phi + \\Phi = \\Phi_0$, $\\Phi_0 = \\mu_0 nIS$ тул:<br>$$\\Phi = \\Phi_0/2 = \\mu_0 nIS/2.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.6",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Урт соленоидын ороомгийг $h$ өргөнтэй нимгэн зурвас-дамжуулагчаар нэг давхаргаар ороосон ($a$ радиус). $I$ гүйдэл зурвасаар урсна. Соленоидын дотор ба гадна $r$ зайд $B$ индукцийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Шугамын нягтын вектор $\\mathbf{i}$-г хөндлөн ба дагуу бүрэлдэхүүнд хуваана: $i_\\perp = (I/h)\\sqrt{1-(h/2\\pi a)^2}$, $i_\\| = I/2\\pi a$.<br>$$B_i = \\mu_0 i_\\perp = (\\mu_0 I/h)\\sqrt{1-(h/2\\pi a)^2}\\;(r<a),$$<br>$$B_a = \\mu_0 i_\\| a/r = \\mu_0 I/2\\pi r\\;(r>a).$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.7",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Мөхөст жижиг эсэргүүцэлтэй хоёр урт утсыг нэг үзүүрт $R$ эсэргүүцлээр, нөгөө үзүүрт тогтмол хүчдэлийн эх үүсвэрт холбосон. Утсны радиус нь тэнхлэгийн хоорондох зайнаас $\\eta = 20$ дахин жижиг. Ямар $R$ утгад нийт хүч тэгтэй тэнцэх вэ?"
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-173_187_453_512_135.jpg",
+          "caption": "Зураг 6.24"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Утас дээрх цахилгаан ба соронзон хүчний харьцаа: $F_\\text{с}/F_\\text{ц} = \\varepsilon_0\\mu_0 I^2/\\lambda^2$. $\\lambda = C_1 U = \\pi\\varepsilon_0 U/\\ln\\eta$, $U = RI$ тул $I/\\lambda = \\ln\\eta/(\\pi\\varepsilon_0 R)$. Тиймд:<br>$$\\frac{F_\\text{с}}{F_\\text{ц}} = \\frac{\\mu_0}{\\varepsilon_0}\\frac{\\ln^2\\eta}{\\pi^2 R^2}.$$<br>$F_\\text{с} = F_\\text{ц}$ үед: $R_0 = \\sqrt{\\mu_0/\\varepsilon_0}\\cdot\\ln\\eta/\\pi = 360$ Ом."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.8",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Шулуун $I_0$ гүйдэлтэй урт утасны оронд $I$ гүйдэлтэй битүү хүрээ байна (Зураг 6.25). Битүү хүрээын хавтгай утсанд перпендикуляр. Битүү хүрээт үйлчлэх Амперийн хүчний моментийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-174_249_343_1021_813.jpg",
+          "caption": "Зураг 6.25"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Муруй хэсэгт Амперийн хүч тэг. Шулуун хэсгүүдэд Амперийн хүч хос үүсгэнэ (Зураг 6.26). $B = \\mu_0 I_0/2\\pi r$ тул интеграллаад:<br>$$N = (\\mu_0/\\pi)\\,II_0(b-a)\\sin\\varphi.$$<br>$\\mathbf{N}$ вектор зүүн тийш чиглэнэ."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-174_257_361_1396_755.jpg",
+          "caption": "Зураг 6.26"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.9",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$\\mathbf{p}_\\text{м}$ соронзон моменттой жижиг катушка нь $R$ радиустай дугуй $I$ гүйдэлтэй витокийн тэнхлэг дээр байна. Катушкагаас витокийн төв хүртэлх зай $l$, $\\mathbf{p}_\\text{м}$ нь Зураг 6.27-т заасанчлан чиглэнэ. Катушкад үйлчлэх хүчийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-175_211_314_769_186.jpg",
+          "caption": "Зураг 6.27"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "(6.33)-аар $\\mathbf{F} = p_\\text{м}\\,\\partial\\mathbf{B}/\\partial n$. $Z$ тэнхлэгийг $\\mathbf{p}_\\text{м}$ чиглэлд авахад $F_z = p_\\text{м}\\,\\partial B/\\partial z$. (6.12)-аас:<br>$$\\frac{\\partial B}{\\partial z} = -\\frac{3\\mu_0 R^2 Il}{4(l^2+R^2)^{5/2}}.$$<br>$\\partial B/\\partial z < 0$ тул $F_z < 0$ — хүч витоктой руу чиглэнэ:<br>$$\\mathbf{F} = -\\frac{3\\mu_0 R^2 Il}{4(l^2+R^2)^{5/2}}\\,\\mathbf{p}_\\text{м}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "6.10",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$R$ радиустай урт нимгэн ханатай дугуй цилиндрийн дагуу $I$ гүйдэл урсна. Цилиндрийн ханад үйлчлэх даралтыг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-176_272_187_590_945.jpg",
+          "caption": "Зураг 6.28"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Гадаргуун гүйдлийн элементэд үйлчлэх хүч: $\\mathrm{d}\\mathbf{F} = [\\mathbf{i},\\mathbf{B}']\\mathrm{d}S$, энд $\\mathbf{B}'$ — бусад элементүүдийн орон. Гадна $B = \\mu_0 I/2\\pi R$ (6.18), дотор $B = 0$. Гадаргуун элемент $B_i = \\mu_0 i/2$ үүсгэнэ тул $B' = B/2$. Даралт:<br>$$p = iB' = \\frac{B^2}{2\\mu_0} = \\frac{\\mu_0 I^2}{8\\pi^2 R^2}.$$<br>Цилиндр хажуугаар шахагдана."
+        }
+      ]
+    }
+  ]
+}

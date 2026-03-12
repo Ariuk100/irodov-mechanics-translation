@@ -1,0 +1,247 @@
+{
+  "id": "problems_8",
+  "title": "Бодлогууд",
+  "body": [
+    {
+      "type": "header",
+      "id": "problems_8",
+      "value": "Бодлогууд"
+    },
+    {
+      "type": "problem",
+      "number": "8.1",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Нерелятивистийн $\\mathbf{v}$ хурдтай $q$ цэнэгийн $\\mathbf{r}$ радиус-вектор бүхий цэгт $\\mathbf{B}$ орныг орон хувиргалтаар ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-216_226_587_1236_321.jpg",
+          "caption": "Зураг 8.4"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Цэнэгтэй хамт хөдлөх $K'$ системд $\\mathbf{E}' = q\\mathbf{r}/4\\pi\\varepsilon_0 r^3$, $\\mathbf{B}'=0$. (8.4)-ийн В-ийн хувиргалтын томьёогоор $K$ системд (Зураг 8.4): $\\mathbf{B} = \\mathbf{B}' + [\\mathbf{v}\\mathbf{E}']/c^2$:<br>$$\\mathbf{B} = \\frac{\\mu_0}{4\\pi}\\frac{q[\\mathbf{v}\\mathbf{r}]}{r^3}.$$<br>Энэ нь (6.3) хуулийг батална."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.2",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$\\varepsilon$ нэвтрэлттэй диэлектрик хавтан $\\mathbf{v}$ хурдтай $\\mathbf{B}$ оронд хөдлөнө (Зураг 8.5). Поляризацлагдал $\\mathbf{P}$ ба холбоот цэнэгийн гадаргуун нягт $\\sigma'$-г ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-217_206_285_284_135.jpg",
+          "caption": "Зураг 8.5"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Хавтантай холбогдсон системд $\\mathbf{E}'_0 = [\\mathbf{v}\\mathbf{B}]$, дотор $\\mathbf{E}' = \\mathbf{E}'_0/\\varepsilon$ тул:<br>$$\\mathbf{P} = \\varepsilon_0\\frac{\\varepsilon-1}{\\varepsilon}[\\mathbf{v}\\mathbf{B}],\\quad |\\sigma'| = \\varepsilon_0\\frac{\\varepsilon-1}{\\varepsilon}vB.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.3",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$I$ гүйдэлтэй цэнэггүй утасны дагуу $v_0$ хурдтай хөдлөх системд утасны нэгж уртын цэнэгийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$E'_r = -v_0\\mu_0 I/2\\pi r$, Гаусын теоремоор $E'_r = \\lambda'/2\\pi\\varepsilon_0 r$ тул:<br>$$\\lambda' = -v_0 I/c^2.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.4",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$K$ системд релятивистийн $v$ хурдтай нарийн протоны пучок байна. Пучкаас $r$ зайд цахилгаан орон $E$ тэнцүү. Протоны хөдлөлтэй нэг чиглэлд $v_0$ хурдтай хөдлөх $K'$ системд тухайн зайд $B'$ индукцийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$B/E = v/c^2$. (8.1)-ийн сүүлийн томьёогоор:<br>$$B' = \\frac{E|v-v_0|}{c^2\\sqrt{1-(v_0/c)^2}}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.5",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Релятивистийн цэнэглэгдсэн бөөмс нэг төрлийн хоорондоо перпендикуляр $\\mathbf{E}$ ба $\\mathbf{B}$ оронд $\\mathbf{E}$, $\\mathbf{B}$ аль алинтай перпендикуляр чиглэлд шулуунаар хөдлөнө. Бөөмстэй хамт хөдлөх системд $\\mathbf{E}'$ ба $\\mathbf{B}'$-г ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Бөөмс шулуун хөдлөх тул Лоренцийн хүч тэг: $vB = E$. Хувиргалтаар $\\mathbf{E}' = 0$ ба (Зураг 8.6):<br>$$\\mathbf{B}' = \\mathbf{B}\\sqrt{1-(E/cB)^2}.$$"
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-219_252_284_556_130.jpg",
+          "caption": "Зураг 8.6"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.6",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Нерелятивистийн бөөмс ($q/m$) $t=0$-д $O$ цэгт, $\\mathbf{E} \\perp \\mathbf{B}$ оронд хурдгүй (Зураг 8.7). Хөдлөлийн хуулийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-219_247_228_1161_163.jpg",
+          "caption": "Зураг 8.7"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$v_0 = E/B$ хурдтай $K'$ системд $\\mathbf{E}' = 0$, зөвхөн $\\mathbf{B}' \\approx \\mathbf{B}$. Тул бөөмс $K'$ системд тойрог замаар жигд $v_0$ хурдтай эргэнэ (Зураг 8.8), $R = mv_0/qB$."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-220_236_236_732_901.jpg",
+          "caption": "Зураг 8.8"
+        },
+        {
+          "type": "text",
+          "value": "$K'$ система баруун тийш $v_0$ хурдтай хөдлөхийн зэрэгцээ бөөмс $K'$ системд тойрог дотор эргэнэ — дугуйн захын цэгтэй адил. $K$ системд бөөмс циклоидаар хөдлөнө (Зураг 8.9):<br>$$x = a(\\omega t - \\sin\\omega t),\\quad y = a(1 - \\cos\\omega t),$$<br>$$a = mE/qB^2,\\quad \\omega = qB/m.$$"
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-220_295_384_1198_778.jpg",
+          "caption": "Зураг 8.9"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.7",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$K$ системд зөвхөн $\\mathbf{E}$ нэг төрлийн орон. $\\mathbf{v}_0$ нь $\\mathbf{E}$-тэй $\\alpha$ өнцөг үүсгэнэ. $K'$ системд $E'$, $B'$ модулиуд ба чиглэлүүдийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$E' = E\\sqrt{(1-\\beta^2\\cos^2\\alpha)/(1-\\beta^2)}$,<br>$\\tan\\alpha' = \\tan\\alpha/\\sqrt{1-\\beta^2}$,<br>$\\mathbf{B}' \\perp \\mathbf{v}_0$, $B' = v_0 E\\sin\\alpha/(c^2\\sqrt{1-\\beta^2})$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.8",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$K$ системд $\\mathbf{E} \\uparrow\\uparrow \\mathbf{B}$. $\\mathbf{v}_0 \\perp \\mathbf{E}$ хурдтай $K'$ системд $E'$, $B'$ модулиуд ба $\\mathbf{E}'$, $\\mathbf{B}'$ хоорондох өнцгийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-221_341_453_1022_135.jpg",
+          "caption": "Зураг 8.10"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$E' = \\sqrt{(E^2 + v_0^2 B^2)/(1-\\beta^2)}$, $B' = \\sqrt{(B^2 + v_0^2 E^2/c^4)/(1-\\beta^2)}$;<br>$\\tan\\alpha' = v_0(B^2+E^2/c^2)/((1-\\beta^2)EB)$.<br>$v_0 \\to c$ үед $\\alpha' \\to \\pi/2$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.9",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "(8.1) хувиргалтын томьёог ашиглан $\\mathbf{E}\\cdot\\mathbf{B}$ нь инвариант болохыг батал."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "(8.1)-ээс $\\mathbf{E}'\\cdot\\mathbf{B}' = \\mathbf{E}'_\\|\\mathbf{B}'_\\| + \\mathbf{E}'_\\perp\\mathbf{B}'_\\perp$. Хөндлөн хэсгийн нэр томьёонд (Зураг 8.11): $[\\mathbf{v}_0\\mathbf{B}_\\perp]\\cdot[\\mathbf{v}_0\\mathbf{E}_\\perp] = v_0^2\\mathbf{B}_\\perp\\mathbf{E}_\\perp\\cos\\alpha = v_0^2\\mathbf{B}_\\perp\\mathbf{E}_\\perp$. Тулдаа $(1-\\beta^2)$ хасагдаж $\\mathbf{E}_\\perp\\mathbf{B}_\\perp$ гарна. Нийтдээ $\\mathbf{E}'\\cdot\\mathbf{B}' = \\mathbf{E}\\cdot\\mathbf{B}$."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-222_270_361_1156_778.jpg",
+          "caption": "Зураг 8.11"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.10",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$q$ цэнэг $\\mathbf{v}$ хурдтай жигд шулуунаар хөдлөнө. Цэнэгээс $\\mathbf{r}$ вектор, $\\vartheta$ өнцгийн цэгт $\\mathbf{E}$-г ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$K'$ системд Кулоны орон. Лоренцийн хувиргалтаар ($x' = x/\\sqrt{1-\\beta^2}$, $y' = y$) буцаахад:<br>$$E = \\frac{q}{4\\pi\\varepsilon_0 r^2}\\frac{1-\\beta^2}{(1-\\beta^2\\sin^2\\vartheta)^{3/2}}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "8.11",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$q$ цэнэгтэй хоёр бөөмс ижил $\\mathbf{v}$ хурдтай зэрэгцээ хөдлөнө, $l$ зайтай (Зураг 8.12). Харилцан үйлчлэлийн хүчийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-224_212_305_378_855.jpg",
+          "caption": "Зураг 8.12"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\vartheta = 90°$, (8.7)-оор $F_\\text{ц} = q^2/(4\\pi\\varepsilon_0 l^2\\sqrt{1-\\beta^2})$; $F_\\text{с} = (v/c)^2 F_\\text{ц}$. Нийт:<br>$$F = F_\\text{ц} - F_\\text{с} = \\frac{q^2}{4\\pi\\varepsilon_0 l^2}\\sqrt{1-\\beta^2}.$$"
+        }
+      ]
+    }
+  ]
+}

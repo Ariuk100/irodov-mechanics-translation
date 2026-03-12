@@ -1,0 +1,218 @@
+{
+  "id": "problems_11",
+  "title": "Бодлогууд",
+  "body": [
+    {
+      "type": "header",
+      "id": "problems_11",
+      "value": "Бодлогууд"
+    },
+    {
+      "type": "problem",
+      "number": "11.1",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$L$, $C$ битүү хүрээт дарангуйлалгүй хэлбэлзэл болж байна. Конденсаторын хүчдэлийн амплитуд $U_m$. Соронзон энерги цахилгаан энергитэй тэнцүү үед катушкийн өөрийн индукцийн ЦХХ-г ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$R = 0$ тул $\\mathcal{E}_s = -U$. Нөхцлөөс $|U| = U_m/\\sqrt{2}$:<br>$$|\\mathcal{E}_s| = U_m/\\sqrt{2}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.2",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$L$, $C$, $R = 0$ битүү хүрээт конденсатор цэнэг байгаагүй. $t = 0$-д соленоидоор $\\Phi$ урсгал нэвтэрч байсан гадна орон унтарлаа. Гүйдлийг $t$-ийн функцээр ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Эхлэлийн гүйдэл $I_0 = \\Phi/L$. Тэгшитгэл шийдвэл:<br>$$I = (\\Phi/L)\\cos\\omega_0 t,\\quad \\omega_0 = 1/\\sqrt{LC}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.3",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Хэлбэлзэх битүү хүрээт дарангуйлалгүй хэлбэлзэл болж, энерги $W$ байна. Конденсаторын хавтануудыг аажуу ангижруулж давтамжийг $\\eta$ дахин нэмэгдүүлэв. Цахилгаан хүчинд эсрэг хийсэн ажил."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$W/\\omega = \\text{const}$ (аажуу үйл явцад):<br>$$A = W(\\eta - 1).$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.4",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Бага дарангуйлалтай $C$, $L$ битүү хүрээт конденсаторын хүчдэлийн амплитуд $U_m$ байхад дундаж $\\langle P\\rangle$ хүч орно. Добротность $Q$-г ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$Q = 2\\pi W/\\delta W$, $W = CU_m^2/2$, $\\delta W = \\langle P\\rangle T_0$:<br>$$Q = \\frac{U_m^2}{2\\langle P\\rangle}\\sqrt{\\frac{C}{L}}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.5",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Конденсаторыг цэнэглээд $L$, $C$, $R$ битүү хүрээын түлхүүрийг залгав. Залгасны дараа конденсаторын хүчдэлийн амплитудд харьцуулсан анхны хүчдэлийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$U(0)/U_m = \\cos\\alpha = 1/\\sqrt{1+(\\beta/\\omega)^2} = \\sqrt{1 - R^2C/4L}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.6",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$L$, $C$ битүү хүрээт дарангуйлалтай хэлбэлзэлийн конденсаторын хүчдэлийн хугацааны хамаарлыг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-308_291_349_760_815.jpg",
+          "caption": "Зураг 11.8"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$U_C = I_m\\sqrt{L/C}\\,e^{-\\beta t}\\sin(\\omega t - \\delta)$, $\\tan\\delta = \\omega_0/\\beta$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.7",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$L$, $R$ катушкийг $t = 0$-д $U = U_m\\cos\\omega t$ хүчдэлд залгав. Гүйдлийг $t$-ийн функцээр ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$I = 0$ эхлэлийн нөхцлөөс:<br>$$I = \\frac{U_m}{\\sqrt{R^2+\\omega^2L^2}}\\left[\\cos(\\omega t - \\varphi) - e^{-(R/L)t}\\cos\\varphi\\right].$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.8",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$C$, $R$ цуваа хэлхээний амплитудын хүчдэл $U_m$, тогтсон гүйдлийн амплитуд $I_m$. Гүйдэл ба хүчдэлийн фазын ялгавар."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-310_196_270_575_889.jpg",
+          "caption": "Зураг 11.10"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\tan\\varphi = -\\sqrt{(U_m/RI_m)^2 - 1}$. Гүйдэл хүчдэлийг фазаар урьдална ($\\varphi < 0$)."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.9",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$C$, $L$, $R$ хэлхээнд $\\omega_1$, $\\omega_2$ давтамжид гүйдлийн амплитуд тэнцүү. Резонансын давтамжийг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\omega_0 = \\sqrt{\\omega_1\\omega_2}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.10",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Гүйдэл хүчдэлийг фазаар урьдалсан $C$, $L$(R бүхий) хэлхээний вектор диаграмма байгуул. Катушкийн хүчдэлийн амплитудыг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-311_313_316_304_166.jpg",
+          "caption": "Зураг 11.11"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$U_{LRm} = I_m\\sqrt{R^2 + \\omega^2 L^2}$, $I_m = U_m/\\sqrt{R^2+(\\omega L - 1/\\omega C)^2}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "11.11",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$R$ (хэлхэлгүй) ба катушкийн (өөрийн эсэргүүцэлтэй) цуваа хэлхээнд $U_1$ ба $U_2$ хүчдэл тус тус. Катушкийн дулааны хүч."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-311_305_259_1272_175.jpg",
+          "caption": "Зураг 11.12"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Косинусын теоремоор:<br>$$P_2 = (U^2 - U_1^2 - U_2^2)/2R.$$"
+        }
+      ]
+    }
+  ]
+}

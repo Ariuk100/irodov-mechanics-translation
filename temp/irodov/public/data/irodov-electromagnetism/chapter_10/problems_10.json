@@ -1,0 +1,206 @@
+{
+  "id": "problems_10",
+  "title": "Бодлогууд",
+  "body": [
+    {
+      "type": "header",
+      "id": "problems_10",
+      "value": "Бодлогууд"
+    },
+    {
+      "type": "problem",
+      "number": "10.1",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Нерелятивистийн $\\mathbf{v}$ хурдтай $q$ цэнэгийн шилжилтийн гүйдлийн нягтыг $r$ зайтай: 1) замын чиглэлийн дагуух $P_1$, 2) тэгш өнцгөөр $P_2$ цэгт ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-282_395_412_1167_750.jpg",
+          "caption": "Зураг 10.12"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\mathbf{j}_\\text{шил} = \\partial\\mathbf{D}/\\partial t$.<br>1) $\\mathbf{j}_\\text{шил} = 2q\\mathbf{v}/4\\pi r^3$, $\\mathbf{j}_{\\text{шил}}\\uparrow\\uparrow\\mathbf{v}$.<br>2) $\\mathbf{j}_\\text{шил} = -q\\mathbf{v}/4\\pi r^3$, $\\mathbf{j}_{\\text{шил}}\\downarrow\\uparrow\\mathbf{v}$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.2",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$B = \\beta t^2$ хуулиар өсөх $R$ радиус, урт соленоид. Соленоидын тэнхлэгээс $r$ зайд шилжилтийн гүйдлийн нягтыг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-283_285_416_518_155.jpg",
+          "caption": "Зураг 10.13"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$j_\\text{шил} = \\varepsilon_0\\partial E/\\partial t$:<br>$j_\\text{шил} = \\varepsilon_0\\beta r$ ($r < R$), $j_\\text{шил} = \\varepsilon_0\\beta R^2/r$ ($r > R$)."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.3",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Сул дамжуулах орчинтой хавтан конденсатор цэнэглэж ЦХХ-ийг салгав. Конденсатор дотор соронзон орон байхгүй болохыг батал."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\mathbf{j}_\\text{шил} = \\partial\\mathbf{D}/\\partial t = -j\\mathbf{n} = -\\mathbf{j}$. Иймд бүрэн гүйдэл $\\mathbf{j}_\\text{бүр} = \\mathbf{j} + \\mathbf{j}_\\text{шил} = 0$, соронзон орон байхгүй."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.4",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$E = E_m\\cos\\omega t$ хувьсах оронтой хавтан конденсаторын хоорондох $r$ зайд $H$-г ол. ($\\varepsilon$, $\\sigma$)"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$H = \\tfrac{r E_m}{2}\\sqrt{\\sigma^2 + (\\varepsilon\\varepsilon_0\\omega)^2}\\,|\\cos(\\omega t+\\delta)|$, $\\tan\\delta = \\varepsilon\\varepsilon_0\\omega/\\sigma$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.5",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$q$ цэнэг нерелятивистийн $\\mathbf{v}$ хурдтай хөдлөнө. Максвеллын тэгшитгэлийг ашиглан $P$ цэгт $\\mathbf{H}$-г ол ($\\mathbf{r}$, $\\alpha$ — радиус вектор)."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-284_249_255_1018_907.jpg",
+          "caption": "Зураг 10.15"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\mathbf{H} = q[\\mathbf{v}\\times\\mathbf{r}]/4\\pi r^3$ — (6.3) томьёог батлал."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.6",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$\\mathbf{B}$ нь $\\omega$ өнцгийн хурдаар эргэж байна, $B =$ const. $\\nabla\\times\\mathbf{E}$-г $\\boldsymbol{\\omega}$, $\\mathbf{B}$-ийн функцээр ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\nabla\\times\\mathbf{E} = -\\partial\\mathbf{B}/\\partial t = -[\\boldsymbol{\\omega}\\times\\mathbf{B}].$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.7",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Протонуудын $I$ гүйдэлтэй дугуй огтлолтой цацраг. Тэнхлэгийн гаднах $r$ зайд Пойнтингийн вектор $\\boldsymbol{\\Pi}$-г ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-286_276_409_432_753.jpg",
+          "caption": "Зураг 10.19"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\boldsymbol{\\Pi}\\uparrow\\uparrow\\mathbf{v}$, $\\Pi = I^2/4\\pi^2\\varepsilon_0 vr^2$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.8",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Урт шулуун соленоидын боковой гадаргуугаар орж буй Пойнтингийн вектор нь соленоидын магнит энергийн өсөлтийн хурдтай тэнцүүйг батал."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$E = (a/2)\\partial B/\\partial t$, $\\Pi\\cdot 2\\pi al = \\pi a^2 l\\cdot\\partial(B^2/2\\mu_0)/\\partial t = \\partial W/\\partial t$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.9",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Тогтмол $U$, гүйдэл $I$ коаксиал кабелийн хэлтгий огтлолоор дамжих энергийн урсгалыг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-287_190_474_741_153.jpg",
+          "caption": "Зураг 10.20"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\Phi = UI$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "10.10",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Хавтан агаар конденсатор $\\omega$ давтамжит хувьсах хүчдэлд залгагдсан. Дотор дахь соронзон ба цахилгаан энергийн дээд утгуудын харьцааг ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$W_{\\text{м.дав}}/W_{\\text{э.дав}} = \\tfrac{1}{8}\\mu_0\\varepsilon_0 a^2\\omega^2$."
+        }
+      ]
+    }
+  ]
+}

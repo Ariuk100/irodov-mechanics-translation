@@ -1,0 +1,265 @@
+{
+  "id": "problems_9",
+  "title": "Бодлогууд",
+  "body": [
+    {
+      "type": "header",
+      "id": "problems_9",
+      "value": "Бодлогууд"
+    },
+    {
+      "type": "problem",
+      "number": "9.1",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$y = kx^2$ параболын хэлбэртэй утас нэг төрлийн $\\mathbf{B}$ оронд ($xy$-аас перпендикуляр) байна. Оройгоос $a$ хурдатгалтай перемычка хөдлөнө (Зураг 9.17). Битүү хүрээийн индукцийн ЦХХ-г $y$-ийн функццаар ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-254_311_277_506_883.jpg",
+          "caption": "Зураг 9.17"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\mathcal{E}_i = -B\\cdot 2\\sqrt{y/k}\\,\\mathrm{d}y/\\mathrm{d}t$. $\\mathrm{d}y/\\mathrm{d}t = \\sqrt{2ay}$ тул:<br>$$\\mathcal{E}_i = -By\\sqrt{8a/k}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.2",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Хааяа хэлбэр алдаж болох битүү дамжуулагч битүү хүрээ тогтмол тэгш бус оронд дурын байдлаар хөдлоход индукцийн хуулийг батал."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-255_225_394_375_145.jpg",
+          "caption": "Зураг 9.18"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Орон хувиргалтаар $\\mathcal{E}_i = \\oint[\\mathbf{v}\\mathbf{B}]\\,\\mathrm{d}\\mathbf{l}$. Соронзон урсгалын өсөлт:<br>$$\\mathrm{d}\\Phi/\\mathrm{d}t = -\\oint[\\mathbf{v}\\mathbf{B}]\\,\\mathrm{d}\\mathbf{l}$$<br>Иймд $\\mathcal{E}_i = -\\mathrm{d}\\Phi/\\mathrm{d}t$."
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.3",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Их $N$ ороомогтой хавтгай спираль нэг төрлийн $B = B_0\\sin\\omega t$ оронд байна. Гадна радиус $a$. Индукцийн ЦХХ-ийн амплитуд."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-256_336_267_140_887.jpg",
+          "caption": "Зураг 9.19"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\varepsilon_i = -\\pi r^2 B_0\\omega\\cos\\omega t$, $\\mathrm{d}N = (N/a)\\mathrm{d}r$ тул интеграллаад:<br>$$\\mathcal{E}_{im} = \\frac{\\pi}{3}a^2 N B_0 \\omega.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.4",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Урт соленоидын доторх $N$ ороомог $\\omega$ хурдаар эргэнэ, $B = B_0\\sin\\omega t$. $t = 0$-д ороомог соленоидын теньтэй давхцав. Индукцийн ЦХХ-г ол."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\Phi = \\tfrac{1}{2}NB_0S\\sin 2\\omega t$ тул:<br>$$\\mathcal{E}_i = -N B_0 S\\omega\\cos 2\\omega t.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.5",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Бетатрон нөхцөл: орбитан дээрх $B_0$ нь орбитын дотор талын дундаж $\\langle B\\rangle$-ийн хагас байх ёстойг батал."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-257_333_461_149_138.jpg",
+          "caption": "Зураг 9.20"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "Касательная ба нормалийн проекц. Тогтвортой орбитад $p = er_0 B_0$ ба $\\mathrm{d}p/\\mathrm{d}t = er_0\\dot{B}_0$. Электромагнит индукцийн хуулиас $E = \\tfrac{r_0}{2}\\dot{\\langle B\\rangle}$. Цохилт:<br>$$B_0 = \\langle B\\rangle/2.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.6",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$a$ тал бүхий дөрвөлжин рамк ба $I_0$ гүйдэлтэй урт шулуун дамжуулагч нэг хавтгайд. $L$, $R$. Рамкийг $OO'$ тэнхлэгийг тойрон $180°$ эргүүлж зогсоов (Зураг 9.21). Рамкаар урсах цэнэгийн хэмжээ."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-258_321_324_141_838.jpg",
+          "caption": "Зураг 9.21"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$q = -\\tfrac{1}{R}(\\Delta\\Phi + L\\Delta I)$. $\\Delta I = 0$ тул:<br>$$q = \\Delta\\Phi/R = \\frac{\\mu_0 a I_0}{2\\pi R}\\ln\\frac{b+a}{b-a}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.7",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$m$ масстай 12 перемычка $l$ зайтай хоёр рельсон дагуу үрэлтгүй гулсана (Зураг 9.22). $\\mathbf{B}$ орон перпендикуляр. Зүүн талдаа $R$-аар замхав. $t = 0$-д $v_0$ эхлэл хурд өгөв. Перемычкаын хурдыг $t$-ийн функццаар ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-259_221_407_141_141.jpg",
+          "caption": "Зураг 9.22"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$RI = -Blv$, $m\\dot{v} = IlB$ системийг шийдвэл:<br>$$v = v_0 e^{-at},\\quad a = B^2l^2/mR.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.8",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Схемд (Зураг 9.23) $\\mathcal{E}$, $R$, $L_1$, $L_2$ мэдэгдэнэ. $K$ залгасны дараах тогтсон гүйдлүүдийг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-259_277_265_1479_139.jpg",
+          "caption": "Зураг 9.23"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$L_1 I_{10} = L_2 I_{20}$, $I_{10} + I_{20} = \\mathcal{E}/R$:<br>$$I_{10} = \\frac{\\mathcal{E}}{R}\\frac{L_2}{L_1+L_2},\\quad I_{20} = \\frac{\\mathcal{E}}{R}\\frac{L_1}{L_1+L_2}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.9",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Коаксиал кабелийн дотоод радиус $a$, гадна радиус $b$. Нэгж уртад ногдох индуктивлагийг энергийн аргаар ол. $(\\mu = 1)$"
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-260_332_333_1399_827.jpg",
+          "caption": "Зураг 9.24"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$B_{r<a} = \\mu_0 Ir/2\\pi a^2$, $B_{a<r<b} = \\mu_0 I/2\\pi r$ тул (9.33)-ийг интеграллаад:<br>$$L_\\text{нэг} = \\frac{\\mu_0}{2\\pi}\\left(\\frac{1}{4} + \\ln\\frac{b}{a}\\right).$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.10",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Тороидал ороомог ба түүний тэнхлэгийн дагуух шулуун утас (Зураг 9.25). Ороомгийн $N$ ороомог. $I = I_m\\cos\\omega t$ хувьсах гүйдэл. Ороомогт өдөөгдсөн ЦХХ-ийн амплитуд."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-261_328_369_363_159.jpg",
+          "caption": "Зураг 9.25"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$\\Phi_1 = \\tfrac{\\mu_0 h I}{2\\pi}\\ln(b/a)$. Индукцийн ЦХХ-ийн амплитуд:<br>$$\\mathcal{E}_{im} = \\frac{\\mu_0 h\\omega I_m N}{2\\pi}\\ln\\frac{b}{a}.$$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.11",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "Ижил урт, ижил огтлолтой хоёр соленоид нэг нь нөгөөнийхөө дотор. $L_1$, $L_2$. Харилцан индуктивлаг."
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$|L_{12}| = \\mu\\mu_0 n_1 n_2 V = \\sqrt{L_1 L_2}.$"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "number": "9.12",
+      "title": "",
+      "statement": [
+        {
+          "type": "text",
+          "value": "$N$ ороомог, $a$ радиустай нимгэн ороомгийн төвд жижиг цилиндр магнит $M$ (Зураг 9.26). Сопр. $R$. Магнитыг хурдан зайлуулахад $q$ цэнэг урсав. Магнитын моментыг ол."
+        },
+        {
+          "type": "image",
+          "src": "images/irodov-electromagnetism/3e870b25-6320-483d-9133-cdd5212c2707-262_112_491_512_661.jpg",
+          "caption": "Зураг 9.26"
+        }
+      ],
+      "solution": [
+        {
+          "type": "text",
+          "value": "$q = \\Phi/R$. Харилцлагын теоремоор $\\Phi = \\mu_0 N I S/2a$. Иймд:<br>$$p_m = IS = \\frac{2aRq}{\\mu_0 N}.$$"
+        }
+      ]
+    }
+  ]
+}
