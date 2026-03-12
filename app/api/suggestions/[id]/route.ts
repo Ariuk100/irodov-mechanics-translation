@@ -115,7 +115,13 @@ export async function PATCH(
     const originalText: string = sugg.originalText;
     updatedBody = body.map((block, index) => {
       if (blockIndex >= 0 && index !== blockIndex) return block;
-      if (block.type === "text" || block.type === "note") {
+      if (block.type === "header") {
+        // Header values are plain text — direct replace
+        if (block.value === originalText || block.value.includes(originalText)) {
+          replaced = true;
+          return { ...block, value: block.value === originalText ? finalText : block.value.replace(originalText, finalText) };
+        }
+      } else if (block.type === "text" || block.type === "note") {
         const result = replaceInHtml(block.value, originalText, finalText);
         if (result !== null) { replaced = true; return { ...block, value: result }; }
         const plain = stripHtml(block.value);
@@ -139,6 +145,36 @@ export async function PATCH(
       }
       return block;
     });
+  }
+
+  // ── Title suggestion ───────────────────────────────────────────────────────
+  else if (suggType === "title") {
+    const newTitle: string = editedSuggestedText ?? sugg.suggestedText;
+    const nowTsTitle = Date.now();
+    await sectionRef.update({ title: newTitle, updatedAt: nowTsTitle });
+    // Also bump library-level version so sidebar title updates
+    const sectionKeyTitle = `${sugg.bookId}__${sugg.chapterId}__${sugg.sectionId}`;
+    adminDb.collection("meta").doc("content_version").set(
+      { [sectionKeyTitle]: nowTsTitle, "__library__": nowTsTitle },
+      { merge: true }
+    ).catch(() => {});
+    await suggRef.update({
+      status: "approved",
+      suggestedText: editedSuggestedText ?? sugg.suggestedText,
+      reviewedAt: nowTsTitle,
+      reviewedBy: decoded.uid,
+    });
+    if (sugg.authorId) {
+      const adminName = callerSnap.data()?.displayName || callerSnap.data()?.email || "Админ";
+      createNotification({
+        recipientUid: sugg.authorId,
+        type: "suggestion_approved",
+        title: "Таны санал батлагдлаа 🎉",
+        body: `${adminName} таны гарчиг засах саналыг баталж нэмлээ (${sugg.sectionId})`,
+        suggestionId: id,
+      }).catch(() => {});
+    }
+    return NextResponse.json({ ok: true });
   }
 
   // ── Image suggestion ───────────────────────────────────────────────────────
@@ -186,7 +222,16 @@ export async function PATCH(
     console.warn(`[suggestions] Could not apply suggestion. id=${id}, type=${suggType}, blockIndex=${blockIndex}`);
   }
 
-  await sectionRef.update({ body: JSON.stringify(updatedBody), updatedAt: Date.now() });
+  const nowTs = Date.now();
+  await sectionRef.update({ body: JSON.stringify(updatedBody), updatedAt: nowTs });
+
+  // Bump content version so clients invalidate only this section's cache
+  const sectionKey = `${sugg.bookId}__${sugg.chapterId}__${sugg.sectionId}`;
+  adminDb.collection("meta").doc("content_version").set(
+    { [sectionKey]: nowTs },
+    { merge: true }
+  ).catch(() => {});
+
   await suggRef.update({
     status: "approved",
     suggestedText: editedSuggestedText ?? sugg.suggestedText,

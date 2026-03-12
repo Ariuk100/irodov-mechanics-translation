@@ -8,6 +8,7 @@ interface Props {
   bookId: string;
   chapterId: string;
   sectionId: string;
+  type?: "text" | "title"; // defaults to "text"
   onClose: () => void;
   onSubmitted: () => void;
 }
@@ -61,6 +62,7 @@ export default function SuggestionModal({
   bookId,
   chapterId,
   sectionId,
+  type = "text",
   onClose,
   onSubmitted,
 }: Props) {
@@ -90,6 +92,7 @@ export default function SuggestionModal({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          type,
           bookId,
           chapterId,
           sectionId,
@@ -126,7 +129,9 @@ export default function SuggestionModal({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
             </div>
-            <h2 className="text-base font-semibold text-slate-900">Орчуулах санал</h2>
+            <h2 className="text-base font-semibold text-slate-900">
+              {type === "title" ? "Гарчиг засах санал" : "Орчуулах санал"}
+            </h2>
           </div>
           <button
             onClick={onClose}

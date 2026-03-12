@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const PROTECTED = ["/reader", "/admin", "/moderator"];
+const PROTECTED = ["/reader", "/admin", "/moderator", "/reading-notes"];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -42,5 +42,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/reader/:path*", "/admin/:path*", "/moderator/:path*"],
+  matcher: ["/reader/:path*", "/admin/:path*", "/moderator/:path*", "/reading-notes/:path*", "/reading-notes"],
 };

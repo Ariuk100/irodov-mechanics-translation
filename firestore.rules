@@ -51,6 +51,19 @@ service cloud.firestore {
       allow write: if false; // зөвхөн Admin SDK бичдэг
     }
 
+    // Reading notes — модераторын уншилтын тэмдэглэлүүд
+    match /readingNotes/{noteId} {
+      allow read, create: if isAuth();
+      allow delete: if isAuth() && request.auth.uid == resource.data.uid;
+      allow update: if false;
+    }
+
+    // Content version — клиент кешийг зөвхөн өөрчлөлт гарсан үед устгахад ашиглана
+    match /meta/content_version {
+      allow read: if true; // нийтийн унших (зөвхөн timestamp)
+      allow write: if false; // зөвхөн Admin SDK бичдэг
+    }
+
     // PendingAccess — нэвтрэх оролдлого хийсэн бүртгэлгүй хүмүүс
     match /pendingAccess/{uid} {
       allow create: if isAuth() && request.auth.uid == uid;

@@ -59,7 +59,7 @@ function renderStatementBlocks(blocks: StatementBlock[]) {
       return (
         <figure key={i} className="my-4 text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/${b.src}`} alt={b.caption ?? ""} className="mx-auto max-w-full rounded" />
+          <img src={`/${b.src}`} alt={b.caption ?? ""} className="mx-auto max-w-full rounded" loading="lazy" decoding="async" />
           {b.caption && <figcaption className="text-slate-400 text-sm mt-1">{b.caption}</figcaption>}
         </figure>
       );
@@ -88,7 +88,7 @@ function ProblemCard({ block, blockIndex }: { block: ProblemBlock; blockIndex: n
         <div className="space-y-2">{renderStatementBlocks(block.statement)}</div>
         <details className="mt-3">
           <summary className="cursor-pointer text-sm text-blue-600 hover:text-blue-700 select-none">
-            Шийдэл харах
+            Бодолт
           </summary>
           <div className="mt-2 pt-2 border-t border-slate-100 space-y-2">
             {renderStatementBlocks(block.solution)}
@@ -164,7 +164,24 @@ export default function ContentRenderer({ body, onSelectText, onSelectFormula, o
           );
 
         else if (block.type === "header")
-          blockEl = (
+          blockEl = onSelectText ? (
+            <div
+              data-block-index={i}
+              className="relative group mt-8 mb-3 cursor-pointer"
+              onClick={() => onSelectText(block.value, i)}
+              title="Гарчиг засах санал оруулах"
+            >
+              <h2
+                id={block.id}
+                className="text-xl font-semibold text-slate-900 border-b border-slate-200 pb-2 pr-14 hover:text-blue-700 transition-colors"
+              >
+                {block.value}
+              </h2>
+              <span className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-semibold text-amber-600 bg-white border border-amber-200 px-1.5 py-0.5 rounded-md pointer-events-none">
+                ✎ Засах
+              </span>
+            </div>
+          ) : (
             <h2
               id={block.id}
               data-block-index={i}

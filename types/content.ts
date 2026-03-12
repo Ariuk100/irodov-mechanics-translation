@@ -129,7 +129,7 @@ export interface NotificationDoc {
 
 // Stored at: suggestions/{suggestionId}
 export type SuggestionStatus = "pending" | "approved" | "rejected";
-export type SuggestionType = "text" | "formula" | "image";
+export type SuggestionType = "text" | "formula" | "image" | "title";
 export type ImageAction = "replace" | "delete" | "insert";
 
 export interface SuggestionDoc {

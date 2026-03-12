@@ -10,6 +10,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import SuggestionModal from "@/components/moderator/SuggestionModal";
 import FormulaModal from "@/components/moderator/FormulaModal";
 import ImageModal from "@/components/moderator/ImageModal";
+import ReadingNoteModal from "@/components/moderator/ReadingNoteModal";
 import type { SectionDoc, BookDoc, ImageAction } from "@/types/content";
 
 // PDF filename map by bookId
@@ -48,6 +49,12 @@ export default function ReaderPage() {
   // ── Formula suggestion state ───────────────────────────────────────────────
   const [formulaModal, setFormulaModal] = useState<{ latex: string; blockIndex: number } | null>(null);
 
+  // ── Title suggestion state ─────────────────────────────────────────────────
+  const [titleModalOpen, setTitleModalOpen] = useState(false);
+
+  // ── Reading note state ─────────────────────────────────────────────────────
+  const [noteModalOpen, setNoteModalOpen] = useState(false);
+
   // ── Image suggestion state ─────────────────────────────────────────────────
   const [imageModal, setImageModal] = useState<{
     src: string | null;
@@ -59,10 +66,8 @@ export default function ReaderPage() {
   const [successMsg, setSuccessMsg] = useState("");
   // ── Font size ──────────────────────────────────────────────────────────────
   type FontSize = "sm" | "base" | "lg";
-  const [fontSize, setFontSize] = useState<FontSize>(() => {
-    if (typeof window === "undefined") return "base";
-    return (localStorage.getItem("reader-font-size") as FontSize) ?? "base";
-  });
+  const [fontSize, setFontSize] = useState<FontSize>("base");
+  const [mounted, setMounted] = useState(false);
 
   const isMod = userDoc?.role === "moderator" || userDoc?.role === "admin";
   const pdfFile = PDF_MAP[bookId];
@@ -92,10 +97,21 @@ export default function ReaderPage() {
     };
   }, [bookId, chapterId, sectionId]);
 
+  // Read localStorage + mark mounted in ONE effect to avoid hydration mismatch
+  useEffect(() => {
+    const saved = localStorage.getItem("reader-font-size") as FontSize | null;
+    if (saved && (saved === "sm" || saved === "base" || saved === "lg")) {
+      setFontSize(saved);
+    }
+    setMounted(true);
+  }, []);
+
   // Save font size preference
   useEffect(() => {
-    localStorage.setItem("reader-font-size", fontSize);
-  }, [fontSize]);
+    if (mounted) {
+      localStorage.setItem("reader-font-size", fontSize);
+    }
+  }, [fontSize, mounted]);
 
   // Drag-to-resize handlers
   const onDividerPointerDown = useCallback((e: React.PointerEvent) => {
@@ -194,11 +210,12 @@ export default function ReaderPage() {
             <span className="font-medium text-slate-800 truncate">{section?.title ?? "..."}</span>
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0" suppressHydrationWarning>
             {/* Font size toggle */}
             <div className="hidden sm:flex items-center bg-slate-100 rounded-lg p-0.5 gap-0.5">
               {(["sm", "base", "lg"] as const).map((s) => (
                 <button
+                  suppressHydrationWarning
                   key={s}
                   onClick={() => setFontSize(s)}
                   title={s === "sm" ? "Жижиг" : s === "base" ? "Дунд" : "Том"}
@@ -227,12 +244,34 @@ export default function ReaderPage() {
               </button>
             )}
             {isMod && (
-              <Link
-                href="/moderator"
-                className="text-xs bg-amber-50 border border-amber-200 text-amber-700 font-medium px-2.5 py-1 rounded-lg hover:bg-amber-100 transition-colors"
-              >
-                Саналууд
-              </Link>
+              <>
+                {/* Reading notes bookmark */}
+                <button
+                  onClick={() => setNoteModalOpen(true)}
+                  title="Тэмдэглэл үлдээх"
+                  className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                >
+                  <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                  </svg>
+                </button>
+                <Link
+                  href="/reading-notes"
+                  className="hidden sm:flex items-center gap-1 text-xs bg-slate-100 border border-slate-200 text-slate-600 font-medium px-2.5 py-1 rounded-lg hover:bg-slate-200 transition-colors"
+                  title="Тэмдэглэлүүд"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                  </svg>
+                  Тэмдэглэл
+                </Link>
+                <Link
+                  href="/moderator"
+                  className="text-xs bg-amber-50 border border-amber-200 text-amber-700 font-medium px-2.5 py-1 rounded-lg hover:bg-amber-100 transition-colors"
+                >
+                  Саналууд
+                </Link>
+              </>
             )}
             {userDoc?.role === "admin" && (
               <Link
@@ -259,7 +298,26 @@ export default function ReaderPage() {
             ) : !section ? (
               <div className="flex items-center justify-center h-full text-slate-400">Хэсэг олдсонгүй</div>
             ) : (
-              <div className={`max-w-3xl mx-auto px-4 sm:px-8 py-8 w-full ${{ sm: "text-sm", base: "text-base", lg: "text-lg" }[fontSize]}`} data-content>
+              <div className={`max-w-3xl mx-auto px-4 sm:px-8 py-8 w-full ${mounted ? { sm: "text-sm", base: "text-base", lg: "text-lg" }[fontSize] : "text-base"}`} data-content>
+                {/* Section title — clickable for mods */}
+                {section.title && (
+                  isMod ? (
+                    <div className="relative group mb-6">
+                      <h1
+                        onClick={() => setTitleModalOpen(true)}
+                        className="text-2xl font-bold text-slate-900 cursor-pointer hover:text-blue-700 transition-colors pr-16"
+                        title="Гарчиг засах санал оруулах"
+                      >
+                        {section.title}
+                      </h1>
+                      <span className="absolute top-1 right-0 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-semibold text-amber-600 bg-white border border-amber-200 px-1.5 py-0.5 rounded-md pointer-events-none">
+                        ✎ Засах
+                      </span>
+                    </div>
+                  ) : (
+                    <h1 className="text-2xl font-bold text-slate-900 mb-6">{section.title}</h1>
+                  )
+                )}
                 <ContentRenderer
                   body={section.body}
                   onSelectText={isMod ? handleTextBlockClick : undefined}
@@ -332,6 +390,20 @@ export default function ReaderPage() {
         </div>
       )}
 
+      {/* Title suggestion modal */}
+      {titleModalOpen && section && (
+        <SuggestionModal
+          type="title"
+          selectedText={section.title}
+          blockIndex={-1}
+          bookId={bookId}
+          chapterId={chapterId}
+          sectionId={sectionId}
+          onClose={() => setTitleModalOpen(false)}
+          onSubmitted={() => { setTitleModalOpen(false); showToast("Гарчиг засах санал хадгалагдлаа!"); }}
+        />
+      )}
+
       {/* Text suggestion modal */}
       {showTextModal && selectedText && (
         <SuggestionModal
@@ -358,6 +430,20 @@ export default function ReaderPage() {
           sectionId={sectionId}
           onClose={() => setFormulaModal(null)}
           onSubmitted={() => { setFormulaModal(null); showToast("Томьёо засах санал хадгалагдлаа!"); }}
+        />
+      )}
+
+      {/* Reading note modal */}
+      {noteModalOpen && (
+        <ReadingNoteModal
+          bookId={bookId}
+          chapterId={chapterId}
+          sectionId={sectionId}
+          bookTitle={currentBook?.title ?? ""}
+          chapterTitle={currentChapter?.title ?? ""}
+          sectionTitle={section?.title ?? ""}
+          onClose={() => setNoteModalOpen(false)}
+          onSaved={() => { setNoteModalOpen(false); showToast("Тэмдэглэл хадгалагдлаа!"); }}
         />
       )}
 

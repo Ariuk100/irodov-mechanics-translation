@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
 
   // Notify all admins about the new suggestion (fire-and-forget)
   const authorName = callerData?.displayName || callerData?.email || "Модератор";
-  const typeLabel = type === "formula" ? "томьёо" : type === "image" ? "зураг" : "текст";
+  const typeLabel = type === "formula" ? "томьёо" : type === "image" ? "зураг" : type === "title" ? "гарчиг" : "текст";
   notifyAllAdmins({
     type: "new_suggestion",
     title: "Шинэ орчуулгын санал",
