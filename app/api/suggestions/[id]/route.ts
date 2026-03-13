@@ -38,6 +38,14 @@ async function moveStorageFile(
   return `https://storage.googleapis.com/${bucket.name}/${permanentPath}`;
 }
 
+/** Custom error that carries an HTTP status code */
+class AppError extends Error {
+  constructor(message: string, public status: number = 500) {
+    super(message);
+    this.name = "AppError";
+  }
+}
+
 // PATCH /api/suggestions/[id] — approve or reject (admin only)
 export async function PATCH(
   req: NextRequest,
@@ -106,78 +114,11 @@ export async function PATCH(
     .collection("chapters").doc(sugg.chapterId)
     .collection("sections").doc(sugg.sectionId);
 
-  const sectionSnap = await sectionRef.get();
-  if (!sectionSnap.exists) {
-    return NextResponse.json({ error: "Section not found" }, { status: 404 });
-  }
-
-  const rawBody = sectionSnap.data()!.body;
-  const body: BodyBlock[] = typeof rawBody === "string" ? JSON.parse(rawBody) : rawBody;
-  let updatedBody: BodyBlock[] = body;
-  let replaced = false;
-
-  // ── Text suggestion ────────────────────────────────────────────────────────
-  if (suggType === "text") {
-    const finalText: string = editedSuggestedText ?? sugg.suggestedText;
-
-    if (sugg.textAction === "insert") {
-      // Insert a new text block at blockIndex (or append to end)
-      const newBlock: BodyBlock = { type: "text", value: finalText };
-      if (blockIndex < 0 || blockIndex >= body.length) {
-        updatedBody = [...body, newBlock];
-      } else {
-        updatedBody = [...body.slice(0, blockIndex), newBlock, ...body.slice(blockIndex)];
-      }
-      replaced = true;
-    } else {
-      const originalText: string = sugg.originalText;
-      updatedBody = body.map((block, index) => {
-        if (blockIndex >= 0 && index !== blockIndex) return block;
-        if (block.type === "header") {
-          // Header values are plain text — direct replace
-          if (block.value === originalText || block.value.includes(originalText)) {
-            replaced = true;
-            return { ...block, value: block.value === originalText ? finalText : block.value.replace(originalText, finalText) };
-          }
-        } else if (block.type === "text" || block.type === "note") {
-          const result = replaceInHtml(block.value, originalText, finalText);
-          if (result !== null) { replaced = true; return { ...block, value: result }; }
-          const plain = stripHtml(block.value);
-          if (plain.includes(originalText)) {
-            replaced = true;
-            return { ...block, value: plain.replace(originalText, finalText) };
-          }
-        }
-        return block;
-      });
-    }
-  }
-
-  // ── Block delete suggestion ────────────────────────────────────────────────
-  else if (suggType === "block_delete") {
-    updatedBody = body.filter((_, index) => index !== blockIndex);
-    replaced = true;
-  }
-
-  // ── Formula suggestion ─────────────────────────────────────────────────────
-  else if (suggType === "formula") {
-    const newLatex: string = editedSuggestedText ?? sugg.suggestedText;
-    updatedBody = body.map((block, index) => {
-      if (index !== blockIndex) return block;
-      if (block.type === "equation") {
-        replaced = true;
-        return { ...block, value: newLatex };
-      }
-      return block;
-    });
-  }
-
-  // ── Title suggestion ───────────────────────────────────────────────────────
-  else if (suggType === "title") {
+  // ── Title suggestion (single-field update, no body read-modify-write needed) ─
+  if (suggType === "title") {
     const newTitle: string = editedSuggestedText ?? sugg.suggestedText;
     const nowTsTitle = Date.now();
     await sectionRef.update({ title: newTitle, updatedAt: nowTsTitle });
-    // Also bump library-level version so sidebar title updates
     const sectionKeyTitle = `${sugg.bookId}__${sugg.chapterId}__${sugg.sectionId}`;
     adminDb.collection("meta").doc("content_version").set(
       { [sectionKeyTitle]: nowTsTitle, "__library__": nowTsTitle },
@@ -202,54 +143,108 @@ export async function PATCH(
     return NextResponse.json({ ok: true });
   }
 
-  // ── Image suggestion ───────────────────────────────────────────────────────
-  else if (suggType === "image") {
-    const imageAction: string = sugg.imageAction ?? "replace";
+  // ── Pre-transaction: move image to permanent storage if needed ────────────
+  // (Storage operations cannot run inside a Firestore transaction)
+  let permanentUrl: string | undefined;
+  let permanentPath: string | undefined;
+  let localPath: string | undefined;
 
-    if (imageAction === "delete") {
-      // Remove the image block entirely
-      updatedBody = body.filter((_, index) => index !== blockIndex);
-      replaced = true;
-      // Track local image path for later filesystem cleanup
-      const deletedSrc: string = sugg.originalText ?? "";
-      if (deletedSrc && !deletedSrc.startsWith("http")) {
-        adminDb.collection("deletedImages").add({
-          path: deletedSrc,
-          bookId: sugg.bookId,
-          sectionId: sugg.sectionId,
-          deletedAt: Date.now(),
-          deletedBy: decoded.uid,
-          suggestionId: id,
-        }).catch(() => {});
-      }
-      // Clean up temp storage (no temp file for delete action)
-    } else if (imageAction === "replace" || imageAction === "insert") {
-      // Move temp image to permanent location
+  if (suggType === "image") {
+    const imageAction: string = sugg.imageAction ?? "replace";
+    if (imageAction === "replace" || imageAction === "insert") {
       const tempPath: string = sugg.tempImagePath;
       if (!tempPath) {
         return NextResponse.json({ error: "Missing tempImagePath" }, { status: 400 });
       }
       const ext = tempPath.split(".").pop() ?? "jpg";
-      const permanentPath = `books/${sugg.bookId}/${sugg.sectionId}_${Date.now()}.${ext}`;
-      const permanentUrl = await moveStorageFile(tempPath, permanentPath);
-
-      // Track for later migration to public/images/
+      permanentPath = `books/${sugg.bookId}/${sugg.sectionId}_${Date.now()}.${ext}`;
+      permanentUrl = await moveStorageFile(tempPath, permanentPath);
       const permanentFilename = permanentPath.split("/").pop()!;
-      const localPath = `images/${sugg.bookId}/${permanentFilename}`;
-      adminDb.collection("addedImages").add({
-        storagePath: permanentPath,
-        storageUrl: permanentUrl,
-        localPath,
-        bookId: sugg.bookId,
-        chapterId: sugg.chapterId,
-        sectionId: sugg.sectionId,
-        imageAction,
-        addedAt: Date.now(),
-        addedBy: decoded.uid,
-        suggestionId: id,
-      }).catch(() => {});
+      localPath = `images/${sugg.bookId}/${permanentFilename}`;
+    }
+  }
 
-      if (imageAction === "replace") {
+  // ── Atomic read-modify-write via Firestore transaction ─────────────────────
+  // This guarantees no concurrent approval can overwrite another's changes.
+  // If the block cannot be found/replaced, the transaction is aborted with 409.
+  const nowTs = await adminDb.runTransaction(async (tx) => {
+    const sectionSnap = await tx.get(sectionRef);
+    if (!sectionSnap.exists) {
+      throw new AppError("Section not found", 404);
+    }
+
+    const rawBody = sectionSnap.data()!.body;
+    const body: BodyBlock[] = typeof rawBody === "string" ? JSON.parse(rawBody) : rawBody;
+    let updatedBody: BodyBlock[] = body;
+    let replaced = false;
+
+    // ── Text ────────────────────────────────────────────────────────────────
+    if (suggType === "text") {
+      const finalText: string = editedSuggestedText ?? sugg.suggestedText;
+
+      if (sugg.textAction === "insert") {
+        // Insert a new text block at blockIndex (or append to end)
+        const newBlock: BodyBlock = { type: "text", value: finalText };
+        if (blockIndex < 0 || blockIndex >= body.length) {
+          updatedBody = [...body, newBlock];
+        } else {
+          updatedBody = [...body.slice(0, blockIndex), newBlock, ...body.slice(blockIndex)];
+        }
+        replaced = true;
+      } else {
+        const originalText: string = sugg.originalText;
+        updatedBody = body.map((block, index) => {
+          if (blockIndex >= 0 && index !== blockIndex) return block;
+          if (block.type === "header") {
+            // Header values are plain text — direct replace
+            if (block.value === originalText || block.value.includes(originalText)) {
+              replaced = true;
+              return { ...block, value: block.value === originalText ? finalText : block.value.replace(originalText, finalText) };
+            }
+          } else if (block.type === "text" || block.type === "note") {
+            const result = replaceInHtml(block.value, originalText, finalText);
+            if (result !== null) { replaced = true; return { ...block, value: result }; }
+            const plain = stripHtml(block.value);
+            if (plain.includes(originalText)) {
+              replaced = true;
+              return { ...block, value: plain.replace(originalText, finalText) };
+            }
+          }
+          return block;
+        });
+      }
+    }
+
+    // ── Block delete ─────────────────────────────────────────────────────────
+    else if (suggType === "block_delete") {
+      if (blockIndex >= 0 && blockIndex < body.length) {
+        updatedBody = body.filter((_, index) => index !== blockIndex);
+        replaced = true;
+      }
+    }
+
+    // ── Formula ──────────────────────────────────────────────────────────────
+    else if (suggType === "formula") {
+      const newLatex: string = editedSuggestedText ?? sugg.suggestedText;
+      updatedBody = body.map((block, index) => {
+        if (index !== blockIndex) return block;
+        if (block.type === "equation") {
+          replaced = true;
+          return { ...block, value: newLatex };
+        }
+        return block;
+      });
+    }
+
+    // ── Image ────────────────────────────────────────────────────────────────
+    else if (suggType === "image") {
+      const imageAction: string = sugg.imageAction ?? "replace";
+
+      if (imageAction === "delete") {
+        // Remove the image block entirely
+        updatedBody = body.filter((_, index) => index !== blockIndex);
+        replaced = true;
+      } else if (imageAction === "replace") {
         updatedBody = body.map((block, index) => {
           if (index !== blockIndex) return block;
           if (block.type === "image") {
@@ -258,9 +253,9 @@ export async function PATCH(
           }
           return block;
         });
-      } else {
+      } else if (imageAction === "insert") {
         // insert: add new ImageBlock at blockIndex (or end if -1)
-        const newBlock: ImageBlock = { type: "image", src: permanentUrl, caption: sugg.suggestedText || undefined };
+        const newBlock: ImageBlock = { type: "image", src: permanentUrl!, caption: sugg.suggestedText || undefined };
         if (blockIndex < 0 || blockIndex >= body.length) {
           updatedBody = [...body, newBlock];
         } else {
@@ -269,29 +264,66 @@ export async function PATCH(
         replaced = true;
       }
     }
-  }
 
-  if (!replaced) {
-    console.warn(`[suggestions] Could not apply suggestion. id=${id}, type=${suggType}, blockIndex=${blockIndex}`);
-  }
+    // ── Abort if nothing was replaced ────────────────────────────────────────
+    if (!replaced) {
+      throw new AppError(
+        `Блокийн агуулга тохирохгүй байна — контент өөрчлөгдсөн байж болзошгүй (type=${suggType}, blockIndex=${blockIndex})`,
+        409
+      );
+    }
 
-  const nowTs = Date.now();
-  await sectionRef.update({ body: JSON.stringify(updatedBody), updatedAt: nowTs });
+    // ── Write section body + mark suggestion approved (atomic) ────────────────
+    const ts = Date.now();
+    tx.update(sectionRef, { body: JSON.stringify(updatedBody), updatedAt: ts });
+    tx.update(suggRef, {
+      status: "approved",
+      suggestedText: editedSuggestedText ?? sugg.suggestedText,
+      reviewedAt: ts,
+      reviewedBy: decoded.uid,
+      tempImagePath: null,
+    });
+    return ts;
+  });
 
-  // Bump content version so clients invalidate only this section's cache
+  // ── Post-transaction: bump content version so readers invalidate cache ─────
   const sectionKey = `${sugg.bookId}__${sugg.chapterId}__${sugg.sectionId}`;
   adminDb.collection("meta").doc("content_version").set(
-    { [sectionKey]: nowTs },
+    { [sectionKey]: nowTs, "__library__": nowTs },
     { merge: true }
   ).catch(() => {});
 
-  await suggRef.update({
-    status: "approved",
-    suggestedText: editedSuggestedText ?? sugg.suggestedText,
-    reviewedAt: Date.now(),
-    reviewedBy: decoded.uid,
-    tempImagePath: null, // clear temp path after move
-  });
+  // Log image metadata for later migration to public/images/
+  if (suggType === "image" && sugg.imageAction !== "delete" && permanentPath && permanentUrl) {
+    const imageAction: string = sugg.imageAction ?? "replace";
+    adminDb.collection("addedImages").add({
+      storagePath: permanentPath,
+      storageUrl: permanentUrl,
+      localPath,
+      bookId: sugg.bookId,
+      chapterId: sugg.chapterId,
+      sectionId: sugg.sectionId,
+      imageAction,
+      addedAt: nowTs,
+      addedBy: decoded.uid,
+      suggestionId: id,
+    }).catch(() => {});
+  }
+
+  // Track local image path for deleted images
+  if (suggType === "image" && sugg.imageAction === "delete") {
+    const deletedSrc: string = sugg.originalText ?? "";
+    if (deletedSrc && !deletedSrc.startsWith("http")) {
+      adminDb.collection("deletedImages").add({
+        path: deletedSrc,
+        bookId: sugg.bookId,
+        sectionId: sugg.sectionId,
+        deletedAt: nowTs,
+        deletedBy: decoded.uid,
+        suggestionId: id,
+      }).catch(() => {});
+    }
+  }
 
   // Notify the suggestion author
   if (sugg.authorId) {
@@ -308,9 +340,10 @@ export async function PATCH(
   return NextResponse.json({ ok: true });
 
   } catch (err: unknown) {
+    const status = err instanceof AppError ? err.status : 500;
     const msg = err instanceof Error ? err.message : String(err);
-    console.error("[suggestions PATCH] Unhandled error:", msg);
-    return NextResponse.json({ error: msg }, { status: 500 });
+    console.error("[suggestions PATCH] Error:", msg);
+    return NextResponse.json({ error: msg }, { status });
   }
 }
 

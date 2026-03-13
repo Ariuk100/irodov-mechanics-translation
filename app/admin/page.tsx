@@ -133,6 +133,10 @@ export default function AdminPage() {
   const [userToDelete, setUserToDelete] = useState<string | null>(null);
   const [suggestionToDelete, setSuggestionToDelete] = useState<string | null>(null);
 
+  // --- Per-card error/success state ---
+  const [cardErrors, setCardErrors] = useState<Record<string, string>>({});
+  const [cardSuccess, setCardSuccess] = useState<Set<string>>(new Set());
+
   useEffect(() => {
     if (!loading && userDoc?.role !== "admin") router.push("/");
   }, [loading, userDoc, router]);
@@ -251,6 +255,7 @@ export default function AdminPage() {
 
   async function handleSuggestion(id: string, action: "approve" | "reject") {
     setSuggError(null);
+    setCardErrors((prev) => { const n = { ...prev }; delete n[id]; return n; });
     setProcessingId(id);
     try {
       const res = await fetch(`/api/suggestions/${id}`, {
@@ -259,15 +264,23 @@ export default function AdminPage() {
         body: JSON.stringify({ action, suggestedText: editedTexts[id] }),
       });
       if (res.ok) {
-        setSuggestions((prev) => prev.filter((s) => s.id !== id));
-        setSelectedIds((prev) => { const n = new Set(prev); n.delete(id); return n; });
+        // Brief success flash, then remove from list
+        setCardSuccess((prev) => new Set(prev).add(id));
+        setTimeout(() => {
+          setSuggestions((prev) => prev.filter((s) => s.id !== id));
+          setSelectedIds((prev) => { const n = new Set(prev); n.delete(id); return n; });
+          setCardSuccess((prev) => { const n = new Set(prev); n.delete(id); return n; });
+        }, 900);
       } else {
         let msg = `Алдаа (${res.status})`;
         try { msg = (await res.json()).error ?? msg; } catch {}
+        setCardErrors((prev) => ({ ...prev, [id]: msg }));
         setSuggError(msg);
       }
     } catch {
-      setSuggError("Сервертэй холбогдоход алдаа гарлаа");
+      const msg = "Сервертэй холбогдоход алдаа гарлаа";
+      setCardErrors((prev) => ({ ...prev, [id]: msg }));
+      setSuggError(msg);
     } finally {
       setProcessingId(null);
     }
@@ -276,6 +289,7 @@ export default function AdminPage() {
   async function handleBulkAction(action: "approve" | "reject") {
     if (selectedIds.size === 0) return;
     setBulkProcessing(true); setSuggError(null);
+    setCardErrors({});
     const ids = Array.from(selectedIds);
     const results = await Promise.allSettled(
       ids.map((id) =>
@@ -286,10 +300,32 @@ export default function AdminPage() {
         })
       )
     );
-    const failed = results.filter((r) => r.status === "rejected" || (r.status === "fulfilled" && !r.value.ok)).length;
-    if (failed > 0) setSuggError(`${failed} санал боловсруулахад алдаа гарлаа`);
-    setSuggestions((prev) => prev.filter((s) => !selectedIds.has(s.id!)));
-    setSelectedIds(new Set());
+
+    // Separate succeeded and failed
+    const succeededIds = new Set<string>();
+    const newCardErrors: Record<string, string> = {};
+
+    await Promise.all(results.map(async (r, i) => {
+      const id = ids[i];
+      if (r.status === "fulfilled" && r.value.ok) {
+        succeededIds.add(id);
+      } else {
+        let msg = "Алдаа гарлаа";
+        if (r.status === "fulfilled") {
+          try { msg = (await r.value.json()).error ?? `Алдаа (${r.value.status})`; } catch {}
+        }
+        newCardErrors[id] = msg;
+      }
+    }));
+
+    setCardErrors((prev) => ({ ...prev, ...newCardErrors }));
+    // Only remove successfully processed suggestions
+    setSuggestions((prev) => prev.filter((s) => !succeededIds.has(s.id!)));
+    // Keep failed IDs still selected so admin can see/retry them
+    setSelectedIds(new Set(Object.keys(newCardErrors)));
+    if (Object.keys(newCardErrors).length > 0) {
+      setSuggError(`${Object.keys(newCardErrors).length} санал боловсруулахад алдаа гарлаа — дэлгэрэнгүй мэдээллийг доор харна уу`);
+    }
     setBulkProcessing(false);
   }
 
@@ -815,49 +851,83 @@ export default function AdminPage() {
                       )}
 
                       {/* Footer */}
-                      <div className="px-5 pb-4 flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3 flex-1 min-w-0">
-                          {s.note && <p className="text-sm text-slate-400 italic truncate">&ldquo;{s.note}&rdquo;</p>}
-                          {/* Status badge for non-pending views */}
-                          {s.status !== "pending" && (
-                            <span className={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full border ${
-                              s.status === "approved"
-                                ? "bg-green-50 text-green-700 border-green-200"
-                                : "bg-red-50 text-red-600 border-red-200"
-                            }`}>
-                              {s.status === "approved" ? "Батлагдсан" : "Татгалзсан"}
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex gap-2 shrink-0">
-                          <button
-                            onClick={() => deleteSuggestion(s.id!)}
-                            disabled={processingId === s.id || bulkProcessing}
-                            className="px-3 py-2 rounded-xl border border-slate-200 text-slate-400 hover:border-red-200 hover:text-red-500 hover:bg-red-50 text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                            title="Устгах"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      <div className={`px-5 pb-4 space-y-2 transition-colors ${cardSuccess.has(s.id!) ? "bg-green-50/60" : ""}`}>
+                        {/* Per-card error banner */}
+                        {cardErrors[s.id!] && (
+                          <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 rounded-xl px-3 py-2 text-xs">
+                            <svg className="w-3.5 h-3.5 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
                             </svg>
-                          </button>
-                          {s.status === "pending" && (
-                            <>
-                              <button
-                                onClick={() => handleSuggestion(s.id!, "reject")}
-                                disabled={processingId === s.id || bulkProcessing}
-                                className="px-4 py-2 rounded-xl border border-red-200 text-red-600 hover:bg-red-50 text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                              >
-                                Татгалзах
-                              </button>
-                              <button
-                                onClick={() => handleSuggestion(s.id!, "approve")}
-                                disabled={processingId === s.id || bulkProcessing}
-                                className="px-4 py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white text-sm font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                              >
-                                {processingId === s.id ? "..." : "Батлах"}
-                              </button>
-                            </>
-                          )}
+                            <span className="flex-1 break-words">{cardErrors[s.id!]}</span>
+                            <button
+                              onClick={() => setCardErrors((prev) => { const n = { ...prev }; delete n[s.id!]; return n; })}
+                              className="shrink-0 text-red-400 hover:text-red-600 ml-1"
+                            >✕</button>
+                          </div>
+                        )}
+
+                        {/* Per-card success flash */}
+                        {cardSuccess.has(s.id!) && (
+                          <div className="flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 rounded-xl px-3 py-2 text-xs">
+                            <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Амжилттай хэрэглэгдлээ
+                          </div>
+                        )}
+
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-3 flex-1 min-w-0">
+                            {s.note && <p className="text-sm text-slate-400 italic truncate">&ldquo;{s.note}&rdquo;</p>}
+                            {/* Status badge for non-pending views */}
+                            {s.status !== "pending" && !cardSuccess.has(s.id!) && (
+                              <span className={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full border ${
+                                s.status === "approved"
+                                  ? "bg-green-50 text-green-700 border-green-200"
+                                  : "bg-red-50 text-red-600 border-red-200"
+                              }`}>
+                                {s.status === "approved" ? "Батлагдсан" : "Татгалзсан"}
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex gap-2 shrink-0">
+                            <button
+                              onClick={() => deleteSuggestion(s.id!)}
+                              disabled={processingId === s.id || bulkProcessing || cardSuccess.has(s.id!)}
+                              className="px-3 py-2 rounded-xl border border-slate-200 text-slate-400 hover:border-red-200 hover:text-red-500 hover:bg-red-50 text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                              title="Устгах"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                            </button>
+                            {s.status === "pending" && !cardSuccess.has(s.id!) && (
+                              <>
+                                <button
+                                  onClick={() => handleSuggestion(s.id!, "reject")}
+                                  disabled={processingId === s.id || bulkProcessing}
+                                  className="px-4 py-2 rounded-xl border border-red-200 text-red-600 hover:bg-red-50 text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                                >
+                                  Татгалзах
+                                </button>
+                                <button
+                                  onClick={() => handleSuggestion(s.id!, "approve")}
+                                  disabled={processingId === s.id || bulkProcessing}
+                                  className="px-4 py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white text-sm font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                                >
+                                  {processingId === s.id ? (
+                                    <span className="flex items-center gap-1.5">
+                                      <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                                      </svg>
+                                      Хадгалж байна...
+                                    </span>
+                                  ) : "Батлах"}
+                                </button>
+                              </>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
