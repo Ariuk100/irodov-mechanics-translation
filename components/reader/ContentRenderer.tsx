@@ -126,7 +126,7 @@ function ProblemCard({ block, blockIndex }: { block: ProblemBlock; blockIndex: n
         <div className="space-y-2">{renderStatementBlocks(block.statement)}</div>
         <details className="mt-3">
           <summary className="cursor-pointer text-sm text-blue-600 hover:text-blue-700 select-none">
-            Бодолт
+            Хариу
           </summary>
           <div className="mt-2 pt-2 border-t border-slate-100 space-y-2">
             {renderStatementBlocks(block.solution)}
