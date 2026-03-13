@@ -52,6 +52,46 @@ function DiffNew({ oldText, newText }: { oldText: string; newText: string }) {
   );
 }
 
+/** KaTeX render helper */
+function renderTex(value: string, displayMode: boolean): string {
+  try { return katex.renderToString(value, { displayMode, throwOnError: false, output: "html" }); }
+  catch { return value; }
+}
+
+/** Process inline ($...$) and display ($$...$$) LaTeX in a plain string */
+function applyLatex(text: string): string {
+  text = text.replace(/\\\[([\\s\S]+?)\\\]/g, (_, m) => renderTex(m.trim(), true));
+  text = text.replace(/\\\(([\\s\S]+?)\\\)/g, (_, m) => renderTex(m.trim(), false));
+  text = text.replace(/\$\$([\\s\S]+?)\$\$/g, (_, m) => renderTex(m.trim(), true));
+  text = text.replace(/\$([^$\n]+?)\$/g,       (_, m) => renderTex(m.trim(), false));
+  return text;
+}
+
+/**
+ * "Нэмэлт өөрчлөлт" — diff with LaTeX rendered.
+ * equal segments → LaTeX rendered plain
+ * insert segments → LaTeX rendered + green highlight wrapper
+ */
+function DiffNewLatex({ oldText, newText }: { oldText: string; newText: string }) {
+  const segs = wordDiff(oldText, newText);
+  const html = segs
+    .filter((seg: DiffSegment) => seg.op !== "delete")
+    .map((seg: DiffSegment) => {
+      const rendered = applyLatex(seg.text);
+      if (seg.op === "insert") {
+        return `<mark class="bg-green-200 text-green-800 rounded px-0.5">${rendered}</mark>`;
+      }
+      return rendered;
+    })
+    .join("");
+  return (
+    <div
+      className="text-sm leading-relaxed prose prose-sm max-w-none"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
+}
+
 export default function AdminPage() {
   const { userDoc, loading } = useAuth();
   const router = useRouter();
@@ -749,7 +789,7 @@ export default function AdminPage() {
                             />
                             <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Нэмэлт өөрчлөлт</p>
                             <div className="bg-green-50 border border-green-100 rounded-xl px-4 py-3 max-h-32 overflow-y-auto leading-relaxed">
-                              <DiffNew oldText={s.originalText} newText={editedTexts[s.id!] ?? s.suggestedText} />
+                              <DiffNewLatex oldText={s.originalText} newText={editedTexts[s.id!] ?? s.suggestedText} />
                             </div>
                           </div>
                         </div>
