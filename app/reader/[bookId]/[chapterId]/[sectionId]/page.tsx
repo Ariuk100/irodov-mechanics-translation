@@ -218,12 +218,11 @@ export default function ReaderPage() {
             <div className="hidden sm:flex items-center bg-slate-100 rounded-lg p-0.5 gap-0.5">
               {(["sm", "base", "lg"] as const).map((s) => (
                 <button
-                  suppressHydrationWarning
                   key={s}
                   onClick={() => setFontSize(s)}
                   title={s === "sm" ? "Жижиг" : s === "base" ? "Дунд" : "Том"}
                   className={`w-7 h-7 rounded-md flex items-center justify-center transition-colors ${
-                    fontSize === s ? "bg-white shadow-sm text-slate-900" : "text-slate-400 hover:text-slate-600"
+                    mounted && fontSize === s ? "bg-white shadow-sm text-slate-900" : "text-slate-400 hover:text-slate-600"
                   }`}
                   style={{ fontSize: s === "sm" ? 11 : s === "base" ? 13 : 16 }}
                 >
