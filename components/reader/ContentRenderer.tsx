@@ -23,6 +23,7 @@ function tex(value: string, displayMode: boolean): string {
     return katex.renderToString(value, {
       displayMode,
       throwOnError: false,
+      strict: false,
       output: "html",
     });
   } catch {

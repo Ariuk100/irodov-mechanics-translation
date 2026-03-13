@@ -54,7 +54,7 @@ function DiffNew({ oldText, newText }: { oldText: string; newText: string }) {
 
 /** KaTeX render helper */
 function renderTex(value: string, displayMode: boolean): string {
-  try { return katex.renderToString(value, { displayMode, throwOnError: false, output: "html" }); }
+  try { return katex.renderToString(value, { displayMode, throwOnError: false, strict: false, output: "html" }); }
   catch { return value; }
 }
 
@@ -682,7 +682,7 @@ export default function AdminPage() {
                   const isFormula = s.type === "formula";
                   const isImage = s.type === "image";
                   const latexPreview = isFormula
-                    ? (() => { try { return katex.renderToString(editedTexts[s.id!] ?? s.suggestedText, { displayMode: true, throwOnError: false, output: "html" }); } catch { return ""; } })()
+                    ? (() => { try { return katex.renderToString(editedTexts[s.id!] ?? s.suggestedText, { displayMode: true, throwOnError: false, strict: false, output: "html" }); } catch { return ""; } })()
                     : "";
 
                   return (
@@ -722,7 +722,7 @@ export default function AdminPage() {
                             </code>
                             <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-2">Одоогийн preview</p>
                             <div className="bg-red-50 border border-red-100 rounded-xl px-4 py-3 overflow-x-auto text-center"
-                              dangerouslySetInnerHTML={{ __html: (() => { try { return katex.renderToString(s.originalText, { displayMode: true, throwOnError: false, output: "html" }); } catch { return s.originalText; } })() }}
+                              dangerouslySetInnerHTML={{ __html: (() => { try { return katex.renderToString(s.originalText, { displayMode: true, throwOnError: false, strict: false, output: "html" }); } catch { return s.originalText; } })() }}
                             />
                           </div>
                           <div className="p-5 space-y-2">

@@ -50,7 +50,7 @@ function diffWords(original: string, modified: string): DiffToken[] {
 /** KaTeX render helper */
 function tex(value: string, displayMode: boolean): string {
   try {
-    return katex.renderToString(value, { displayMode, throwOnError: false, output: "html" });
+    return katex.renderToString(value, { displayMode, throwOnError: false, strict: false, output: "html" });
   } catch {
     return value;
   }

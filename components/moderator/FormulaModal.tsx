@@ -15,7 +15,7 @@ interface Props {
 
 function renderLatex(value: string): string {
   try {
-    return katex.renderToString(value, { displayMode: true, throwOnError: false, output: "html" });
+    return katex.renderToString(value, { displayMode: true, throwOnError: false, strict: false, output: "html" });
   } catch {
     return `<code class="text-red-500">${value}</code>`;
   }
