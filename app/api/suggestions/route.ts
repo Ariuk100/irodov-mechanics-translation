@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
     type = "text",
     textAction,
     imageAction,
+    blockType,
     bookId, chapterId, sectionId, blockIndex,
     originalText, suggestedText, note,
     tempImageUrl, tempImagePath,
@@ -71,8 +72,8 @@ export async function POST(req: NextRequest) {
   if (!bookId || !chapterId || !sectionId) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
-  // For text/formula we require originalText (unless inserting new paragraph); image delete doesn't need suggestedText
-  if (type !== "image" && textAction !== "insert" && (!originalText || !suggestedText)) {
+  // block_delete and image don't need text content
+  if (type !== "image" && type !== "block_delete" && textAction !== "insert" && (!originalText || !suggestedText)) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
   if (textAction === "insert" && !suggestedText) {
@@ -92,9 +93,10 @@ export async function POST(req: NextRequest) {
     authorEmail: callerData?.email ?? "",
     status: "pending",
     createdAt: Date.now(),
-    ...(textAction !== undefined && { textAction }),
+    ...(textAction  !== undefined && { textAction }),
     ...(imageAction !== undefined && { imageAction }),
-    ...(tempImageUrl !== undefined && { tempImageUrl }),
+    ...(blockType   !== undefined && { blockType }),
+    ...(tempImageUrl  !== undefined && { tempImageUrl }),
     ...(tempImagePath !== undefined && { tempImagePath }),
   };
 

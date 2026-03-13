@@ -681,6 +681,7 @@ export default function AdminPage() {
                 {suggestions.map((s) => {
                   const isFormula = s.type === "formula";
                   const isImage = s.type === "image";
+                  const isBlockDelete = s.type === "block_delete";
                   const latexPreview = isFormula
                     ? (() => { try { return katex.renderToString(editedTexts[s.id!] ?? s.suggestedText, { displayMode: true, throwOnError: false, strict: false, output: "html" }); } catch { return ""; } })()
                     : "";
@@ -740,6 +741,23 @@ export default function AdminPage() {
                               className="bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3 overflow-x-auto text-center min-h-[60px] flex items-center justify-center"
                               dangerouslySetInnerHTML={{ __html: latexPreview || "<span class='text-slate-300 text-sm'>Томьёо оруулна үү</span>" }}
                             />
+                          </div>
+                        </div>
+                      ) : isBlockDelete ? (
+                        <div className="p-5 space-y-2">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-100 text-red-700 text-xs font-semibold">
+                              ✕ Блок устгах санал
+                            </span>
+                            <span className="text-xs text-slate-400">
+                              {(s as { blockType?: string }).blockType === "equation" ? "Томьёо" :
+                               (s as { blockType?: string }).blockType === "header"   ? "Гарчиг" :
+                               (s as { blockType?: string }).blockType === "note"     ? "Тэмдэглэл" : "Параграф"} блок
+                            </span>
+                          </div>
+                          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Устгагдах агуулга</p>
+                          <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-slate-700 leading-relaxed max-h-40 overflow-y-auto whitespace-pre-wrap">
+                            {s.originalText || <span className="italic text-slate-400">Агуулга байхгүй</span>}
                           </div>
                         </div>
                       ) : isImage ? (

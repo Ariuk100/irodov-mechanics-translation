@@ -153,6 +153,12 @@ export async function PATCH(
     }
   }
 
+  // ── Block delete suggestion ────────────────────────────────────────────────
+  else if (suggType === "block_delete") {
+    updatedBody = body.filter((_, index) => index !== blockIndex);
+    replaced = true;
+  }
+
   // ── Formula suggestion ─────────────────────────────────────────────────────
   else if (suggType === "formula") {
     const newLatex: string = editedSuggestedText ?? sugg.suggestedText;

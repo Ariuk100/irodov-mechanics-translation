@@ -15,6 +15,8 @@ interface Props {
   onSelectImage?: (src: string | null, blockIndex: number, action: ImageAction) => void;
   /** Called when moderator clicks "insert paragraph" between blocks */
   onInsertParagraph?: (blockIndex: number) => void;
+  /** Called when moderator wants to delete a block */
+  onDeleteBlock?: (blockIndex: number, blockType: BodyBlock["type"], originalText: string) => void;
 }
 
 // Render a standalone LaTeX equation (display or inline)
@@ -180,8 +182,8 @@ function InsertBtns({ index, onSelectImage, onInsertParagraph }: {
   );
 }
 
-export default function ContentRenderer({ body, onSelectText, onSelectFormula, onSelectImage, onInsertParagraph }: Props) {
-  const isMod = !!(onSelectFormula || onSelectImage || onInsertParagraph);
+export default function ContentRenderer({ body, onSelectText, onSelectFormula, onSelectImage, onInsertParagraph, onDeleteBlock }: Props) {
+  const isMod = !!(onSelectFormula || onSelectImage || onInsertParagraph || onDeleteBlock);
 
   return (
     <div className="space-y-1">
@@ -212,30 +214,54 @@ export default function ContentRenderer({ body, onSelectText, onSelectFormula, o
                 className="text-slate-800 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: processInlineMath(block.value) }}
               />
-              {onSelectText && (
-                <span className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-semibold text-amber-600 bg-white border border-amber-200 px-1.5 py-0.5 rounded-md pointer-events-none">
-                  ✎ Засах
-                </span>
-              )}
+              <span className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 pointer-events-none group-hover:pointer-events-auto">
+                {onSelectText && (
+                  <span className="text-[10px] font-semibold text-amber-600 bg-white border border-amber-200 px-1.5 py-0.5 rounded-md pointer-events-none">
+                    ✎ Засах
+                  </span>
+                )}
+                {onDeleteBlock && (
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); onDeleteBlock(i, "text", block.value); }}
+                    className="text-[10px] font-semibold text-red-500 bg-white border border-red-200 px-1.5 py-0.5 rounded-md hover:bg-red-50 transition-colors"
+                  >
+                    ✕ Устгах
+                  </button>
+                )}
+              </span>
             </div>
           );
 
         else if (block.type === "header")
-          blockEl = onSelectText ? (
+          blockEl = (onSelectText || onDeleteBlock) ? (
             <div
               data-block-index={i}
               className="relative group mt-8 mb-3 cursor-pointer"
-              onClick={() => onSelectText(block.value, i)}
-              title="Гарчиг засах санал оруулах"
+              onClick={onSelectText ? () => onSelectText(block.value, i) : undefined}
+              title={onSelectText ? "Гарчиг засах санал оруулах" : undefined}
             >
               <h2
                 id={block.id}
-                className="text-xl font-semibold text-slate-900 border-b border-slate-200 pb-2 pr-14 hover:text-blue-700 transition-colors"
+                className="text-xl font-semibold text-slate-900 border-b border-slate-200 pb-2 pr-28 hover:text-blue-700 transition-colors"
               >
                 {block.value}
               </h2>
-              <span className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-semibold text-amber-600 bg-white border border-amber-200 px-1.5 py-0.5 rounded-md pointer-events-none">
-                ✎ Засах
+              <span className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 pointer-events-none group-hover:pointer-events-auto">
+                {onSelectText && (
+                  <span className="text-[10px] font-semibold text-amber-600 bg-white border border-amber-200 px-1.5 py-0.5 rounded-md pointer-events-none">
+                    ✎ Засах
+                  </span>
+                )}
+                {onDeleteBlock && (
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); onDeleteBlock(i, "header", block.value); }}
+                    className="text-[10px] font-semibold text-red-500 bg-white border border-red-200 px-1.5 py-0.5 rounded-md hover:bg-red-50 transition-colors"
+                  >
+                    ✕ Устгах
+                  </button>
+                )}
               </span>
             </div>
           ) : (
@@ -261,8 +287,21 @@ export default function ContentRenderer({ body, onSelectText, onSelectFormula, o
               <span dangerouslySetInnerHTML={{ __html: tex(block.value, true) }} />
               {block.tag && <span className="text-slate-400 text-sm shrink-0">({block.tag})</span>}
               {isMod && (
-                <span className="absolute top-1 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-semibold text-violet-500 bg-white border border-violet-200 px-1.5 py-0.5 rounded-md pointer-events-none">
-                  ✎ Засах
+                <span className="absolute top-1 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 pointer-events-none group-hover:pointer-events-auto">
+                  {onSelectFormula && (
+                    <span className="text-[10px] font-semibold text-violet-500 bg-white border border-violet-200 px-1.5 py-0.5 rounded-md pointer-events-none">
+                      ✎ Засах
+                    </span>
+                  )}
+                  {onDeleteBlock && (
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); onDeleteBlock(i, "equation", block.value); }}
+                      className="text-[10px] font-semibold text-red-500 bg-white border border-red-200 px-1.5 py-0.5 rounded-md hover:bg-red-50 transition-colors"
+                    >
+                      ✕ Устгах
+                    </button>
+                  )}
                 </span>
               )}
             </div>
@@ -357,11 +396,22 @@ export default function ContentRenderer({ body, onSelectText, onSelectFormula, o
                 className="border-l-2 border-amber-400 pl-4 py-1 text-slate-500 text-sm italic bg-amber-50 rounded-r"
                 dangerouslySetInnerHTML={{ __html: processInlineMath(block.value) }}
               />
-              {onSelectText && (
-                <span className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-semibold text-amber-600 bg-white border border-amber-200 px-1.5 py-0.5 rounded-md pointer-events-none">
-                  ✎ Засах
-                </span>
-              )}
+              <span className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 pointer-events-none group-hover:pointer-events-auto">
+                {onSelectText && (
+                  <span className="text-[10px] font-semibold text-amber-600 bg-white border border-amber-200 px-1.5 py-0.5 rounded-md pointer-events-none">
+                    ✎ Засах
+                  </span>
+                )}
+                {onDeleteBlock && (
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); onDeleteBlock(i, "note", block.value); }}
+                    className="text-[10px] font-semibold text-red-500 bg-white border border-red-200 px-1.5 py-0.5 rounded-md hover:bg-red-50 transition-colors"
+                  >
+                    ✕ Устгах
+                  </button>
+                )}
+              </span>
             </div>
           );
 

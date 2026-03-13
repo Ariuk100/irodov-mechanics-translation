@@ -11,7 +11,8 @@ import SuggestionModal from "@/components/moderator/SuggestionModal";
 import FormulaModal from "@/components/moderator/FormulaModal";
 import ImageModal from "@/components/moderator/ImageModal";
 import ReadingNoteModal from "@/components/moderator/ReadingNoteModal";
-import type { SectionDoc, BookDoc, ImageAction } from "@/types/content";
+import ConfirmModal from "@/components/shared/ConfirmModal";
+import type { SectionDoc, BookDoc, ImageAction, BodyBlock } from "@/types/content";
 
 // PDF filename map by bookId
 const PDF_MAP: Record<string, string> = {
@@ -67,6 +68,46 @@ export default function ReaderPage() {
     blockIndex: number;
     action: ImageAction;
   } | null>(null);
+
+  // ── Block delete confirm state ─────────────────────────────────────────────
+  const [deleteConfirm, setDeleteConfirm] = useState<{
+    blockIndex: number;
+    blockType: BodyBlock["type"];
+    originalText: string;
+  } | null>(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const handleDeleteBlock = useCallback((blockIndex: number, blockType: BodyBlock["type"], originalText: string) => {
+    setDeleteConfirm({ blockIndex, blockType, originalText });
+  }, []);
+
+  async function submitDeleteBlock() {
+    if (!deleteConfirm) return;
+    setDeleteLoading(true);
+    try {
+      await fetch("/api/suggestions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "block_delete",
+          bookId,
+          chapterId,
+          sectionId,
+          blockIndex: deleteConfirm.blockIndex,
+          blockType: deleteConfirm.blockType,
+          originalText: deleteConfirm.originalText,
+          suggestedText: "",
+          note: "",
+        }),
+      });
+      setDeleteConfirm(null);
+      showToast("Блок устгах санал хадгалагдлаа!");
+    } catch {
+      // keep modal open on error
+    } finally {
+      setDeleteLoading(false);
+    }
+  }
 
   // ── Toast ──────────────────────────────────────────────────────────────────
   const [successMsg, setSuccessMsg] = useState("");
@@ -330,6 +371,7 @@ export default function ReaderPage() {
                   onSelectFormula={isMod ? handleSelectFormula : undefined}
                   onSelectImage={isMod ? handleSelectImage : undefined}
                   onInsertParagraph={isMod ? handleInsertParagraph : undefined}
+                  onDeleteBlock={isMod ? handleDeleteBlock : undefined}
                 />
                 {/* Mod: buttons to insert paragraph or image at end of section */}
                 {isMod && (
@@ -487,6 +529,23 @@ export default function ReaderPage() {
           currentSrc={imageModal.src ?? undefined}
           onClose={() => setImageModal(null)}
           onSubmitted={() => { setImageModal(null); showToast("Зураг засах санал хадгалагдлаа!"); }}
+        />
+      )}
+
+      {/* Block delete confirmation */}
+      {deleteConfirm && (
+        <ConfirmModal
+          title="Блок устгах санал"
+          message={`"${
+            deleteConfirm.blockType === "equation" ? "Томьёо" :
+            deleteConfirm.blockType === "header"   ? "Гарчиг" :
+            deleteConfirm.blockType === "note"     ? "Тэмдэглэл" : "Параграф"
+          }" блокийг устгах санал илгээх үү? Админ баталсны дараа устана.`}
+          confirmText="Санал илгээх"
+          cancelText="Болих"
+          isLoading={deleteLoading}
+          onConfirm={submitDeleteBlock}
+          onCancel={() => setDeleteConfirm(null)}
         />
       )}
     </div>

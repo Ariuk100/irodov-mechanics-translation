@@ -129,7 +129,7 @@ export interface NotificationDoc {
 
 // Stored at: suggestions/{suggestionId}
 export type SuggestionStatus = "pending" | "approved" | "rejected";
-export type SuggestionType = "text" | "formula" | "image" | "title";
+export type SuggestionType = "text" | "formula" | "image" | "title" | "block_delete";
 export type ImageAction = "replace" | "delete" | "insert";
 
 export interface SuggestionDoc {
@@ -152,4 +152,8 @@ export interface SuggestionDoc {
   imageAction?: ImageAction;
   tempImageUrl?: string;  // Firebase Storage download URL (pending approval)
   tempImagePath?: string; // Storage path for cleanup on reject/delete
+  // Text/formula insert action
+  textAction?: string;
+  // Block delete — stores the deleted block's type for display
+  blockType?: string;
 }
