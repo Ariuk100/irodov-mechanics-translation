@@ -56,7 +56,10 @@ export default function ReaderPage() {
   const [noteModalOpen, setNoteModalOpen] = useState(false);
 
   // ── Insert paragraph state ─────────────────────────────────────────────────
-  const [insertParagraphOpen, setInsertParagraphOpen] = useState(false);
+  const [insertParagraphBlockIndex, setInsertParagraphBlockIndex] = useState<number | null>(null);
+  const handleInsertParagraph = useCallback((blockIndex: number) => {
+    setInsertParagraphBlockIndex(blockIndex);
+  }, []);
 
   // ── Image suggestion state ─────────────────────────────────────────────────
   const [imageModal, setImageModal] = useState<{
@@ -325,13 +328,14 @@ export default function ReaderPage() {
                   onSelectText={isMod ? handleTextBlockClick : undefined}
                   onSelectFormula={isMod ? handleSelectFormula : undefined}
                   onSelectImage={isMod ? handleSelectImage : undefined}
+                  onInsertParagraph={isMod ? handleInsertParagraph : undefined}
                 />
                 {/* Mod: buttons to insert paragraph or image at end of section */}
                 {isMod && (
                   <div className="mt-8 pt-4 border-t border-dashed border-slate-300 flex flex-wrap gap-3">
                     <button
                       type="button"
-                      onClick={() => setInsertParagraphOpen(true)}
+                      onClick={() => setInsertParagraphBlockIndex(section.body.length)}
                       className="flex items-center gap-2 text-xs text-slate-500 hover:text-blue-600 border border-dashed border-slate-300 hover:border-blue-400 hover:bg-blue-50 rounded-lg px-3 py-1.5 transition-colors"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -415,16 +419,16 @@ export default function ReaderPage() {
       )}
 
       {/* Insert paragraph modal */}
-      {insertParagraphOpen && section && (
+      {insertParagraphBlockIndex !== null && section && (
         <SuggestionModal
           insertMode
           selectedText=""
-          blockIndex={section.body.length}
+          blockIndex={insertParagraphBlockIndex}
           bookId={bookId}
           chapterId={chapterId}
           sectionId={sectionId}
-          onClose={() => setInsertParagraphOpen(false)}
-          onSubmitted={() => { setInsertParagraphOpen(false); showToast("Шинэ параграф нэмэх санал хадгалагдлаа!"); }}
+          onClose={() => setInsertParagraphBlockIndex(null)}
+          onSubmitted={() => { setInsertParagraphBlockIndex(null); showToast("Шинэ параграф нэмэх санал хадгалагдлаа!"); }}
         />
       )}
 

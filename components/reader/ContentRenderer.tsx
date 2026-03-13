@@ -13,6 +13,8 @@ interface Props {
   onSelectFormula?: (latex: string, blockIndex: number) => void;
   /** Called when moderator clicks an image (or empty image placeholder) */
   onSelectImage?: (src: string | null, blockIndex: number, action: ImageAction) => void;
+  /** Called when moderator clicks "insert paragraph" between blocks */
+  onInsertParagraph?: (blockIndex: number) => void;
 }
 
 // Render a standalone LaTeX equation (display or inline)
@@ -99,42 +101,60 @@ function ProblemCard({ block, blockIndex }: { block: ProblemBlock; blockIndex: n
   );
 }
 
-// Small button shown between blocks in mod mode to insert an image at that position
-function InsertImageBtn({ index, onSelectImage }: {
+// Buttons shown between blocks in mod mode to insert content at that position
+function InsertBtns({ index, onSelectImage, onInsertParagraph }: {
   index: number;
-  onSelectImage: (src: string | null, blockIndex: number, action: ImageAction) => void;
+  onSelectImage?: (src: string | null, blockIndex: number, action: ImageAction) => void;
+  onInsertParagraph?: (blockIndex: number) => void;
 }) {
   return (
     <div className="relative flex items-center gap-2 opacity-0 hover:opacity-100 focus-within:opacity-100 transition-opacity group/ins py-0.5">
       <div className="flex-1 h-px bg-slate-200" />
-      <button
-        type="button"
-        onClick={() => onSelectImage(null, index, "insert")}
-        className="shrink-0 flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-dashed border-slate-300 hover:border-blue-400 text-slate-300 hover:text-blue-500 text-[10px] font-medium transition-colors bg-white"
-        title={`${index + 1}-р блокийн өмнө зураг оруулах`}
-      >
-        <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
-        </svg>
-        Зураг оруулах
-      </button>
+      <div className="shrink-0 flex items-center gap-1.5">
+        {onInsertParagraph && (
+          <button
+            type="button"
+            onClick={() => onInsertParagraph(index)}
+            className="flex items-center gap-1 px-2 py-0.5 rounded-full border border-dashed border-slate-300 hover:border-green-400 text-slate-300 hover:text-green-600 text-[10px] font-medium transition-colors bg-white"
+            title={`${index + 1}-р блокийн өмнө параграф оруулах`}
+          >
+            <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+            </svg>
+            Параграф
+          </button>
+        )}
+        {onSelectImage && (
+          <button
+            type="button"
+            onClick={() => onSelectImage(null, index, "insert")}
+            className="flex items-center gap-1 px-2 py-0.5 rounded-full border border-dashed border-slate-300 hover:border-blue-400 text-slate-300 hover:text-blue-500 text-[10px] font-medium transition-colors bg-white"
+            title={`${index + 1}-р блокийн өмнө зураг оруулах`}
+          >
+            <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+            </svg>
+            Зураг
+          </button>
+        )}
+      </div>
       <div className="flex-1 h-px bg-slate-200" />
     </div>
   );
 }
 
-export default function ContentRenderer({ body, onSelectText, onSelectFormula, onSelectImage }: Props) {
-  const isMod = !!(onSelectFormula || onSelectImage);
+export default function ContentRenderer({ body, onSelectText, onSelectFormula, onSelectImage, onInsertParagraph }: Props) {
+  const isMod = !!(onSelectFormula || onSelectImage || onInsertParagraph);
 
   return (
     <div className="space-y-1">
-      {/* Insert button before first block */}
-      {isMod && onSelectImage && (
-        <InsertImageBtn index={0} onSelectImage={onSelectImage} />
+      {/* Insert buttons before first block */}
+      {isMod && (onSelectImage || onInsertParagraph) && (
+        <InsertBtns index={0} onSelectImage={onSelectImage} onInsertParagraph={onInsertParagraph} />
       )}
       {body.map((block, i) => {
-        const insertBtn = (isMod && onSelectImage)
-          ? <InsertImageBtn key={`ins-${i}`} index={i + 1} onSelectImage={onSelectImage} />
+        const insertBtn = (isMod && (onSelectImage || onInsertParagraph))
+          ? <InsertBtns key={`ins-${i}`} index={i + 1} onSelectImage={onSelectImage} onInsertParagraph={onInsertParagraph} />
           : null;
 
         let blockEl: React.ReactNode = null;
