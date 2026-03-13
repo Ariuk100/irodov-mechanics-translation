@@ -112,26 +112,38 @@ export async function PATCH(
   // ── Text suggestion ────────────────────────────────────────────────────────
   if (suggType === "text") {
     const finalText: string = editedSuggestedText ?? sugg.suggestedText;
-    const originalText: string = sugg.originalText;
-    updatedBody = body.map((block, index) => {
-      if (blockIndex >= 0 && index !== blockIndex) return block;
-      if (block.type === "header") {
-        // Header values are plain text — direct replace
-        if (block.value === originalText || block.value.includes(originalText)) {
-          replaced = true;
-          return { ...block, value: block.value === originalText ? finalText : block.value.replace(originalText, finalText) };
-        }
-      } else if (block.type === "text" || block.type === "note") {
-        const result = replaceInHtml(block.value, originalText, finalText);
-        if (result !== null) { replaced = true; return { ...block, value: result }; }
-        const plain = stripHtml(block.value);
-        if (plain.includes(originalText)) {
-          replaced = true;
-          return { ...block, value: plain.replace(originalText, finalText) };
-        }
+
+    if (sugg.textAction === "insert") {
+      // Insert a new text block at blockIndex (or append to end)
+      const newBlock: BodyBlock = { type: "text", value: finalText };
+      if (blockIndex < 0 || blockIndex >= body.length) {
+        updatedBody = [...body, newBlock];
+      } else {
+        updatedBody = [...body.slice(0, blockIndex), newBlock, ...body.slice(blockIndex)];
       }
-      return block;
-    });
+      replaced = true;
+    } else {
+      const originalText: string = sugg.originalText;
+      updatedBody = body.map((block, index) => {
+        if (blockIndex >= 0 && index !== blockIndex) return block;
+        if (block.type === "header") {
+          // Header values are plain text — direct replace
+          if (block.value === originalText || block.value.includes(originalText)) {
+            replaced = true;
+            return { ...block, value: block.value === originalText ? finalText : block.value.replace(originalText, finalText) };
+          }
+        } else if (block.type === "text" || block.type === "note") {
+          const result = replaceInHtml(block.value, originalText, finalText);
+          if (result !== null) { replaced = true; return { ...block, value: result }; }
+          const plain = stripHtml(block.value);
+          if (plain.includes(originalText)) {
+            replaced = true;
+            return { ...block, value: plain.replace(originalText, finalText) };
+          }
+        }
+        return block;
+      });
+    }
   }
 
   // ── Formula suggestion ─────────────────────────────────────────────────────

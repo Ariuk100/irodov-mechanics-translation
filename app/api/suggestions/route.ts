@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const {
     type = "text",
+    textAction,
     imageAction,
     bookId, chapterId, sectionId, blockIndex,
     originalText, suggestedText, note,
@@ -70,8 +71,11 @@ export async function POST(req: NextRequest) {
   if (!bookId || !chapterId || !sectionId) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
-  // For text/formula we require originalText; image delete doesn't need suggestedText
-  if (type !== "image" && (!originalText || !suggestedText)) {
+  // For text/formula we require originalText (unless inserting new paragraph); image delete doesn't need suggestedText
+  if (type !== "image" && textAction !== "insert" && (!originalText || !suggestedText)) {
+    return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+  }
+  if (textAction === "insert" && !suggestedText) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
@@ -88,6 +92,7 @@ export async function POST(req: NextRequest) {
     authorEmail: callerData?.email ?? "",
     status: "pending",
     createdAt: Date.now(),
+    ...(textAction !== undefined && { textAction }),
     ...(imageAction !== undefined && { imageAction }),
     ...(tempImageUrl !== undefined && { tempImageUrl }),
     ...(tempImagePath !== undefined && { tempImagePath }),
@@ -97,7 +102,7 @@ export async function POST(req: NextRequest) {
 
   // Notify all admins about the new suggestion (fire-and-forget)
   const authorName = callerData?.displayName || callerData?.email || "Модератор";
-  const typeLabel = type === "formula" ? "томьёо" : type === "image" ? "зураг" : type === "title" ? "гарчиг" : "текст";
+  const typeLabel = type === "formula" ? "томьёо" : type === "image" ? "зураг" : type === "title" ? "гарчиг" : textAction === "insert" ? "шинэ параграф" : "текст";
   notifyAllAdmins({
     type: "new_suggestion",
     title: "Шинэ орчуулгын санал",

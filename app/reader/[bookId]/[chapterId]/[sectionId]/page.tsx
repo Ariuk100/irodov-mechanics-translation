@@ -55,6 +55,9 @@ export default function ReaderPage() {
   // ── Reading note state ─────────────────────────────────────────────────────
   const [noteModalOpen, setNoteModalOpen] = useState(false);
 
+  // ── Insert paragraph state ─────────────────────────────────────────────────
+  const [insertParagraphOpen, setInsertParagraphOpen] = useState(false);
+
   // ── Image suggestion state ─────────────────────────────────────────────────
   const [imageModal, setImageModal] = useState<{
     src: string | null;
@@ -324,9 +327,21 @@ export default function ReaderPage() {
                   onSelectFormula={isMod ? handleSelectFormula : undefined}
                   onSelectImage={isMod ? handleSelectImage : undefined}
                 />
-                {/* Mod: button to insert image at end of section */}
+                {/* Mod: buttons to insert paragraph or image at end of section */}
                 {isMod && (
-                  <div className="mt-8 pt-4 border-t border-dashed border-slate-200">
+                  <div className="mt-8 pt-4 border-t border-dashed border-slate-200 flex flex-wrap gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setInsertParagraphOpen(true)}
+                      className="flex items-center gap-2 text-xs text-slate-400 hover:text-blue-500 transition-colors group"
+                    >
+                      <span className="w-5 h-5 rounded-full border border-dashed border-slate-300 group-hover:border-blue-400 flex items-center justify-center transition-colors">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                      </span>
+                      Параграф нэмэх санал
+                    </button>
                     <button
                       type="button"
                       onClick={() => handleSelectImage(null, section.body.length, "insert")}
@@ -401,6 +416,20 @@ export default function ReaderPage() {
           sectionId={sectionId}
           onClose={() => setTitleModalOpen(false)}
           onSubmitted={() => { setTitleModalOpen(false); showToast("Гарчиг засах санал хадгалагдлаа!"); }}
+        />
+      )}
+
+      {/* Insert paragraph modal */}
+      {insertParagraphOpen && section && (
+        <SuggestionModal
+          insertMode
+          selectedText=""
+          blockIndex={section.body.length}
+          bookId={bookId}
+          chapterId={chapterId}
+          sectionId={sectionId}
+          onClose={() => setInsertParagraphOpen(false)}
+          onSubmitted={() => { setInsertParagraphOpen(false); showToast("Шинэ параграф нэмэх санал хадгалагдлаа!"); }}
         />
       )}
 

@@ -9,6 +9,7 @@ interface Props {
   chapterId: string;
   sectionId: string;
   type?: "text" | "title"; // defaults to "text"
+  insertMode?: boolean;    // true = insert new paragraph (no original text)
   onClose: () => void;
   onSubmitted: () => void;
 }
@@ -63,6 +64,7 @@ export default function SuggestionModal({
   chapterId,
   sectionId,
   type = "text",
+  insertMode = false,
   onClose,
   onSubmitted,
 }: Props) {
@@ -73,8 +75,8 @@ export default function SuggestionModal({
   const [showLatex, setShowLatex] = useState(false);
 
   const diff = useMemo(
-    () => diffWords(selectedText, suggestedText),
-    [selectedText, suggestedText]
+    () => (insertMode ? [] : diffWords(selectedText, suggestedText)),
+    [selectedText, suggestedText, insertMode]
   );
 
   const hasChanges = diff.some((t) => t.type !== "same");
@@ -82,7 +84,7 @@ export default function SuggestionModal({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!suggestedText.trim()) {
-      setError("Орчуулах санал бичнэ үү");
+      setError(insertMode ? "Параграфын текст бичнэ үү" : "Орчуулах санал бичнэ үү");
       return;
     }
     setLoading(true);
@@ -93,11 +95,12 @@ export default function SuggestionModal({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type,
+          ...(insertMode && { textAction: "insert" }),
           bookId,
           chapterId,
           sectionId,
           blockIndex,
-          originalText: selectedText,
+          originalText: insertMode ? "" : selectedText,
           suggestedText: suggestedText.trim(),
           note,
         }),
@@ -130,7 +133,7 @@ export default function SuggestionModal({
               </svg>
             </div>
             <h2 className="text-base font-semibold text-slate-900">
-              {type === "title" ? "Гарчиг засах санал" : "Орчуулах санал"}
+              {insertMode ? "Шинэ параграф нэмэх санал" : type === "title" ? "Гарчиг засах санал" : "Орчуулах санал"}
             </h2>
           </div>
           <button
@@ -144,32 +147,34 @@ export default function SuggestionModal({
         </div>
 
         <form onSubmit={handleSubmit}>
-          {/* Two column body */}
-          <div className="grid grid-cols-2 divide-x divide-slate-100">
-            {/* Left: original with diff (deleted parts highlighted) */}
-            <div className="p-5 space-y-2">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Эх текст</p>
-              <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 h-52 overflow-y-auto leading-relaxed whitespace-pre-wrap">
-                {hasChanges
-                  ? diff
-                      .filter((t) => t.type !== "ins")
-                      .map((t, i) =>
-                        t.type === "del" ? (
-                          <mark
-                            key={i}
-                            className="bg-red-100 text-red-700 line-through rounded px-0.5"
-                          >
-                            {t.text}
-                          </mark>
-                        ) : (
-                          <span key={i}>{t.text}</span>
+          {/* Body: two-column for edit mode, single column for insert mode */}
+          <div className={insertMode ? "" : "grid grid-cols-2 divide-x divide-slate-100"}>
+            {/* Left: original with diff — hidden in insert mode */}
+            {!insertMode && (
+              <div className="p-5 space-y-2">
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Эх текст</p>
+                <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 h-52 overflow-y-auto leading-relaxed whitespace-pre-wrap">
+                  {hasChanges
+                    ? diff
+                        .filter((t) => t.type !== "ins")
+                        .map((t, i) =>
+                          t.type === "del" ? (
+                            <mark
+                              key={i}
+                              className="bg-red-100 text-red-700 line-through rounded px-0.5"
+                            >
+                              {t.text}
+                            </mark>
+                          ) : (
+                            <span key={i}>{t.text}</span>
+                          )
                         )
-                      )
-                  : selectedText}
+                    : selectedText}
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Right: textarea + diff preview */}
+            {/* Right (or full-width in insert mode): textarea + diff preview */}
             <div className="p-5 space-y-2">
               <div className="flex items-center justify-between">
                 <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Засварласан текст</p>
@@ -216,7 +221,7 @@ export default function SuggestionModal({
                 rows={8}
                 value={suggestedText}
                 onChange={(e) => setSuggestedText(e.target.value)}
-                placeholder="Засварласан текстийг энд бичнэ үү..."
+                placeholder={insertMode ? "Шинэ параграфын текстийг энд бичнэ үү..." : "Засварласан текстийг энд бичнэ үү..."}
                 className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-400 h-52"
               />
 
