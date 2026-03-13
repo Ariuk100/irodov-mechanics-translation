@@ -221,6 +221,7 @@ export default function ReaderPage() {
             <div className="hidden sm:flex items-center bg-slate-100 rounded-lg p-0.5 gap-0.5">
               {(["sm", "base", "lg"] as const).map((s) => (
                 <button
+                  suppressHydrationWarning
                   key={s}
                   onClick={() => setFontSize(s)}
                   title={s === "sm" ? "Жижиг" : s === "base" ? "Дунд" : "Том"}
