@@ -90,8 +90,6 @@ export default function SuggestionModal({
   const [loading, setLoading] = useState(false);
   const [error, setError]   = useState("");
   const [showLatex, setShowLatex] = useState(false);
-  // "diff" = засварын харьцуулалт, "preview" = LaTeX render
-  const [rightTab, setRightTab] = useState<"diff" | "preview">("diff");
 
   const diff = useMemo(
     () => (insertMode ? [] : diffWords(selectedText, suggestedText)),
@@ -240,7 +238,7 @@ export default function SuggestionModal({
               <textarea
                 autoFocus
                 required
-                rows={8}
+                rows={5}
                 value={suggestedText}
                 onChange={(e) => setSuggestedText(e.target.value)}
                 placeholder={
@@ -248,52 +246,11 @@ export default function SuggestionModal({
                     ? "Шинэ параграфын текстийг энд бичнэ үү..."
                     : "Засварласан текстийг энд бичнэ үү..."
                 }
-                className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-400 h-52"
+                className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-400"
               />
 
-              {/* ── Bottom panel: Diff | Preview tabs ── */}
-              {insertMode ? (
-                /* Insert mode: always show preview */
-                <PreviewPanel html={renderedPreview} label="Урьдчилан харах" />
-              ) : (
-                /* Edit mode: Засвар | Харах tabs */
-                <div className="space-y-1.5">
-                  <div className="flex gap-1">
-                    <TabBtn
-                      active={rightTab === "diff"}
-                      onClick={() => setRightTab("diff")}
-                      label="Засвар"
-                    />
-                    <TabBtn
-                      active={rightTab === "preview"}
-                      onClick={() => setRightTab("preview")}
-                      label="Харах"
-                    />
-                  </div>
-
-                  {rightTab === "diff" ? (
-                    hasChanges ? (
-                      <div className="rounded-xl border border-green-100 bg-green-50/60 px-4 py-3 text-sm text-slate-800 max-h-[120px] overflow-y-auto leading-relaxed whitespace-pre-wrap">
-                        {diff
-                          .filter((t) => t.type !== "del")
-                          .map((t, i) =>
-                            t.type === "ins" ? (
-                              <mark key={i} className="bg-green-200 text-green-800 rounded px-0.5">
-                                {t.text}
-                              </mark>
-                            ) : (
-                              <span key={i}>{t.text}</span>
-                            )
-                          )}
-                      </div>
-                    ) : (
-                      <p className="text-xs text-slate-400 px-1">Өөрчлөлт байхгүй</p>
-                    )
-                  ) : (
-                    <PreviewPanel html={renderedPreview} />
-                  )}
-                </div>
-              )}
+              {/* ── Live LaTeX preview — always visible ── */}
+              <PreviewPanel html={renderedPreview} />
             </div>
           </div>
 
@@ -363,9 +320,9 @@ function TabBtn({
 function PreviewPanel({ html, label = "Урьдчилан харах" }: { html: string; label?: string }) {
   return (
     <div className="space-y-1">
-      <p className="text-xs text-slate-400 px-0.5">{label}</p>
+      <p className="text-xs text-slate-400 px-0.5 font-semibold uppercase tracking-wider">{label}</p>
       <div
-        className="rounded-xl border border-blue-100 bg-blue-50/40 px-4 py-3 text-sm text-slate-800 max-h-[140px] overflow-y-auto leading-relaxed prose prose-sm max-w-none"
+        className="rounded-xl border border-blue-100 bg-blue-50/40 px-4 py-3 text-sm text-slate-800 leading-relaxed prose prose-sm max-w-none min-h-[60px]"
         dangerouslySetInnerHTML={{ __html: html || '<span class="text-slate-400 italic">Текст байхгүй</span>' }}
       />
     </div>
